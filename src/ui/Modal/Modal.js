@@ -9,19 +9,19 @@ import LoginButton  from "../button/LoginButton/LoginButton";
 const Modal = ({active, setActive}) => {
  return (  
  <div className={style.modal}>
-  <div class="shadow-lg p-5 mb-5 bg-white rounded text-center">
+  <div className={style.modal__content}>
      <h1 class="mb-4 display-5">Add Use Form</h1>
       <div  class="mt-2">
-        <Input placeholder="First Name"/>
+        <Input type={"text"} placeholder={"First Name"}/>
       </div>
       <div  class="mt-2">
-        <Input placeholder="Last Name"/>
+        <Input type={"text"} placeholder={"Last Name"}/>
       </div>
       <div  class="mt-2">
-        <Input placeholder="Email"/>
+        <Input type={"email"} placeholder={"Email"} />
       </div>
       <div  class="mt-2">
-       <Input placeholder="Password"/>
+       <Input type={"password"} placeholder={"Password"}/>
       </div>
       <div class="mt-2">
        <LoginButton buttonText={"Add user"}/>
