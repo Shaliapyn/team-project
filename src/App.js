@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import { Route, Routes } from 'react-router-dom'
@@ -14,8 +14,26 @@ import Event from "./pages/Event";
 import ManagerManagement from "./pages/ManagerManagement";
 import Login from "./pages/Login";
 import Home from './pages/Home';
+import { collection, doc, getDoc, getDocs, onSnapshot } from 'firebase/firestore';
+import { membersCollection, db } from './firebase-client';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { memberState, setMembers } from './store/slices/membersSlice';
 
 function App() {
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    onSnapshot(membersCollection, (snapshot) => {
+      const memberSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      dispatch(
+        setMembers(memberSnap)
+      )
+    })
+  }, [])
+  const memberSelec = useSelector(memberState)
+  console.log(memberSelec)
   return (
     <div className="App">
       <Routes>
