@@ -1,12 +1,17 @@
 import React from 'react'
-// import Member from './Member'
+import { useSelector } from 'react-redux'
 
-const Members = ({ members }) => {
+import { memberState } from '../../store/slices/membersSlice'
+import Member from './Member/Member'
+
+
+const Members = () => {
+  const members = useSelector(memberState)
   return (
     <>
-      {/* {members.map((manager, id) => (
-        <Manager manager={manager} id={id}/>
-      ))} */}
+      {members && members.map((member, id) => (
+        <Member key={id} member={member}/>
+      ))}
     </>
   )
 }

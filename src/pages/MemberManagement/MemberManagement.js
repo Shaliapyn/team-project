@@ -1,12 +1,15 @@
 import React, { useState } from "react"
 import AddMemberForm from "../../features/AddMemberForm"
-import { auth } from "../../firebase-client"
 
 import styles from '../../assets/scss/membermanagement.module.scss'
+import Members from "../../features/Members"
+import { useSelector } from "react-redux"
+import { memberState } from "../../store/slices/membersSlice"
 
 const MemberManagement = () => {
   const [show, setShow] = useState(false)
-
+  const members = useSelector(memberState)
+  console.log(members)
   return (
     <div className={`${styles.tableContainerManagement}`}>
       <div>{show ? <AddMemberForm closeForm={() => setShow(false)} /> : null}</div>
@@ -55,6 +58,7 @@ const MemberManagement = () => {
                   </button>
                 </td>
               </tr>
+              {<Members />}
             </tbody>
           </table>
         </div>
