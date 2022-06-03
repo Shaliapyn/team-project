@@ -17,8 +17,28 @@ import Home from './pages/Home';
 import RequireAuth from './hoc/RequireAuth';
 import GetState from './hoc/GetState';
 import ForgotPassword from './pages/ForgotPassword';
+import {onAuthStateChanged, onIdTokenChanged} from 'firebase/auth'
+import { auth } from "./firebase-client"
+import  { useState, useEffect } from "react";
 
 function App() {
+
+  // useEffect(() => {
+  //   onIdTokenChanged(auth, async (user) => {
+  //     if (!user) {
+  //       console.log('No User found...')
+      
+  //     } else {
+        
+  //       console.log('Updating user...')
+  //       const token = await user.getIdToken()
+
+  //       console.log(token);
+  //       console.log(user);
+  //           }
+  //     })
+  // }, [])
+
   return (
     <div className="App">
       <GetState>
