@@ -17,6 +17,7 @@ import Home from './pages/Home';
 import RequireAuth from './hoc/RequireAuth';
 import GetState from './hoc/GetState';
 import ForgotPassword from './pages/ForgotPassword';
+import NotFound from './pages/NotFound';
 import {onAuthStateChanged, onIdTokenChanged} from 'firebase/auth'
 import { auth } from "./firebase-client"
 import  { useState, useEffect } from "react";
@@ -47,6 +48,7 @@ function App() {
             <Route index element={<Start />} />
             <Route path="signin" element={<Login />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route path="*" element={<NotFound />} />
             <Route path="auth/*" element={ 
               <RequireAuth > 
                 <Routes>
