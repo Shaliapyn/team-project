@@ -1,8 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
 import style from '../../assets/scss/profile.module.scss'
-import Button from '../../ui/button/Button'
 
 const Profile = () => {
+  const member = useSelector((state) => state.member.member)
+  
   return (
     <div className={style.profile__container}>
       <div className={style.profile__content}>
@@ -14,9 +17,9 @@ const Profile = () => {
             </button>
           </div>
           <div style={{ marginTop: '40px' }}>
-            <p>First Name</p>
-            <p>Last Name</p>
-            <p>Score</p>
+            <p>First Name: {member.firstName} </p>
+            <p>Last Name: {member.lastName} </p>
+            <p>Score: {member.score}</p>
             <p>Place in the ranking</p>
           </div>
         </div>

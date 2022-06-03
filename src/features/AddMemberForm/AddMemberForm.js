@@ -20,7 +20,7 @@ const firebaseConfig = {
 };
 
 const AddMemberForm = ({closeForm}) => {
-   
+       
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -37,7 +37,7 @@ const AddMemberForm = ({closeForm}) => {
 
     let secondaryApp = initializeApp(firebaseConfig, "secondary");
     const secondaryAuth = getAuth(secondaryApp);
-        
+            
     createUserWithEmailAndPassword(secondaryAuth, email, password)
       .then(signOut(secondaryAuth))
       .then(() => {secondaryApp = null})
@@ -50,7 +50,7 @@ const AddMemberForm = ({closeForm}) => {
           organisation: organisation,
           birthDate: birthDate,
           score: initialScore,
-          role: 'user'
+          role: 'user',
         });
       })
       .catch(err => {

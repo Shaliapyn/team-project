@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { InputEmail } from '../../ui/input/InputEmail'
-import { LoginButton } from '../../ui/button/LoginButton'
+import InputEmail from '../../ui/input/InputEmail'
+import LoginButton from '../../ui/button/LoginButton'
 import style from '../../assets/scss/forgotPassword.module.scss'
 
-export const ForgotPassword = () => {
+const ForgotPassword = () => {
   return (
     <div className={style.container}>
       <div className={style.plate}>
@@ -29,3 +29,5 @@ export const ForgotPassword = () => {
     </div>
   )
 }
+
+export default ForgotPassword
