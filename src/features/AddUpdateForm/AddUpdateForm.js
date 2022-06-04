@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 
-import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
+import { updateDoc, doc } from 'firebase/firestore'
 import { membersCollection } from '../../firebase-client'
 
 import style from '../../assets/scss/AddMemberForm.module.scss'
@@ -13,7 +13,7 @@ import MenuContext from '../../context/MenuContext'
 
 const AddUpdateForm = ({ closeForm }) => {
   const updatedMember = useSelector(memberUpState)
-  const {handleEdit} = useContext(MenuContext)
+  const { handleEdit } = useContext(MenuContext)
 
   const [email, setEmail] = useState(updatedMember.email)
   const [firstName, setFirstName] = useState(updatedMember.firstName)
@@ -26,16 +26,6 @@ const AddUpdateForm = ({ closeForm }) => {
   const updateMember = async (e) => {
     e.preventDefault()
 
-    // addDoc(collection(db, "members"), {
-    //   firstName: firstName,
-    //   lastName: lastName,
-    //   email: email,
-    //   phone: phone,
-    //   organisation: organisation,
-    //   birthDate: birthDate,
-    //   score: initialScore,
-    //   role: 'user'
-    // });
     const updatedDoc = doc(membersCollection, updatedMember.id)
     const newFields = {
       email: email,
@@ -58,7 +48,9 @@ const AddUpdateForm = ({ closeForm }) => {
           <div className={style.borders}>
             <h1 className={style.title}>Add Member Form</h1>
             <div className={style.element}>
+              <label htmlFor="firstName">First Name</label>
               <Input
+                id="firstName"
                 type={'text'}
                 placeholder={'First name'}
                 value={firstName}
@@ -66,7 +58,9 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
+              <label htmlFor="firstName">Last Name</label>
               <Input
+                id="lastName"
                 type={'text'}
                 placeholder={'Last name'}
                 value={lastName}
@@ -74,10 +68,19 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
-              <Input type={'email'} placeholder={'Email'} value={email} onChange={(e) => setEmail(e.target.value)} />
+              <label htmlFor="email">Email</label>
+              <Input
+                id="email"
+                type={'email'}
+                placeholder={'Email'}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className={style.element}>
+              <label htmlFor="birthDate">Birth Date</label>
               <Input
+                id="birthDate"
                 type={'date'}
                 placeholder={'birth date'}
                 value={birthDate}
@@ -85,7 +88,9 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
+              <label htmlFor="phone">Phone</label>
               <Input
+                id="phone"
                 type={'tel'}
                 placeholder={'Phone number'}
                 value={phone}
@@ -93,7 +98,9 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
+              <label htmlFor="organisation">Organisation</label>
               <Input
+                id="organisation"
                 type={'text'}
                 placeholder={'Organisation'}
                 value={organisation}
@@ -101,9 +108,11 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
+              <label htmlFor="score">Score</label>
               <Input
+                id="score"
                 type={'number'}
-                placeholder={'Initial score'}
+                placeholder={'Score'}
                 value={initialScore}
                 onChange={(e) => setInitialScore(e.target.value)}
               />

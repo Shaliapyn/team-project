@@ -30,10 +30,10 @@ const Member = ({ member }) => {
       <th scope="col">#</th>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
-      <td>{member.orgaisation}</td>
+      <td>{member.organisation}</td>
       <td>{member.email}</td>
       <td>{member.phone}</td>
-      <td>{member.score}</td>
+      <td>{member.initialScore}</td>
       <td>{member.birthDate}</td>
       <td className={styles.btnBlock}>
         <button onClick={() => updateMemb(member.id)} type="button" className="btn btn-primary w-auto">

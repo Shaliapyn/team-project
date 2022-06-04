@@ -3,20 +3,16 @@ import AddMemberForm from "../../features/AddMemberForm"
 
 import styles from '../../assets/scss/membermanagement.module.scss'
 import Members from "../../features/Members"
-import { useSelector } from "react-redux"
-import { memberState } from "../../store/slices/membersSlice"
 import MenuContext from "../../context/MenuContext"
 import AddUpdateForm from "../../features/AddUpdateForm"
-import { memberUpState } from "../../store/slices/memberUpSlice"
 
 const MemberManagement = () => {
   const [show, setShow] = useState(false)
-  const updatedMember = useSelector(memberUpState)
   const { showUpdateForm, handleEdit } = useContext(MenuContext)
   console.log(showUpdateForm)
   return (
     <div className={`${styles.tableContainerManagement}`}>
-      <div>{show ? <AddMemberForm closeForm={() => setShow(false)} /> : null}</div>
+      <div>{show && <AddMemberForm closeForm={() => setShow(false)} />}</div>
       <div>{showUpdateForm && <AddUpdateForm closeForm={() => handleEdit()} />}</div>
       <div className="card shadow mb-4">
         <div className={`card-header py-3 ${styles.flexBlock}`}>
