@@ -24,8 +24,8 @@ const Member = ({ member }) => {
     console.log(updatedMember)
   }
   return (
-    // {Manager || Admin ?
-    //     (
+    // Manager || Admin ?
+
     <tr style={{ verticalAlign: 'middle' }}>
       <th scope="col">#</th>
       <td>{member.firstName}</td>
@@ -44,16 +44,7 @@ const Member = ({ member }) => {
         </button>
       </td>
     </tr>
-    //                 )  :
-    //                 (
-    //                   <tr>
-    //                     <th scope="row">1</th>
-    //                     <td>{member.firstName}</td>
-    //                     <td>{member.lastName}</td>
-    //                     <td>{member.orgaisation}</td>
-    //                     <td>{member.phone}</td>
-    //                 </tr>)
-    // }
+
   )
 }
 

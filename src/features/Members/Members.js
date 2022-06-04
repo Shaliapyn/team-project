@@ -7,6 +7,7 @@ import Member from './Member/Member'
 
 const Members = () => {
   const members = useSelector(memberState)
+  console.log(members)
   return (
     <>
       {members && members.map((member, id) => (
