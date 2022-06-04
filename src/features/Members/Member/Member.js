@@ -1,9 +1,16 @@
+import { deleteDoc, doc } from 'firebase/firestore';
 import React from 'react'
 
 import styles from '../../../assets/scss/membermanagement.module.scss'
+import { membersCollection } from '../../../firebase-client';
 
 const Member = ({ member }) => {
+  const handleRemove = async (id) => {
+    const todoDoc = doc(membersCollection, id);
+    await deleteDoc(todoDoc)
+  };
   return (
+    
     // {Manager || Admin ?
     //     (
     <tr style={{ verticalAlign: 'middle' }}>
@@ -19,7 +26,7 @@ const Member = ({ member }) => {
         <button type="button" className="btn btn-primary w-auto">
           Edit
         </button>
-        <button type="button" className="btn btn-danger w-auto">
+        <button onClick={()=> handleRemove(member.id)} type="button" className="btn btn-danger w-auto">
           Delete
         </button>
       </td>
