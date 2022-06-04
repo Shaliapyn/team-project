@@ -1,16 +1,29 @@
-import { deleteDoc, doc } from 'firebase/firestore';
-import React from 'react'
+import { deleteDoc, doc } from 'firebase/firestore'
+import React, { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from '../../../assets/scss/membermanagement.module.scss'
-import { membersCollection } from '../../../firebase-client';
+import MenuContext from '../../../context/MenuContext'
+import { membersCollection } from '../../../firebase-client'
+import { memberUpState, updateMember } from '../../../store/slices/memberUpSlice'
 
 const Member = ({ member }) => {
+  const { handleEdit } = useContext(MenuContext)
+  const dispatch = useDispatch()
   const handleRemove = async (id) => {
-    const todoDoc = doc(membersCollection, id);
+    const todoDoc = doc(membersCollection, id)
     await deleteDoc(todoDoc)
-  };
+  }
+  const updatedMember = useSelector(memberUpState)
+
+  const updateMemb = (id) => {
+    handleEdit()
+    if (member.id === id) {
+      dispatch(updateMember(member))
+    }
+    console.log(updatedMember)
+  }
   return (
-    
     // {Manager || Admin ?
     //     (
     <tr style={{ verticalAlign: 'middle' }}>
@@ -23,10 +36,10 @@ const Member = ({ member }) => {
       <td>{member.score}</td>
       <td>{member.birthDate}</td>
       <td className={styles.btnBlock}>
-        <button type="button" className="btn btn-primary w-auto">
+        <button onClick={() => updateMemb(member.id)} type="button" className="btn btn-primary w-auto">
           Edit
         </button>
-        <button onClick={()=> handleRemove(member.id)} type="button" className="btn btn-danger w-auto">
+        <button onClick={() => handleRemove(member.id)} type="button" className="btn btn-danger w-auto">
           Delete
         </button>
       </td>

@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import memberReducer from "./slices/membersSlice"
+import memberReducer from "./slices/membersSlice";
+import memberUpReducer from "./slices/memberUpSlice"
+
 
 export default configureStore({
     reducer:{
-        members: memberReducer
+        members: memberReducer,
+        member: memberUpReducer
     } 
 })
