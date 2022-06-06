@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch} from 'react-redux';
 
-import { collection , query, onSnapshot, where} from 'firebase/firestore';
+import { collection ,orderBy, query, onSnapshot, where} from 'firebase/firestore';
 import {onAuthStateChanged, onIdTokenChanged} from 'firebase/auth'
 import {db} from '../../firebase-client';
 import { auth } from "../../firebase-client"
+import { eventsCollection,  } from '../../firebase-client';
 
-import {setMember} from '../../store/slices/memberSlice';
+import { setMember } from '../../store/slices/memberSlice';
+import { setEvents } from '../../store/slices/eventsSlice';
 
 const GetState = ({children}) => {
 
@@ -46,10 +48,21 @@ const GetState = ({children}) => {
             })
           }) 
 
-        console.log(token);
+        // console.log(token);
         // console.log(user);
     }})
   }, [])
+
+  const qEvents = query(eventsCollection, orderBy('eventDate', 'desc')); 
+
+  useEffect(() => {
+    onSnapshot(qEvents, (snapshot) => {
+      const eventsSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      dispatch(
+        setEvents(eventsSnap)
+      );
+    })
+  }, [qEvents])
   
         
   // const dispatch = useDispatch();

@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import AddMemberForm from "../../features/AddMemberForm"
-import { auth } from "../../firebase-client"
 
 import styles from '../../assets/scss/membermanagement.module.scss'
 

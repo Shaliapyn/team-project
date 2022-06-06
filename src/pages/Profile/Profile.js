@@ -5,7 +5,7 @@ import style from '../../assets/scss/profile.module.scss'
 
 const Profile = () => {
   const member = useSelector((state) => state.member.member)
-  
+    
   return (
     <div className={style.profile__container}>
       <div className={style.profile__content}>
