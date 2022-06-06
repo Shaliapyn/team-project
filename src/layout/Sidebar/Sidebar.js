@@ -17,7 +17,7 @@ const Sidebar = () => {
   const { isMenuCheked, setIsMenuChecked } = useContext(MenuContext)
   const hideSideBarClass = isMenuCheked ? `${styles.menuToggle}` : null
 
-  const {role} = useSelector(state => state.member.member);
+  const role = useSelector(state => state.member.member.role);
   const [currentUser, setCurrentUser] = useState(role);
   
   useEffect(() => {
@@ -40,10 +40,11 @@ const Sidebar = () => {
               className={`text-white ${styles.Link}`}
               to={el.link}
             >
-              <li className={sidebarLiClasses}>
-                <div className={sidebarIconLiClasses}>{el.icon}</div>
-                {isSidebarBig && <div>{el.title}</div>}
-              </li>
+              {el.rolesAccess.includes(currentUser) && 
+                <li className={sidebarLiClasses}>
+                  <div className={sidebarIconLiClasses}>{el.icon}</div>
+                  {isSidebarBig && <div>{el.title}</div>}
+                </li>}
             </Link>
           )))}
         </ul>
