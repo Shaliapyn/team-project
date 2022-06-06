@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import AddEventForm from '../../features/AddEventForm'
 import style from '../../assets/scss/eventManagement.module.scss'
 
-const EventList = () => {
+const EventManagement = () => {
   const [show, setShow] = useState(false)
 
   return (
@@ -56,4 +56,4 @@ const EventList = () => {
   )
 }
 
-export default EventList
+export default EventManagement
