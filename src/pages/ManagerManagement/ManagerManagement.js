@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from '../../assets/scss/managermanagement.module.scss'
-import Button from '../../ui/button/Button'
+import Managers from '../../features/Managers/Managers'
 
 const ManagerManagement = () => {
   return (
@@ -39,7 +39,7 @@ const ManagerManagement = () => {
                   </button>
                 </td>
               </tr>
-              {/* {Managers} */}
+              <Managers />
             </tbody>
           </table>
         </div>

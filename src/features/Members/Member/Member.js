@@ -1,33 +1,51 @@
-import React from 'react'
+import { deleteDoc, doc } from 'firebase/firestore'
+import React, { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import styles from '../../../assets/scss/memberlist.module.scss'
+import styles from '../../../assets/scss/membermanagement.module.scss'
+import MenuContext from '../../../context/MenuContext'
+import { membersCollection } from '../../../firebase-client'
+import { memberUpState, updateMember } from '../../../store/slices/memberUpSlice'
 
 const Member = ({ member }) => {
-  //   return (
-  //             {Manager || Admin ?
-  //                 (<tr>
-  //                     <th scope="col">#</th>
-  //                     <th scope="col">{member.firstName}</th>
-  //                     <th scope="col">{member.lastName}</th>
-  //                     <th scope="col">{member.org}</th>
-  //                     <th scope="col">{member.email}</th>
-  //                     <th scope="col">{member.phone}</th>
-  //                     <th scope="col">{member.score}</th>
-  //                     <th scope="col">{member.birthDate}</th>
-  // <td className={styles.btnBlock}>
-  //     <LoginButton className={styles.memberBtn} buttonText={"Edit"}>Edit</LoginButton>
-  //     <LoginButton className={styles.memberBtn} buttonText={"Delete"}>Delete</LoginButton>
-  // </td>
-  //                 </tr>)  :
-  //                 (<tr>
-  //                     <th scope="row">1</th>
-  //                     <td>{member.firstName}</td>
-  //                     <td>{member.lastName}</td>
-  //                     <td>{member.org}</td>
-  //                     <td>{member.phone}</td>
-  //                 </tr>)
-  // }
-  //   );
+  const { handleEdit } = useContext(MenuContext)
+  const dispatch = useDispatch()
+  const handleRemove = async (id) => {
+    const todoDoc = doc(membersCollection, id)
+    await deleteDoc(todoDoc)
+  }
+  const updatedMember = useSelector(memberUpState)
+
+  const updateMemb = (id) => {
+    handleEdit()
+    if (member.id === id) {
+      dispatch(updateMember(member))
+    }
+    console.log(updatedMember)
+  }
+  return (
+    // Manager || Admin ?
+
+    <tr style={{ verticalAlign: 'middle' }}>
+      <th scope="col">#</th>
+      <td>{member.firstName}</td>
+      <td>{member.lastName}</td>
+      <td>{member.organisation}</td>
+      <td>{member.email}</td>
+      <td>{member.phone}</td>
+      <td>{member.initialScore}</td>
+      <td>{member.birthDate}</td>
+      <td className={styles.btnBlock}>
+        <button onClick={() => updateMemb(member.id)} type="button" className="btn btn-primary w-auto">
+          Edit
+        </button>
+        <button onClick={() => handleRemove(member.id)} type="button" className="btn btn-danger w-auto">
+          Delete
+        </button>
+      </td>
+    </tr>
+
+  )
 }
 
 export default Member
