@@ -6,23 +6,27 @@ import { HiUserGroup } from 'react-icons/hi'
 export const SidebarData = [
   {
     title: 'Profile',
-    link: '/profile',
+    link: 'auth/profile',
     icon: <ImProfile size={30} />,
+    rolesAccess: ['user', 'manager', 'admin']
   },
   {
     title: 'Member List',
-    link: '/member-list',
+    link: 'auth/member-list',
     icon: <HiUserGroup size={30} />,
+    rolesAccess: ['user']
   },
   {
     title: 'Member Management',
-    link: './member-management',
+    link: 'auth/member-management',
     icon: <FaUserTie size={30} />,
+    rolesAccess: ['manager', 'admin']
   },
   {
     title: 'Manager Management',
-    link: './manager-management',
+    link: 'auth/manager-management',
     icon: <RiUserStarFill size={30} />,
+    rolesAccess: ['admin']
   },
   {
     title: 'Event List',
