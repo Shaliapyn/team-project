@@ -9,8 +9,8 @@ const Managers = () => {
   return (
     <>
       {members.map((member, id) => {
-        if (member.role !== "user"){
-          return <Manager manager={member} id={id}/>
+        if (member.role === "manager"){
+          return <Manager key={id} manager={member} id={id}/>
         }
       })}
     </>
