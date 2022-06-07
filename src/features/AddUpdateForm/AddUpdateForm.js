@@ -118,7 +118,7 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
-              <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-auto">
+              <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-100">
                 Submit changes
               </button>
             </div>
