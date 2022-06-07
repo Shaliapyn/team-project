@@ -24,6 +24,6 @@ const memberUpSlice = createSlice({
 
 export const {updateMember} = memberUpSlice.actions;
 
-export const memberUpState = ((state) => state.member.member)
+export const memberUpState = ((state) => state.memberUp.member)
 
 export default memberUpSlice.reducer;

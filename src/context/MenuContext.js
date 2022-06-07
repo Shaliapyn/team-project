@@ -1,6 +1,4 @@
-import { doc } from 'firebase/firestore'
 import React, { createContext, useState } from 'react'
-import { membersCollection } from '../firebase-client'
 
 const MenuContext = createContext()
 

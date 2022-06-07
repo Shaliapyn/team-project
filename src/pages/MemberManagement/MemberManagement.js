@@ -9,7 +9,7 @@ import AddUpdateForm from "../../features/AddUpdateForm"
 const MemberManagement = () => {
   const [show, setShow] = useState(false)
   const { showUpdateForm, handleEdit } = useContext(MenuContext)
-  console.log(showUpdateForm)
+  
   return (
     <div className={`${styles.tableContainerManagement}`}>
       <div>{show && <AddMemberForm closeForm={() => setShow(false)} />}</div>
@@ -41,24 +41,6 @@ const MemberManagement = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className={styles.tableRow}>
-                <th scope="row">1</th>
-                <td>Gustavus</td>
-                <td>Adolphus</td>
-                <td>Army</td>
-                <td>@gmail</td>
-                <td>+3806712494</td>
-                <td>25</td>
-                <td>24.05.1598</td>
-                <td className={styles.btnBlock}>
-                  <button type="button" className="btn btn-primary w-auto">
-                    Edit
-                  </button>
-                  <button type="button" className="btn btn-danger w-auto">
-                    Delete
-                  </button>
-                </td>
-              </tr>
               {<Members />}
             </tbody>
           </table>

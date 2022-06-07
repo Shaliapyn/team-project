@@ -1,28 +1,37 @@
 import React, {useState} from "react";
-
 import {useNavigate} from 'react-router-dom';
+
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from "../../firebase-client";
+
 import Input from '../../ui/input/Input'
 
 import style from "../../assets/scss/login.module.scss";
 
 const Login = () => {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+
+  let navigate = useNavigate();
   
-  const signIn = (e) => {
+  async function signIn(e) {
     e.preventDefault();
+        
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-          navigate('/home');
+        navigate('../auth/home');
       })
       .catch(err => {
         setError(err.message);
         console.error(error);
-      });  
+      }); 
+  }
+
+  const forgotPassword = (e) => {
+    e.preventDefault();
+    navigate('../forgot-password');
   }
   
   return (
@@ -52,10 +61,20 @@ const Login = () => {
               <button 
                 type="button" 
                 style={{fontSize: "18px"}} 
-                className="btn btn-primary rounded-pill w-auto"
+                className="btn btn-primary rounded-pill w-100"
                 onClick={signIn}
               >
                 &nbsp;&nbsp;&nbsp; Sign In &nbsp;&nbsp;&nbsp;
+              </button>
+            </div>
+            <div className={style.element}>
+              <button 
+                type="button" 
+                style={{fontSize: "16px"}} 
+                className="btn btn-outline-secondary rounded-pill mt-5 w-100"
+                onClick={forgotPassword}
+              >
+                Forgot your password? 
               </button>
             </div>
           </div>

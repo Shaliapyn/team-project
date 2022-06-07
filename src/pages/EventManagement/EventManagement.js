@@ -1,17 +1,29 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 import AddEventForm from '../../features/AddEventForm'
 import style from '../../assets/scss/eventManagement.module.scss'
 
-const EventList = () => {
-  const [show, setShow] = useState(false)
+const EventManagement = () => {
+  const [show, setShow] = useState(false);
+  const events = useSelector((state) => state.events.events);
+  
+  const eventsList = events.map((event) => {
+    return (
+      <tr key={event.id}>
+        <td className="py-3 pe-5 ps-4">{event.eventName}</td>
+        <td className="py-3  ps-4">{event.eventDate}</td>
+        <td className="py-3  ps-4">{event.score}</td>
+      </tr>
+    )
+  })
 
   return (
     <div className={style.container}>
       <div>{show ? <AddEventForm closeForm={() => setShow(false)} /> : null}</div>
       <div className="card shadow mb-4 ">
         <div className={`card-header py-3 ${style.flexBlock}`}>
-          <h2 className={`m-0 font-weight-bold text-primary  text ${style.textResponsive}`}>The Events Management</h2>
+          <h2 className={`m-0 font-weight-bold text-primary  text ${style.textResponsive}`}>The List of all Events</h2>
           <button
             type="button"
             className={`btn btn-primary w-auto ${style.managementBtn}`}
@@ -26,28 +38,13 @@ const EventList = () => {
           <table className="table table-bordered table-responsive-lg table-hover">
             <thead className="table-light">
               <tr>
-                <th scope="col" className="py-3 pe-5 ps-4">
-                  Name
-                </th>
-                <th scope="col" className="py-3  ps-4">
-                  Date
-                </th>
-                <th scope="col" className="py-3  ps-4">
-                  Score
-                </th>
+                <th scope="col" className="py-3 pe-5 ps-4"> Name </th>
+                <th scope="col" className="py-3  ps-4"> Date </th>
+                <th scope="col" className="py-3  ps-4"> Score </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="py-3 pe-5 ps-4">Mark gbfbf h hrth</td>
-                <td className="py-3  ps-4">12.12.2022</td>
-                <td className="py-3  ps-4">15</td>
-              </tr>
-              <tr>
-                <td className="py-3 pe-5 ps-4">Mark</td>
-                <td className="py-3 ps-4">03.11.2020</td>
-                <td className="py-3  ps-4">100</td>
-              </tr>
+              {eventsList}
             </tbody>
           </table>
         </div>
@@ -56,4 +53,4 @@ const EventList = () => {
   )
 }
 
-export default EventList
+export default EventManagement
