@@ -23,13 +23,6 @@ const MemberList = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Gustavus</td>
-                <td>Adolphus</td>
-                <td>Army</td>
-                <td>+3806712494</td>
-              </tr>
               {<Members />}
             </tbody>
           </table>
