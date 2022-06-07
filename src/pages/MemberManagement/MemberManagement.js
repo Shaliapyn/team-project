@@ -1,15 +1,19 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import AddMemberForm from "../../features/AddMemberForm"
-import { auth } from "../../firebase-client"
 
 import styles from '../../assets/scss/membermanagement.module.scss'
+import Members from "../../features/Members"
+import MenuContext from "../../context/MenuContext"
+import AddUpdateForm from "../../features/AddUpdateForm"
 
 const MemberManagement = () => {
   const [show, setShow] = useState(false)
-
+  const { showUpdateForm, handleEdit } = useContext(MenuContext)
+  console.log(showUpdateForm)
   return (
     <div className={`${styles.tableContainerManagement}`}>
-      <div>{show ? <AddMemberForm closeForm={() => setShow(false)} /> : null}</div>
+      <div>{show && <AddMemberForm closeForm={() => setShow(false)} />}</div>
+      <div>{showUpdateForm && <AddUpdateForm closeForm={() => handleEdit()} />}</div>
       <div className="card shadow mb-4">
         <div className={`card-header py-3 ${styles.flexBlock}`}>
           <h2 className={`m-0 font-weight-bold text-primary  text ${styles.textResponsive}`}>Members List</h2>
@@ -55,6 +59,7 @@ const MemberManagement = () => {
                   </button>
                 </td>
               </tr>
+              {<Members />}
             </tbody>
           </table>
         </div>
