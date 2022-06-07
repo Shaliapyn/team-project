@@ -1,14 +1,19 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import AddMemberForm from "../../features/AddMemberForm"
 
 import styles from '../../assets/scss/membermanagement.module.scss'
+import Members from "../../features/Members"
+import MenuContext from "../../context/MenuContext"
+import AddUpdateForm from "../../features/AddUpdateForm"
 
 const MemberManagement = () => {
   const [show, setShow] = useState(false)
-
+  const { showUpdateForm, handleEdit } = useContext(MenuContext)
+  
   return (
     <div className={`${styles.tableContainerManagement}`}>
-      <div>{show ? <AddMemberForm closeForm={() => setShow(false)} /> : null}</div>
+      <div>{show && <AddMemberForm closeForm={() => setShow(false)} />}</div>
+      <div>{showUpdateForm && <AddUpdateForm closeForm={() => handleEdit()} />}</div>
       <div className="card shadow mb-4">
         <div className={`card-header py-3 ${styles.flexBlock}`}>
           <h2 className={`m-0 font-weight-bold text-primary  text ${styles.textResponsive}`}>Members List</h2>
@@ -36,24 +41,7 @@ const MemberManagement = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className={styles.tableRow}>
-                <th scope="row">1</th>
-                <td>Gustavus</td>
-                <td>Adolphus</td>
-                <td>Army</td>
-                <td>@gmail</td>
-                <td>+3806712494</td>
-                <td>25</td>
-                <td>24.05.1598</td>
-                <td className={styles.btnBlock}>
-                  <button type="button" className="btn btn-primary w-auto">
-                    Edit
-                  </button>
-                  <button type="button" className="btn btn-danger w-auto">
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              {<Members />}
             </tbody>
           </table>
         </div>

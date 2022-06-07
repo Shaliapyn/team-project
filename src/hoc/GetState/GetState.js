@@ -5,10 +5,11 @@ import { collection ,orderBy, query, onSnapshot, where} from 'firebase/firestore
 import {onAuthStateChanged, onIdTokenChanged} from 'firebase/auth'
 import {db} from '../../firebase-client';
 import { auth } from "../../firebase-client"
-import { eventsCollection,  } from '../../firebase-client';
+import { eventsCollection, membersCollection } from '../../firebase-client';
 
 import { setMember } from '../../store/slices/memberSlice';
 import { setEvents } from '../../store/slices/eventsSlice';
+import { setMembers } from '../../store/slices/membersSlice';
 
 const GetState = ({children}) => {
   const dispatch = useDispatch();
@@ -45,8 +46,16 @@ const GetState = ({children}) => {
         setEvents(eventsSnap)
       );
     })
-  }, [qEvents])
-  
+  }, [qEvents]);
+
+  useEffect(() => {
+    onSnapshot(membersCollection, (snapshot) => {
+      const memberSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      dispatch(
+        setMembers(memberSnap)
+      )
+    })
+  }, []);  
         
   // const dispatch = useDispatch();
   // const user = auth.currentUser;

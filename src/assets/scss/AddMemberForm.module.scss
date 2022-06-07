@@ -12,7 +12,7 @@
 }
 .plate {
   position: absolute;
-  width: 25%;
+  width: 35%;
   background-color: white;
   border-radius: 15px;
   display: flex;
@@ -68,6 +68,12 @@
 
 .element {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & label {
+    width: 150px;
+  }
 }
 
 .element:last-child {
