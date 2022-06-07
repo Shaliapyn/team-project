@@ -1,9 +1,9 @@
-import React from 'react'
-import 'bootstrap/dist/css/bootstrap.css'
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
 
-import Layout from "./ui/Layout"
+import Layout from "./ui/Layout";
 import Start from "./pages/Start";
 import Profile from "./pages/Profile";
 import MemberList from "./pages/MemberList";
@@ -18,28 +18,8 @@ import RequireAuth from './hoc/RequireAuth';
 import GetState from './hoc/GetState';
 import ForgotPassword from './pages/ForgotPassword';
 import NotFound from './pages/NotFound';
-import {onAuthStateChanged, onIdTokenChanged} from 'firebase/auth'
-import { auth } from "./firebase-client"
-import  { useState, useEffect } from "react";
 
 function App() {
-
-  // useEffect(() => {
-  //   onIdTokenChanged(auth, async (user) => {
-  //     if (!user) {
-  //       console.log('No User found...')
-      
-  //     } else {
-        
-  //       console.log('Updating user...')
-  //       const token = await user.getIdToken()
-
-  //       console.log(token);
-  //       console.log(user);
-  //           }
-  //     })
-  // }, [])
-
   return (
     <div className="App">
       <GetState>

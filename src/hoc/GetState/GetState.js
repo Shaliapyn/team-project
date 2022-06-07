@@ -11,19 +11,6 @@ import { setMember } from '../../store/slices/memberSlice';
 import { setEvents } from '../../store/slices/eventsSlice';
 
 const GetState = ({children}) => {
-
-  // return firebaseClient.auth().onIdTokenChanged(async (user) => {
-  //    if (!user) {
-  //           console.log('No User found...')
-  //           return
-  //         } else {
-  //           console.log('Updating user...')
-  //           const token = await user.getIdToken()
-  //           console.log(token);
-  //           console.log(user);
-  //   }
-  //   })
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +20,6 @@ const GetState = ({children}) => {
       
       } else {
         
-        // console.log('Updating user...')
         const token = user.getIdToken()
           .then(() => {
             const q = query(collection(db, "members"), where("email", "==", user.email));
@@ -47,9 +33,6 @@ const GetState = ({children}) => {
                       });
             })
           }) 
-
-        // console.log(token);
-        // console.log(user);
     }})
   }, [])
 
