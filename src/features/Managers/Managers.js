@@ -1,11 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { memberState } from '../../store/slices/membersSlice'
+import Manager from './Manager/Manager'
 
-const Managers = ({ managers }) => {
+
+const Managers = () => {
+  const members = useSelector(memberState)
   return (
     <>
-      {/* {managers.map((member, id) => (
-        <Member member={member} id={id}/>
-      ))} */}
+      {members.map((member, id) => {
+        if (member.role !== "user"){
+          return <Manager manager={member} id={id}/>
+        }
+      })}
     </>
   )
 }

@@ -55,7 +55,7 @@ function Topbar() {
               onClick={() => setIsMenuChecked(!isMenuCheked)}
               type="checkbox"
             />
-            <label className={burgerClasses} for="menu-toggle">
+            <label className={burgerClasses} htmlFor="menu-toggle">
               <span></span>
             </label>
           </div>
