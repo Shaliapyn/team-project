@@ -7,7 +7,7 @@ import Member from './Member/Member'
 
 const Members = () => {
   const members = useSelector(memberState)
-  
+
   return (
     <>
       {members && members.map((member, id) => (

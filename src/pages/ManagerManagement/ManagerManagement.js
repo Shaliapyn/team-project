@@ -25,20 +25,6 @@ const ManagerManagement = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className={styles.tableRow}>
-                <th>Avatar</th>
-                <td>Gustavus</td>
-                <td>Adolphus</td>
-                <td>@gmail</td>
-                <td className={styles.btnBlock}>
-                  <button type="button" className="btn btn-primary w-auto">
-                    Edit
-                  </button>
-                  <button type="button" className="btn btn-danger w-auto">
-                    Delete
-                  </button>
-                </td>
-              </tr>
               <Managers />
             </tbody>
           </table>
