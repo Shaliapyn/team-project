@@ -3,32 +3,39 @@ import { useSelector } from 'react-redux'
 
 import style from '../../assets/scss/AddMemberForm.module.scss'
 import { membersCollection } from '../../firebase-client'
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from 'firebase/firestore'
 import { memberState } from '../../store/slices/membersSlice'
 import CloseButton from '../../ui/button/CloseButton'
 
 const MakeManagerForm = ({ closeForm }) => {
   const members = useSelector(memberState)
+
   const memberList = members.map((member, id) => {
-  const isChecked = member.role === 'manager' ? true : false;
+    if (member.role !== 'admin') {
+      const isChecked = member.role === 'manager' ? true : false
+      const toogleRole = member.role === 'manager' ? 'user' : 'manager'
 
-  const toogleRole = member.role === "manager" ? "user" : "manager";
-
-  const toogleChecked = async (id) => {
-    const updatedDoc = doc(membersCollection, id);
-    const newField = {role: toogleRole};
-    await updateDoc(updatedDoc, newField);
-  }
-    return (
-      <tr>
-        <td>{member.firstName}</td>
-        <td>{member.lastName}</td>
-        <td>{member.email}</td>
-        <td>
-          <input type="checkbox" checked={isChecked} onClick={() => toogleChecked(member.id)} aria-label="Checkbox for following text input" />
-        </td>
-      </tr>
-    )
+      const toogleChecked = async (id) => {
+        const updatedDoc = doc(membersCollection, id)
+        const newField = { role: toogleRole }
+        await updateDoc(updatedDoc, newField)
+      }
+      return (
+        <tr>
+          <td>{member.firstName}</td>
+          <td>{member.lastName}</td>
+          <td>{member.email}</td>
+          <td>
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onClick={() => toogleChecked(member.id)}
+              aria-label="Checkbox for following text input"
+            />
+          </td>
+        </tr>
+      )
+    }
   })
   return (
     <div className={style.background}>
