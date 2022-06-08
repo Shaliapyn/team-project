@@ -5,27 +5,33 @@ import { useDispatch, useSelector } from 'react-redux'
 import styles from '../../../assets/scss/membermanagement.module.scss'
 import MenuContext from '../../../context/MenuContext'
 import { membersCollection } from '../../../firebase-client'
-import { memberUpState, updateMember } from '../../../store/slices/memberUpSlice'
+import { updateMember } from '../../../store/slices/memberUpSlice'
 
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)
   const dispatch = useDispatch()
+  const currentUser = useSelector((state) => state.member.member)
+
   const handleRemove = async (id) => {
     const todoDoc = doc(membersCollection, id)
     await deleteDoc(todoDoc)
   }
-  const updatedMember = useSelector(memberUpState)
-
   const updateMemb = (id) => {
     handleEdit()
     if (member.id === id) {
       dispatch(updateMember(member))
     }
-    console.log(updatedMember)
   }
-  return (
-    // Manager || Admin ?
-
+  console.log(currentUser.role === 'user')
+  return currentUser.role === 'user' ? (
+    <tr>
+      <th scope="col">#</th>
+      <td>{member.firstName}</td>
+      <td>{member.lastName}</td>
+      <td>{member.organisation}</td>
+      <td>{member.phone}</td>
+    </tr>
+  ) : (
     <tr style={{ verticalAlign: 'middle' }}>
       <th scope="col">#</th>
       <td>{member.firstName}</td>
@@ -44,7 +50,6 @@ const Member = ({ member }) => {
         </button>
       </td>
     </tr>
-
   )
 }
 
