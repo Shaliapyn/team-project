@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styles from '../../assets/scss/managermanagement.module.scss'
+import MakeManagerForm from '../../features/MakeManagerForm'
 import Managers from '../../features/Managers/Managers'
 
 const ManagerManagement = () => {
+  const [show, setShow] = useState(false)
   return (
     <div className={`${styles.tableContainerManagers}`}>
+      <div>{show && <MakeManagerForm closeForm={() => setShow(false)} />}</div>
       <div className="card shadow mb-4">
         <div className={`card-header py-3 ${styles.flexBlock}`}>
           <h2 className={`m-0 font-weight-bold text-primary  text ${styles.textResponsive}`}>Managers List</h2>
-          <button type="button" className={`btn btn-primary w-auto ${styles.managementBtn}`}>
+          <button onClick={()=> setShow(!show)} type="button" className={`btn btn-primary w-auto ${styles.managementBtn}`}>
             Add Manager
           </button>
         </div>
