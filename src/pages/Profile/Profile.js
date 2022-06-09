@@ -12,7 +12,7 @@ const Profile = () => {
       <div className={style.profile__content}>
         <div className={style.profile__box__avatar__text}>
           <div className={style.profile__avatar}>
-            <AvatarForm/>
+            <AvatarForm />
           </div>
           <div style={{ marginTop: '40px' }}>
             <p>First Name: {member.firstName} </p>

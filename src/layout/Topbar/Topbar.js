@@ -4,9 +4,8 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 
 import { auth } from '../../firebase-client'
-import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { signOut } from 'firebase/auth'
 
-import avatar from '../../assets/images/avatar.svg'
 import profile from '../../assets/images/profile.svg'
 import logout from '../../assets/images/logout.svg'
 
@@ -19,28 +18,15 @@ function Topbar() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { email } = useSelector((state) => state.member.member)
-  
-  //user photo in topbar
   const [photoURL, setPhotoURL] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
   
-  function useAuth() {
-    const [currentUser, setCurrentUser] = useState()
-    useEffect(() => {
-      const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user))
-      return unsub
-    }, [])
-    return currentUser
-  }
-  const currentUser = useAuth()
-  
-  //setting user avatar
   useEffect(() => {
-    if (currentUser?.photoURL) {
-      setPhotoURL(currentUser.photoURL)
+    if (auth.currentUser?.photoURL) {
+      setPhotoURL(auth.currentUser.photoURL)
     }
-  }, [currentUser])
+  }, [auth.currentUser])
 
 
 

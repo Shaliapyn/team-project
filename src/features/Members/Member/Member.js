@@ -21,7 +21,6 @@ const Member = ({ member }) => {
     if (member.id === id) {
       dispatch(updateMember(member))
     }
-    console.log(updatedMember)
   }
   return (
     // Manager || Admin ?

@@ -28,7 +28,6 @@ const AvatarForm = () => {
 
   //storage
   async function upload(file, currentUser, setLoading) {
-    console.log('uid', currentUser.uid)
     const fileRef = ref(storage, currentUser.uid)
 
     setLoading(true)
@@ -88,7 +87,7 @@ const AvatarForm = () => {
       >
         Confirm
       </button>
-      {/* </div> */}
+    
     </>
   )
 }
