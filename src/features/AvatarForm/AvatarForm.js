@@ -13,7 +13,7 @@ const AvatarForm = () => {
   const [photoURL, setPhotoURL] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
-  const input = useRef(null)
+  const NONE = { display: 'none' }
 
   // info about user
   function useAuth() {
@@ -72,12 +72,11 @@ const AvatarForm = () => {
       <button
         className="btn btn-outline-primary"
         type="button"
-        style={{ marginBottom: '10px' }}
         id="inputGroupFileAddon04"
-        disabled={photo}
+        style={{ display: photo ? 'none' : 'block' }}
         onClick={() => document.getElementById('selectFile').click()}
       >
-        Choose photo
+        Change photo
       </button>
 
       <button
@@ -85,7 +84,7 @@ const AvatarForm = () => {
         type="button"
         id="inputGroupFileAddon04"
         onClick={handleClick}
-        disabled={loading || !photo}
+        style={{ display: !photo ? 'none' : 'block', marginTop: '10px' }}
       >
         Confirm
       </button>
