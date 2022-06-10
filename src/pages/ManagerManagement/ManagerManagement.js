@@ -1,26 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import styles from '../../assets/scss/managermanagement.module.scss'
-import MakeManagerForm from '../../features/MakeManagerForm'
+import InputFilter from '../../features/InputFilter'
 import Managers from '../../features/Managers/Managers'
+import SelectFilter from '../../features/SelectFilter'
 
 const ManagerManagement = () => {
-  const [show, setShow] = useState(false)
+
   return (
     <div className={`${styles.tableContainerManagers}`}>
-      <div>{show && <MakeManagerForm closeForm={() => setShow(false)} />}</div>
       <div className="card shadow mb-4">
         <div className={`card-header py-3 ${styles.flexBlock}`}>
-          <h2 className={`m-0 font-weight-bold text-primary  text ${styles.textResponsive}`}>Managers List</h2>
-          <button onClick={()=> setShow(!show)} type="button" className={`btn btn-primary w-auto ${styles.managementBtn}`}>
-            Appoint managers
-          </button>
+          <h2 className={`m-0 pb-2 font-weight-bold text-primary  text ${styles.textResponsive}`}>Members List</h2>
+          <div className={`${styles.filterSearchBlock} w-50`}>
+            <InputFilter />
+            <SelectFilter />
+          </div>
         </div>
         <div className="card-body px-5  overflow-auto">
           <table className={`table table-bordered shadow-sm`}>
             <thead className={`table-light ${styles.tableHead}`}>
               <tr>
-                <th scope="col">Avatar</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
