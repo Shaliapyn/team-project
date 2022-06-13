@@ -10,7 +10,7 @@ const membersSlice = createSlice({
     reducers: {
         setMembers: (state, action) => {
             state.members = action.payload
-        }
+        },
     }
 })
 

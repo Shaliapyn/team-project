@@ -5,6 +5,8 @@ import styles from '../../assets/scss/membermanagement.module.scss'
 import Members from "../../features/Members"
 import MenuContext from "../../context/MenuContext"
 import AddUpdateForm from "../../features/AddUpdateForm"
+import InputFilter from "../../features/InputFilter"
+import SelectFilter from "../../features/SelectFilter"
 
 const MemberManagement = () => {
   const [show, setShow] = useState(false)
@@ -24,6 +26,12 @@ const MemberManagement = () => {
           >
             Add Member
           </button>
+        </div>
+        <div className={`card-header py-3`}>
+          <div className={`w-50 d-flex justify-content-between ${styles.filterBlock}`}>
+          <InputFilter/>
+          <SelectFilter />
+          </div>
         </div>
         <div className="card-body px-5  overflow-auto">
           <table className={`table table-bordered shadow-sm `}>
