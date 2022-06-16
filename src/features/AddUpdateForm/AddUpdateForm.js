@@ -46,7 +46,7 @@ const AddUpdateForm = ({ closeForm }) => {
         <form className={style.plate} onSubmit={updateMember} name="createUser">
           <CloseButton onClick={closeForm} />
           <div className={style.borders}>
-            <h1 className={style.title}>Add Member Form</h1>
+            <h1 className={style.title}>Update Member Data</h1>
             <div className={style.element}>
               <label htmlFor="firstName">First Name</label>
               <Input

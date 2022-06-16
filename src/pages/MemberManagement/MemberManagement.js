@@ -5,25 +5,36 @@ import styles from '../../assets/scss/membermanagement.module.scss'
 import Members from "../../features/Members"
 import MenuContext from "../../context/MenuContext"
 import AddUpdateForm from "../../features/AddUpdateForm"
+import InputFilter from "../../features/InputFilter"
+import SelectFilter from "../../features/SelectFilter"
+import DeleteMemberForm from "../../features/DeleteMemberForm"
 
 const MemberManagement = () => {
-  const [show, setShow] = useState(false)
+  const [showAddForm, setShowAddForm] = useState(false)
   const { showUpdateForm, handleEdit } = useContext(MenuContext)
+  const { showDeleteForm, setShowDeleteForm } = useContext(MenuContext)
   
   return (
     <div className={`${styles.tableContainerManagement}`}>
-      <div>{show && <AddMemberForm closeForm={() => setShow(false)} />}</div>
+      <div>{showAddForm && <AddMemberForm closeForm={() => setShowAddForm(false)} />}</div>
       <div>{showUpdateForm && <AddUpdateForm closeForm={() => handleEdit()} />}</div>
+      <div>{showDeleteForm && <DeleteMemberForm closeForm={() => setShowDeleteForm(false)}/>}</div>
       <div className="card shadow mb-4">
         <div className={`card-header py-3 ${styles.flexBlock}`}>
           <h2 className={`m-0 font-weight-bold text-primary  text ${styles.textResponsive}`}>Members List</h2>
           <button
             type="button"
             className={`btn btn-primary w-auto ${styles.managementBtn}`}
-            onClick={() => setShow(!show)}
+            onClick={() => setShowAddForm(!showAddForm)}
           >
             Add Member
           </button>
+        </div>
+        <div className={`card-header py-3`}>
+          <div className={`w-50 d-flex justify-content-between ${styles.filterBlock}`}>
+          <InputFilter/>
+          <SelectFilter />
+          </div>
         </div>
         <div className="card-body px-5  overflow-auto">
           <table className={`table table-bordered shadow-sm `}>

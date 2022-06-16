@@ -10,6 +10,7 @@ import { eventsState } from '../../../store/slices/eventsSlice';
 
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)
+  const { setShowDeleteForm } = useContext(MenuContext)
   const dispatch = useDispatch()
   const events = useSelector(eventsState);
 
@@ -25,17 +26,30 @@ const Member = ({ member }) => {
   }
 
   const updatedMember = useSelector(memberUpState)
+  const currentUser = useSelector((state) => state.member.member)
 
+  const areYouSureDel = (id) => {
+    setShowDeleteForm(true)
+    if (member.id === id) {
+      dispatch(updateMember(member))
+    }
+  }
   const updateMemb = (id) => {
     handleEdit()
     if (member.id === id) {
       dispatch(updateMember(member))
     }
-    
   }
-  return (
-    // Manager || Admin ?
-
+  console.log(currentUser.role === 'user')
+  return currentUser.role === 'user' ? (
+    <tr>
+      <th scope="col">#</th>
+      <td>{member.firstName}</td>
+      <td>{member.lastName}</td>
+      <td>{member.organisation}</td>
+      <td>{member.phone}</td>
+    </tr>
+  ) : (
     <tr style={{ verticalAlign: 'middle' }}>
       <th scope="col">#</th>
       <td>{member.firstName}</td>
@@ -49,12 +63,11 @@ const Member = ({ member }) => {
         <button onClick={() => updateMemb(member.id)} type="button" className="btn btn-primary w-auto">
           Edit
         </button>
-        <button onClick={() => handleRemove(member.id)} type="button" className="btn btn-danger w-auto">
+        <button onClick={() => areYouSureDel(member.id)} type="button" className="btn btn-danger w-auto">
           Delete
         </button>
       </td>
     </tr>
-
   )
 }
 

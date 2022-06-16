@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from '../../assets/scss/memberlist.module.scss'
-// import Members from "../../features/Members";
+import Members from '../../features/Members'
 
 const MemberList = () => {
   return (
@@ -23,14 +23,7 @@ const MemberList = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Gustavus</td>
-                <td>Adolphus</td>
-                <td>Army</td>
-                <td>+3806712494</td>
-              </tr>
-              {/* {Members} */}
+              {<Members />}
             </tbody>
           </table>
         </div>
