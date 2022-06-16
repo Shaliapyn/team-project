@@ -49,9 +49,6 @@ const Member = ({ member }) => {
         <button onClick={() => areYouSureDel(member.id)} type="button" className="btn btn-danger w-auto">
           Delete
         </button>
-        {/* <button onClick={() => handleRemove(member.id)} type="button" className="btn btn-danger w-auto">
-          Delete
-        </button> */}
       </td>
     </tr>
   )
