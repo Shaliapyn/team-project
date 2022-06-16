@@ -1,12 +1,14 @@
 import React, {useState} from "react";
+import { useSelector } from 'react-redux';
 
 import { initializeApp } from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword, signOut} from 'firebase/auth';
-import {collection, addDoc} from "firebase/firestore";
+import {collection, addDoc, setDoc, doc} from "firebase/firestore";
 import {db} from '../../firebase-client';
 
-import style from '../../assets/scss/AddMemberForm.module.scss'
+import style from '../../assets/scss/AddMemberForm.module.scss';
 
+import { eventsState } from '../../store/slices/eventsSlice';
 import CloseButton from "../../ui/button/CloseButton";
 import Input from "../../ui/input/Input";
 
@@ -38,6 +40,7 @@ const AddMemberForm = ({closeForm}) => {
   const [phone, setPhone] = useState('');
   const [organisation, setOrganisation] = useState('');
   const [initialScore, setInitialScore] = useState('');
+  const events = useSelector(eventsState);
 
   const createMember = (e) => {
     e.preventDefault();
@@ -50,7 +53,7 @@ const AddMemberForm = ({closeForm}) => {
       .then(signOut(secondaryAuth))
       .then(() => {secondaryApp = null})
       .then(() => {
-        addDoc(collection(db, "members"), {
+        const createdDocRef = addDoc(collection(db, "members"), {
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -60,11 +63,27 @@ const AddMemberForm = ({closeForm}) => {
           initialScore: initialScore,
           role: 'user',
         });
+        
+        return createdDocRef
+      }
+      )
+      .then((createdDocRef) => {
+        {events && events.map(async (event, id) => {
+          const docRef = doc(db, 'events', event.id);
+          const colRef = collection(docRef, 'participants');
+    
+          await setDoc(doc(colRef, createdDocRef.id), {
+            addPoints: 0,
+            comment: '',
+            visitedEvent: false,
+          }) 
+        })} 
       })
       .catch(err => {
         setError(err.message);
         console.error(error);
-      });
+      }
+    );
     
     setFirstName('');
     setLastName('');

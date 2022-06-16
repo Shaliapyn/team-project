@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-import { collection ,orderBy, query, onSnapshot, where} from 'firebase/firestore';
+import { collection ,orderBy, query, onSnapshot, where, doc, setDoc} from 'firebase/firestore';
 import {onAuthStateChanged, onIdTokenChanged} from 'firebase/auth'
 import {db} from '../../firebase-client';
 import { auth } from "../../firebase-client"
@@ -13,6 +13,8 @@ import { setMembers } from '../../store/slices/membersSlice';
 
 const GetState = ({children}) => {
   const dispatch = useDispatch();
+  const events = useSelector((state) => state.events.events);
+  const members = useSelector((state) => state.members.members);
 
   useEffect(() => {
     onIdTokenChanged(auth, (user) => {
@@ -48,6 +50,8 @@ const GetState = ({children}) => {
     })
   }, [qEvents]);
 
+
+
   useEffect(() => {
     onSnapshot(membersCollection, (snapshot) => {
       const memberSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -55,7 +59,51 @@ const GetState = ({children}) => {
         setMembers(memberSnap)
       )
     })
-  }, []);  
+  }, []); 
+
+  // useEffect(() => {
+  //   onSnapshot(eventsCollection, (snapshot) => {
+  //     const memberSnap = snapshot.docs.map(async(doc) => {
+  //       members.forEach(async(member) => {
+  //         const docRef = doc(membersCollection, member.id);
+  //         const colRef = collection(docRef, 'memberEvents');
+          
+  //         await setDoc(doc(colRef, member.id), {
+  //           addPoints: 0,
+  //           comment: '',
+  //         })  
+  //       })} 
+  //     )
+  //       })
+  //     })
+  
+  // useEffect(() => {
+  //   onSnapshot(membersCollection, (snapshot) => {
+  //     const memberSnap = snapshot.docs.map(async(doc) => {
+  //       events.forEach(async(event) => {
+  //         const docRef = doc(eventsCollection, event.id);
+  //         const colRef = collection(docRef, 'participants');
+          
+  //         await setDoc(doc(colRef, member.id), {
+  //           addPoints: 0,
+  //           comment: '',
+  //         })  
+  //       })} 
+  //     )
+  //       })
+  //     })
+  //     // ({ id: doc.id }));
+      
+
+  //     // {members && members.map(async (member, id) => (
+  //     //   await setDoc(doc(colRef, member.id), {
+  //     //     addPoints: 0,
+  //     //     comment: '',
+  //     //   })  
+  //     // ))} 
+      
+  //   })
+  // }, []); 
         
   // const dispatch = useDispatch();
   // const user = auth.currentUser;

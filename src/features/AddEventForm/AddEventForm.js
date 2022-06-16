@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 
-import {collection, addDoc} from "firebase/firestore";
-import {db} from '../../firebase-client';
+import {collection, addDoc, setDoc, doc} from "firebase/firestore";
+import {db, eventsCollection} from '../../firebase-client';
+import { useSelector } from 'react-redux'
+
+import { memberState } from '../../store/slices/membersSlice'
 
 import style from '../../assets/scss/AddEventForm.module.scss'
 
@@ -14,12 +17,13 @@ const AddEventForm = ({ closeForm }) => {
   const [eventDate, setEventDate] = useState('');
   const [score, setScore] = useState('');
   const [error, setError] = useState('');
+  const members = useSelector(memberState);
 
-  const createEvent = (e) => {
+  const createEvent = async (e) => {
     e.preventDefault();
     setError('');
 
-    addDoc(collection(db, "events"), {
+    const createdDocRef = await addDoc(eventsCollection, {
           eventName: eventName,
           eventDate: eventDate,
           score: score,
@@ -28,6 +32,16 @@ const AddEventForm = ({ closeForm }) => {
         setError(err.message);
         console.error(error);
       });
+    const docRef = doc(db, 'events', createdDocRef.id);
+    const colRef = collection(docRef, 'participants');
+
+    {members && members.map(async (member, id) => (
+      await setDoc(doc(colRef, member.id), {
+        addPoints: 0,
+        comment: '',
+        visitedEvent: false,
+      })  
+    ))}  
     
     setEventName('');
     setEventDate('');

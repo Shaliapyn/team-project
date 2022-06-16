@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import AddEventForm from '../../features/AddEventForm'
-import style from '../../assets/scss/eventManagement.module.scss'
+import AddEventForm from '../../features/AddEventForm';
+import style from '../../assets/scss/eventManagement.module.scss';
 
 const EventManagement = () => {
   const [show, setShow] = useState(false);
@@ -11,7 +12,11 @@ const EventManagement = () => {
   const eventsList = events.map((event) => {
     return (
       <tr key={event.id}>
-        <td className="py-3 pe-5 ps-4">{event.eventName}</td>
+        <td className="py-3 pe-5 ps-4 fs-5" >
+          <Link to='event' state={{ currentEvent: event }}>
+            {event.eventName}
+          </Link>
+        </td>
         <td className="py-3  ps-4">{event.eventDate}</td>
         <td className="py-3  ps-4">{event.score}</td>
       </tr>
