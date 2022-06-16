@@ -1,20 +1,21 @@
-import { deleteDoc, doc } from 'firebase/firestore'
 import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styles from '../../../assets/scss/membermanagement.module.scss'
 import MenuContext from '../../../context/MenuContext'
-import { membersCollection } from '../../../firebase-client'
 import { updateMember } from '../../../store/slices/memberUpSlice'
 
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)
+  const { setShowDeleteForm } = useContext(MenuContext)
   const dispatch = useDispatch()
   const currentUser = useSelector((state) => state.member.member)
 
-  const handleRemove = async (id) => {
-    const todoDoc = doc(membersCollection, id)
-    await deleteDoc(todoDoc)
+  const areYouSureDel = (id) => {
+    setShowDeleteForm(true)
+    if (member.id === id) {
+      dispatch(updateMember(member))
+    }
   }
   const updateMemb = (id) => {
     handleEdit()
@@ -45,9 +46,12 @@ const Member = ({ member }) => {
         <button onClick={() => updateMemb(member.id)} type="button" className="btn btn-primary w-auto">
           Edit
         </button>
-        <button onClick={() => handleRemove(member.id)} type="button" className="btn btn-danger w-auto">
+        <button onClick={() => areYouSureDel(member.id)} type="button" className="btn btn-danger w-auto">
           Delete
         </button>
+        {/* <button onClick={() => handleRemove(member.id)} type="button" className="btn btn-danger w-auto">
+          Delete
+        </button> */}
       </td>
     </tr>
   )
