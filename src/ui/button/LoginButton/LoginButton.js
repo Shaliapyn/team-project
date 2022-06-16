@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from '../../../assets/scss/loginbutton.module.scss'
 
-const LoginButton = ({ buttonText }) => {
+const LoginButton = ({ buttonText, props }) => {
   return (
     <div>
-      <button type="button" className={`btn rounded-pill btn-primary ${styles.loginButton}`}>
+      <button {...props} className={`btn rounded-pill btn-primary ${styles.loginButton}`}>
         {buttonText}
       </button>
     </div>
