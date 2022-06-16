@@ -1,0 +1,16 @@
+.button {
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-right: 5px;
+    background-color: transparent;  
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #bec2db;
+}
+
+.textarea {
+    border: 1px solid #ccc;
+}

@@ -39,7 +39,7 @@ function App() {
                   <Route path="manager-management" element={<ManagerManagement />} />
                   <Route exact path="event-list" element={<EventList />} />
                   <Route exact path="event-management" element={<EventManagement />} />
-                  <Route path="event" element={<Event />} />
+                  <Route path="event-management/event" element={<Event />} />
                 </Routes>
               </RequireAuth>
             } />
