@@ -41,6 +41,7 @@ const ForgotPassword = () => {
               your password!
             </p>
             {error && <div className={`alert alert-danger`}>{error}</div>}
+            {message && <div className={`alert alert-primary`}>{message}</div>}
             <div className={style.element}>
               <InputEmail value={email} onChange={(e) => setEmail(e.target.value)}/>
             </div>
