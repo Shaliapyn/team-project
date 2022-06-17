@@ -28,8 +28,6 @@ function Topbar() {
     }
   }, [auth.currentUser])
 
-
-
   const [isOpen, setIsOpen] = useState(false)
   const [currentUserEmail, setCurrentUserEmail] = useState(email)
 
