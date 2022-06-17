@@ -1,8 +1,43 @@
-import React from 'react'
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import style from '../../assets/scss/eventList.module.scss'
+import { onSnapshot, doc } from 'firebase/firestore';
+import style from '../../assets/scss/eventList.module.scss';
+import { eventsCollection } from '../../firebase-client';
+
+import VisitedEventsList from '../../features/VisitedEventsList';
+import { addVisitedEvent } from '../../store/slices/visitedEventsSlice'
 
 const EventList = () => {
+  const currentMember = useSelector((state) => state.member.member);
+  const dispatch = useDispatch();
+  const events = useSelector((state) => state.events.events);
+    
+  useEffect(() => {
+    let visitedEventsByCurrentMember = [];
+
+    {events && events.map((event) => {
+      const docRef = doc(eventsCollection, event.id, 'participants', currentMember.id);
+      let visitedEvent; 
+            
+      onSnapshot(docRef, (doc) => {
+        if (doc.data().visitedEvent) {
+                visitedEvent = {
+                  name: event.eventName, 
+                  date: event.eventDate, 
+                  score: event.score, 
+                  addPoints: doc.data().addPoints
+                };
+                visitedEventsByCurrentMember = [...visitedEventsByCurrentMember, visitedEvent]
+                dispatch(addVisitedEvent(visitedEventsByCurrentMember));
+              }
+      })
+    if (visitedEventsByCurrentMember.length === 0) {
+      dispatch(addVisitedEvent([]))
+    }
+    })};
+  }, [])
+   
   return (
     <div className={style.container}>
       <div className="card shadow mb-4 ">
@@ -27,16 +62,7 @@ const EventList = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="py-3 pe-5 ps-4">Mark gbfbf h hrth</td>
-                <td className="py-3  ps-4">12.12.2022</td>
-                <td className="py-3  ps-4">15</td>
-              </tr>
-              <tr>
-                <td className="py-3 pe-5 ps-4">Mark</td>
-                <td className="py-3 ps-4">03.11.2020</td>
-                <td className="py-3  ps-4">100</td>
-              </tr>
+              <VisitedEventsList />
             </tbody>
           </table>
         </div>
