@@ -38,7 +38,7 @@ const Login = () => {
     <div className={style.container}>
       <div className={style.plate}>
         <div className={style.img}> </div>
-        <form className={style.form}>
+        <form onSubmit={signIn} className={style.form}>
           <div class={style.border}>
             <h2 className={style.title}>Welcome!</h2>
             <div className={style.element}>
@@ -59,10 +59,9 @@ const Login = () => {
             </div>
             <div className={style.element}>
               <button 
-                type="button" 
+                type="submit" 
                 style={{fontSize: "18px"}} 
                 className="btn btn-primary rounded-pill w-100"
-                onClick={signIn}
               >
                 &nbsp;&nbsp;&nbsp; Sign In &nbsp;&nbsp;&nbsp;
               </button>
