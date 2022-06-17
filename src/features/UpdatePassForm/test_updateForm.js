@@ -2,40 +2,45 @@ import React, { useState } from 'react'
 import style from '../../assets/scss/AddMemberForm.module.scss'
 import CloseButton from '../../ui/button/CloseButton'
 import Input from '../../ui/input/Input/Input'
-import { getAuth, updatePassword, signOut, reauthenticateWithCredential, reload } from 'firebase/auth'
+
+import { updatePassword, signOut, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth'
 import { auth } from '../../firebase-client'
 
 const UpdatePassForm = ({ closeForm }) => {
+  const [currentPass, setCurrentPass] = useState('')
   const [newPass, setNewPass] = useState('')
-
-  //   const currentPass =
-  //
 
   const user = auth.currentUser
 
-  //   const reauthenticate = (currentPass) => {
-  // 	const cred = EmailAuthProvider.credential(email, currentPass);
-  // 	user.reauthenticateWithCredential
-  //   }
+  const reauthenticate = (currentPass) => {
+    console.log('mail', user.email)
+    const cred = EmailAuthProvider.credential(user.email, currentPass)
+    return reauthenticateWithCredential(user, cred)
+  }
 
   const updatePass = (e) => {
-    e.preventDefault()
-    updatePassword(user, newPass)
+    reauthenticate(currentPass)
       .then(() => {
-        alert('Password changed')
-      })
-
-      .catch((error) => {
-        if (error.code == 'auth/requires-recent-login') {
-          signOut(auth).then(function () {
-            alert('Please sign in again to change your password.')
-            setTimeout(function () {
-              window.location.reload()
-            }, 3000)
+        e.preventDefault()
+        updatePassword(user, newPass)
+          .then(() => {
+            alert('Password was changed')
           })
-        } else {
-          alert(error.message)
-        }
+          .catch((error) => {
+            if (error.code == 'auth/requires-recent-login') {
+              signOut(auth).then(function () {
+                alert('Please sign in again to change your password.')
+                setTimeout(function () {
+                  window.location.reload()
+                }, 2000)
+              })
+            } else {
+              alert(error.message)
+            }
+          })
+      })
+      .catch((error) => {
+        alert(error.message)
       })
   }
 
@@ -46,15 +51,15 @@ const UpdatePassForm = ({ closeForm }) => {
           <CloseButton onClick={closeForm} />
           <div className={style.borders}>
             <h1 className={style.title}>Update password</h1>
-            {/* <div className={style.element}>
+            <div className={style.element}>
               <Input
                 id="currentPass"
                 type={'text'}
                 placeholder={'Current password'}
-                //  value={currentPass}
-                //
+                value={currentPass}
+                onChange={(text) => setCurrentPass(text)}
               />
-            </div> */}
+            </div>
             <div className={style.element}>
               <Input
                 id="newPass"
