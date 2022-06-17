@@ -34,6 +34,8 @@ $white: #fff !default;
 
 .dropdownList {
   position: relative;
+  display: flex;
+  flex-direction: column;
   top: 10px;
   z-index: 1000;
   min-width: 10rem;
@@ -53,6 +55,7 @@ $white: #fff !default;
   padding: 0.8rem 2rem;
   font-weight: 400;
   color: #3a3b45;
+  background-color: #fff;
 }
 
 .dropdownItem:hover {
