@@ -6,6 +6,7 @@ import memberUpReducer from "./slices/memberUpSlice";
 import participantsReducer from './slices/participantsSlice';
 import searchTermReducer from "./slices/filterSlice";
 import selectValueReducer from "./slices/selectSlice";
+import visitedEventsReducer from './slices/visitedEventsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         memberUp: memberUpReducer,
         participants: participantsReducer,
         searchTerm: searchTermReducer,
-        value: selectValueReducer
+        value: selectValueReducer,
+        visitedEvents: visitedEventsReducer,
     }
 });

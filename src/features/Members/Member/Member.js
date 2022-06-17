@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { collection, deleteDoc, doc } from 'firebase/firestore'
+// import { collection, deleteDoc, doc } from 'firebase/firestore'
 
 import styles from '../../../assets/scss/membermanagement.module.scss'
 import MenuContext from '../../../context/MenuContext'
-import { membersCollection, eventsCollection } from '../../../firebase-client'
+// import { membersCollection, eventsCollection } from '../../../firebase-client'
 import { memberUpState, updateMember } from '../../../store/slices/memberUpSlice'
 import { eventsState } from '../../../store/slices/eventsSlice';
 
@@ -14,16 +14,16 @@ const Member = ({ member }) => {
   const dispatch = useDispatch()
   const events = useSelector(eventsState);
 
-  const handleRemove = async (id) => {
-    const todoDoc = doc(membersCollection, id);
-    await deleteDoc(todoDoc);
+  // const handleRemove = async (id) => {
+  //   const todoDoc = doc(membersCollection, id);
+  //   await deleteDoc(todoDoc);
     
-    {events && events.map(async (event) => {
-      const docRef = doc(eventsCollection, event.id);
-      const colRef = collection(docRef, 'participants');
-      await deleteDoc(doc(colRef, id));
-    })} 
-  }
+  //   {events && events.map(async (event) => {
+  //     const docRef = doc(eventsCollection, event.id);
+  //     const colRef = collection(docRef, 'participants');
+  //     await deleteDoc(doc(colRef, id));
+  //   })} 
+  // }
 
   const updatedMember = useSelector(memberUpState)
   const currentUser = useSelector((state) => state.member.member)
@@ -40,7 +40,7 @@ const Member = ({ member }) => {
       dispatch(updateMember(member))
     }
   }
-  console.log(currentUser.role === 'user')
+  // console.log(currentUser.role === 'user')
   return currentUser.role === 'user' ? (
     <tr>
       <th scope="col">#</th>
