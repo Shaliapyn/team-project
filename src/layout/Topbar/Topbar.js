@@ -21,7 +21,7 @@ function Topbar() {
   const [photoURL, setPhotoURL] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
-  
+
   useEffect(() => {
     if (auth.currentUser?.photoURL) {
       setPhotoURL(auth.currentUser.photoURL)
@@ -46,7 +46,6 @@ function Topbar() {
 
   const signout = () => {
     signOut(auth)
-    toggle()
     dispatch(removeMember())
     navigate('/')
   }
@@ -89,17 +88,17 @@ function Topbar() {
             </div>
           )}
           {isOpen && (
-            <div className={styles.dropdownList}>
-              <div className={styles.dropdownItem} onClick={goToProfile}>
+            <form className={styles.dropdownList} onSubmit={signout} action="">
+              <button className={styles.dropdownItem} onClick={goToProfile}>
                 <img className={styles.imgProfile} src={profile} alt="profile" />
                 Profile
-              </div>
+              </button>
               <div className={styles.dropdownDivider}></div>
-              <div className={styles.dropdownItem} onClick={signout}>
+              <button type="submit" className={styles.dropdownItem}>
                 <img className={styles.imgProfile} src={logout} alt="logout" />
                 Sign Out
-              </div>
-            </div>
+              </button>
+            </form>
           )}
         </div>
       </div>
