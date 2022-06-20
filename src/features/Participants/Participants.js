@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { participantsState } from '../../store/slices/participantsSlice';
+import { participantsState } from 'store/slices/participantsSlice';
 import Participant from './Participant';
 
 const Participants = (currentEvent) => {

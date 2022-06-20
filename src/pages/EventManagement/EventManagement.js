@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import AddEventForm from '../../features/AddEventForm';
-import style from '../../assets/scss/eventManagement.module.scss';
+import AddEventForm from 'features/AddEventForm';
+import style from 'assets/scss/eventManagement.module.scss';
 
 const EventManagement = () => {
   const [show, setShow] = useState(false);

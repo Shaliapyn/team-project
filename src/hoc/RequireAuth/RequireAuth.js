@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { auth } from "../../firebase-client"
+import { auth } from "firebase-client"
 
 const RequireAuth = ({children}) => {
     const user = auth.currentUser;

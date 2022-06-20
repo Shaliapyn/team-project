@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { inputState } from '../../store/slices/filterSlice'
-import { memberState } from '../../store/slices/membersSlice'
-import { selectState } from '../../store/slices/selectSlice'
+import { inputState } from 'store/slices/filterSlice'
+import { memberState } from 'store/slices/membersSlice'
+import { selectState } from 'store/slices/selectSlice'
 import Manager from './Manager/Manager'
 
 const Managers = () => {

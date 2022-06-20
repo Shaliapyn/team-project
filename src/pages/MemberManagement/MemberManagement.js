@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react"
-import AddMemberForm from "../../features/AddMemberForm"
+import AddMemberForm from "features/AddMemberForm"
 
-import styles from '../../assets/scss/membermanagement.module.scss'
-import Members from "../../features/Members"
-import MenuContext from "../../context/MenuContext"
-import AddUpdateForm from "../../features/AddUpdateForm"
-import InputFilter from "../../features/InputFilter"
-import SelectFilter from "../../features/SelectFilter"
-import DeleteMemberForm from "../../features/DeleteMemberForm"
+import styles from 'assets/scss/membermanagement.module.scss'
+import Members from "features/Members"
+import MenuContext from "context/MenuContext"
+import AddUpdateForm from "features/AddUpdateForm"
+import InputFilter from "features/InputFilter"
+import SelectFilter from "features/SelectFilter"
+import DeleteMemberForm from "features/DeleteMemberForm"
 
 const MemberManagement = () => {
   const [showAddForm, setShowAddForm] = useState(false)

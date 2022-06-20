@@ -1,7 +1,7 @@
 import React from 'react'
 
-import styles from '../../assets/scss/memberlist.module.scss'
-import Members from '../../features/Members'
+import styles from 'assets/scss/memberlist.module.scss'
+import Members from 'features/Members'
 
 const MemberList = () => {
   return (

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import style from '../../assets/scss/AddMemberForm.module.scss'
-import { membersCollection } from '../../firebase-client'
+import style from 'assets/scss/AddMemberForm.module.scss'
+import { membersCollection } from 'firebase-client'
 import { doc, updateDoc } from 'firebase/firestore'
-import { memberState } from '../../store/slices/membersSlice'
-import CloseButton from '../../ui/button/CloseButton'
+import { memberState } from 'store/slices/membersSlice'
+import CloseButton from 'ui/button/CloseButton'
 
 const MakeManagerForm = ({ closeForm }) => {
   const members = useSelector(memberState)

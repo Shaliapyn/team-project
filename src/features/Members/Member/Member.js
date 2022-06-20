@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { collection, deleteDoc, doc } from 'firebase/firestore'
 
-import styles from '../../../assets/scss/membermanagement.module.scss'
-import MenuContext from '../../../context/MenuContext'
+import styles from 'assets/scss/membermanagement.module.scss'
+import MenuContext from 'context/MenuContext'
 // import { membersCollection, eventsCollection } from '../../../firebase-client'
-import { memberUpState, updateMember } from '../../../store/slices/memberUpSlice'
-import { eventsState } from '../../../store/slices/eventsSlice';
+import { memberUpState, updateMember } from 'store/slices/memberUpSlice'
+import { eventsState } from 'store/slices/eventsSlice';
 
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)

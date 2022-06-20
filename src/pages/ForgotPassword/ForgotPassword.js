@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 
 import { sendPasswordResetEmail } from 'firebase/auth'
 
-import InputEmail from '../../ui/input/InputEmail'
-import LoginButton from '../../ui/button/LoginButton'
-import style from '../../assets/scss/forgotPassword.module.scss'
-import {auth} from "../../firebase-client"
+import InputEmail from 'ui/input/InputEmail'
+import LoginButton from 'ui/button/LoginButton'
+import style from 'assets/scss/forgotPassword.module.scss'
+import {auth} from "firebase-client"
 
 const ForgotPassword = () => {
   const [message, setMessage] = useState("")
