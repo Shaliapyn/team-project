@@ -16,7 +16,7 @@ const EventList = () => {
   useEffect(() => {
     let visitedEventsByCurrentMember = [];
 
-    {events && events.map((event) => {
+    events && events.map((event) => {
       const docRef = doc(eventsCollection, event.id, 'participants', currentMember.id);
       let visitedEvent; 
             
@@ -35,7 +35,7 @@ const EventList = () => {
     if (visitedEventsByCurrentMember.length === 0) {
       dispatch(addVisitedEvent([]))
     }
-    })};
+    });
   }, [])
    
   return (

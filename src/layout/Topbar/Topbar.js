@@ -47,6 +47,7 @@ function Topbar() {
   const signout = () => {
     signOut(auth)
     dispatch(removeMember())
+    toggle()
     navigate('/')
   }
 

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { setSelected} from 'store/slices/selectSlice'
 
 
-const SelectFilter = ({filterMembers}) => {
+const SelectFilter = () => {
     const dispatch = useDispatch()
     const filterr = (e) => {
         dispatch(setSelected(e.target.value))
@@ -12,12 +12,7 @@ const SelectFilter = ({filterMembers}) => {
   return (
     <div>
         <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <label className="input-group-text" htmlFor="inputGroupSelect01">
-                  Filter
-                </label>
-              </div>
-              <select onChange={filterr} className="custom-select w-45" id="inputGroupSelect01">
+              <select onChange={filterr} className="form-select w-45" aria-label="Default select example">
                 <option value="All">
                   All
                 </option>
