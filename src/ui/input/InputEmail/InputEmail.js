@@ -1,5 +1,5 @@
 import React from 'react'
-import mail from '../../../assets/scss/email.module.scss'
+import mail from 'assets/scss/email.module.scss'
 
 const InputEmail = (props) => {
   return (

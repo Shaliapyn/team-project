@@ -1,5 +1,5 @@
 import React from 'react'
-import pass from '../../../assets/scss/email.module.scss'
+import pass from 'assets/scss/email.module.scss'
 
 const InputPassword = () => {
   return (

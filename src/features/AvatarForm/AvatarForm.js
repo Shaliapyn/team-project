@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 import { onAuthStateChanged, updateProfile } from 'firebase/auth'
-import { auth } from '../../firebase-client'
-import style from '../../assets/scss/profile.module.scss'
+import { auth } from 'firebase-client'
+import style from 'assets/scss/profile.module.scss'
 
-import { storage } from '../../firebase-client'
+import { storage } from 'firebase-client'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
 const AvatarForm = () => {

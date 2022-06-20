@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { onSnapshot, doc } from 'firebase/firestore';
-import style from '../../assets/scss/eventList.module.scss';
-import { eventsCollection } from '../../firebase-client';
+import style from 'assets/scss/eventList.module.scss';
+import { eventsCollection } from 'firebase-client';
 
-import VisitedEventsList from '../../features/VisitedEventsList';
-import { addVisitedEvent } from '../../store/slices/visitedEventsSlice'
+import VisitedEventsList from 'features/VisitedEventsList';
+import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
 
 const EventList = () => {
   const currentMember = useSelector((state) => state.member.member);

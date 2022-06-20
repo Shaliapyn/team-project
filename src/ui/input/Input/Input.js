@@ -1,5 +1,5 @@
 import React from 'react'
-import style from '../../../assets/scss/input.module.scss'
+import style from 'assets/scss/input.module.scss'
 
  const Input = ({type, placeholder, value, onChange, min, max}) => {
   return (

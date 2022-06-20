@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { memberState } from '../../store/slices/membersSlice'
-import { inputState } from '../../store/slices/filterSlice'
-import { selectState } from '../../store/slices/selectSlice'
+import { memberState } from 'store/slices/membersSlice'
+import { inputState } from 'store/slices/filterSlice'
+import { selectState } from 'store/slices/selectSlice'
 import Member from './Member/Member'
 
 

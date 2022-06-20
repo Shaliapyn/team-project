@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../../assets/scss/loginbutton.module.scss'
+import styles from 'assets/scss/loginbutton.module.scss'
 
 const LoginButton = ({ buttonText, props }) => {
   return (

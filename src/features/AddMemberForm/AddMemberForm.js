@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import { initializeApp } from "firebase/app";
 import {getAuth, createUserWithEmailAndPassword, signOut} from 'firebase/auth';
 import {collection, addDoc, setDoc, doc} from "firebase/firestore";
-import {db} from '../../firebase-client';
+import {db} from 'firebase-client';
 
-import style from '../../assets/scss/AddMemberForm.module.scss';
+import style from 'assets/scss/AddMemberForm.module.scss';
 
-import { eventsState } from '../../store/slices/eventsSlice';
-import CloseButton from "../../ui/button/CloseButton";
-import Input from "../../ui/input/Input";
+import { eventsState } from 'store/slices/eventsSlice';
+import CloseButton from "ui/button/CloseButton";
+import Input from "ui/input/Input";
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

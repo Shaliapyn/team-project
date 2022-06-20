@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { SidebarData } from './SidebarData'
-import styles from '../../assets/scss/sidebar.module.scss'
-import { SmileSvg, ArrowSvg } from '../../assets/svg/svg-icons'
-import MenuContext from '../../context/MenuContext'
+import styles from 'assets/scss/sidebar.module.scss'
+import { SmileSvg, ArrowSvg } from 'assets/svg/svg-icons'
+import MenuContext from 'context/MenuContext'
 
 const Sidebar = () => {
   const [isSidebarBig, setIsSidebarBig] = useState(true)

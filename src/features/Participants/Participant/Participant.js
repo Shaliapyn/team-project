@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { updateDoc, doc } from 'firebase/firestore';
-import { eventsCollection } from '../../../firebase-client';
+import { eventsCollection } from 'firebase-client';
 
-import { memberState } from '../../../store/slices/membersSlice';
+import { memberState } from 'store/slices/membersSlice';
 import Comment from '../../Comment';
 
 const Participant = ({ participant, currentEvent }) => {

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import style from '../../assets/scss/profile.module.scss'
-import AvatarForm from '../../features/AvatarForm'
+import style from 'assets/scss/profile.module.scss'
+import AvatarForm from 'features/AvatarForm'
 
 const Profile = () => {
   const member = useSelector((state) => state.member.member)

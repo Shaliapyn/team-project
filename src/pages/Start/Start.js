@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from '../../assets/scss/start.module.scss'
+import styles from 'assets/scss/start.module.scss'
 
 function Start() {
   return (
