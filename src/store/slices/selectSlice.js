@@ -1,21 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    value: null
+  value: null,
 }
 
 const selectSlice = createSlice({
-    name: "value",
-    initialState,
-    reducers: {
-        setSelected: (state, action) => {
-            state.value = action.payload
-        }
-    }
+  name: 'value',
+  initialState,
+  reducers: {
+    setSelected: (state, action) => {
+      state.value = action.payload
+    },
+  },
 })
 
-export const {setSelected} = selectSlice.actions;
+export const { setSelected } = selectSlice.actions
 
-export const selectState = ((state) => state.value.value)
+export const selectState = (state) => state.value.value
 
-export default selectSlice.reducer;
+export default selectSlice.reducer

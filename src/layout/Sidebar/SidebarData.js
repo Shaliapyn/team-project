@@ -38,7 +38,7 @@ export const SidebarData = [
         width="27"
         height="27"
         fill="currentColor"
-        class="bi bi-calendar-week"
+        className="bi bi-calendar-week"
         viewBox="0 0 16 16"
       >
         <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
@@ -56,7 +56,7 @@ export const SidebarData = [
         width="27"
         height="27"
         fill="currentColor"
-        class="bi bi-calendar-plus"
+        className="bi bi-calendar-plus"
         viewBox="0 0 16 16"
       >
         <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />

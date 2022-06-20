@@ -1,12 +1,8 @@
-import React from 'react'
-
-const Button = ({ label, className, style, block, onClick }) => {
+const Button = ({ className, onClick, children, ...props }) => {
   return (
-    <div className={block}>
-      <button type="button" className={`btn rounded-pill ${className}`} style={style} onClick={onClick}>
-        {label}
-      </button>
-    </div>
+    <button type="button" className={`btn rounded-pill ${className}`} onClick={onClick} {...props}>
+      {children}
+    </button>
   )
 }
 

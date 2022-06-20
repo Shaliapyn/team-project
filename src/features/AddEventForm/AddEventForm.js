@@ -35,13 +35,13 @@ const AddEventForm = ({ closeForm }) => {
     const docRef = doc(db, 'events', createdDocRef.id);
     const colRef = collection(docRef, 'participants');
 
-    {members && members.map(async (member, id) => (
+    members && members.map(async (member, id) => (
       await setDoc(doc(colRef, member.id), {
         addPoints: 0,
         comment: '',
         visitedEvent: false,
       })  
-    ))}  
+    ))
     
     setEventName('');
     setEventDate('');
