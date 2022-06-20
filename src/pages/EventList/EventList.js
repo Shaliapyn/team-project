@@ -1,43 +1,44 @@
-import React, {useEffect} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { onSnapshot, doc } from 'firebase/firestore';
-import style from 'assets/scss/eventList.module.scss';
-import { eventsCollection } from 'firebase-client';
+import style from 'assets/scss/eventList.module.scss'
+import { eventsCollection } from 'firebase-client'
+import { doc, onSnapshot } from 'firebase/firestore'
 
-import VisitedEventsList from 'features/VisitedEventsList';
+import VisitedEventsList from 'features/VisitedEventsList'
 import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
 
 const EventList = () => {
-  const currentMember = useSelector((state) => state.member.member);
-  const dispatch = useDispatch();
-  const events = useSelector((state) => state.events.events);
-    
-  useEffect(() => {
-    let visitedEventsByCurrentMember = [];
+  const currentMember = useSelector((state) => state.member.member)
+  const dispatch = useDispatch()
+  const events = useSelector((state) => state.events.events)
 
-    {events && events.map((event) => {
-      const docRef = doc(eventsCollection, event.id, 'participants', currentMember.id);
-      let visitedEvent; 
-            
-      onSnapshot(docRef, (doc) => {
-        if (doc.data().visitedEvent) {
-                visitedEvent = {
-                  name: event.eventName, 
-                  date: event.eventDate, 
-                  score: event.score, 
-                  addPoints: doc.data().addPoints
-                };
-                visitedEventsByCurrentMember = [...visitedEventsByCurrentMember, visitedEvent]
-                dispatch(addVisitedEvent(visitedEventsByCurrentMember));
-              }
+  useEffect(() => {
+    let visitedEventsByCurrentMember = []
+
+    events &&
+      events.map((event) => {
+        const docRef = doc(eventsCollection, event.id, 'participants', currentMember.id)
+        let visitedEvent
+
+        onSnapshot(docRef, (doc) => {
+          if (doc.data().visitedEvent) {
+            visitedEvent = {
+              name: event.eventName,
+              date: event.eventDate,
+              score: event.score,
+              addPoints: doc.data().addPoints,
+            }
+            visitedEventsByCurrentMember = [...visitedEventsByCurrentMember, visitedEvent]
+            dispatch(addVisitedEvent(visitedEventsByCurrentMember))
+          }
+        })
+        if (visitedEventsByCurrentMember.length === 0) {
+          dispatch(addVisitedEvent([]))
+        }
       })
-    if (visitedEventsByCurrentMember.length === 0) {
-      dispatch(addVisitedEvent([]))
-    }
-    })};
   }, [])
-   
+
   return (
     <div className={style.container}>
       <div className="card shadow mb-4 ">

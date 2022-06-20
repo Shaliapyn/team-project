@@ -39,7 +39,7 @@ const Login = () => {
       <div className={style.plate}>
         <div className={style.img}> </div>
         <form onSubmit={signIn} className={style.form}>
-          <div class={style.border}>
+          <div className={style.border}>
             <h2 className={style.title}>Welcome!</h2>
             {error && <div className={`alert alert-danger`}>{error}</div>}
             <div className={style.element}>

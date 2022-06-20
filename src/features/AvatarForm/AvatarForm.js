@@ -61,7 +61,7 @@ const AvatarForm = () => {
       <input
         type="file"
         style={{ display: 'none' }}
-        class="form-control"
+        className="form-control"
         id="selectFile"
         aria-describedby="inputGroupFileAddon04"
         aria-label="Upload"
