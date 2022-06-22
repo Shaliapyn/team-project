@@ -4,6 +4,7 @@ import styles from 'assets/scss/managermanagement.module.scss'
 import InputFilter from 'features/InputFilter'
 import Managers from 'features/Managers/Managers'
 import SelectFilter from 'features/SelectFilter'
+import Pagination from 'features/Pagination'
 
 const ManagerManagement = () => {
   return (
@@ -30,6 +31,7 @@ const ManagerManagement = () => {
               <Managers />
             </tbody>
           </table>
+          <Pagination/>
         </div>
       </div>
     </div>

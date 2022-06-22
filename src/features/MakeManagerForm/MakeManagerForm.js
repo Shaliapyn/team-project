@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux'
 import style from 'assets/scss/AddMemberForm.module.scss'
 import { membersCollection } from 'firebase-client'
 import { doc, updateDoc } from 'firebase/firestore'
-import { memberState } from 'store/slices/membersSlice'
+import { membersState } from 'store/slices/membersSlice'
 import CloseButton from 'ui/button/CloseButton'
 
 const MakeManagerForm = ({ closeForm }) => {
-  const members = useSelector(memberState)
+  const members = useSelector(membersState)
 
   const memberList = members.map((member, id) => {
     if (member.role !== 'admin') {

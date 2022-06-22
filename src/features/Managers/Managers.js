@@ -1,18 +1,20 @@
-import React from 'react'
+import MenuContext from 'context/MenuContext'
+import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { inputState } from 'store/slices/filterSlice'
-import { memberState } from 'store/slices/membersSlice'
+import { membersState } from 'store/slices/membersSlice'
 import { selectState } from 'store/slices/selectSlice'
 import Manager from './Manager/Manager'
 
 const Managers = () => {
-  const members = useSelector(memberState)
+  const members = useSelector(membersState)
   const selected = useSelector(selectState)
   const searchTerm = useSelector(inputState)
-  console.log(selected)
+  const {currentMembersPage} = useContext(MenuContext)
   return (
     <>
-      {members
+      {searchTerm ?
+      (members
         .filter((member) => {
           if (selected === 'Managers') {
             if (member.role === 'manager') return member
@@ -32,7 +34,7 @@ const Managers = () => {
         })
         .map((member, id) => {
           return <Manager key={id} member={member} />
-        })}
+        })) : currentMembersPage && currentMembersPage.map((member, id) => <Manager key={id} member={member} />)}
     </>
   )
 }

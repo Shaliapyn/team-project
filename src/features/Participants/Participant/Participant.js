@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { updateDoc, doc } from 'firebase/firestore';
 import { eventsCollection } from 'firebase-client';
 
-import { memberState } from 'store/slices/membersSlice';
+import { membersState } from 'store/slices/membersSlice';
 import Comment from '../../Comment';
 
 const Participant = ({ participant, currentEvent }) => {
@@ -12,7 +12,7 @@ const Participant = ({ participant, currentEvent }) => {
   let visited = participant.visitedEvent;
   
   const [inputPoints, setInputPoints] = useState(0);
-  const members = useSelector(memberState);
+  const members = useSelector(membersState);
   const currentMember = members.find(member => member.id === participant.id);
   const event = currentEvent.currentEvent;
     

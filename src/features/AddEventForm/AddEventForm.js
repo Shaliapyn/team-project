@@ -4,7 +4,7 @@ import {collection, addDoc, setDoc, doc} from "firebase/firestore";
 import {db, eventsCollection} from 'firebase-client';
 import { useSelector } from 'react-redux'
 
-import { memberState } from 'store/slices/membersSlice'
+import { membersState } from 'store/slices/membersSlice'
 
 import style from 'assets/scss/AddEventForm.module.scss'
 
@@ -17,7 +17,7 @@ const AddEventForm = ({ closeForm }) => {
   const [eventDate, setEventDate] = useState('');
   const [score, setScore] = useState('');
   const [error, setError] = useState('');
-  const members = useSelector(memberState);
+  const members = useSelector(membersState);
 
   const createEvent = async (e) => {
     e.preventDefault();

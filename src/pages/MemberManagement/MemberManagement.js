@@ -10,6 +10,7 @@ import SelectFilter from 'features/SelectFilter'
 import DeleteMemberForm from 'features/DeleteMemberForm'
 import { useSelector } from 'react-redux'
 import { memberState } from 'store/slices/memberSlice'
+import Pagination from 'features/Pagination'
 
 const MemberManagement = () => {
   const member = useSelector(memberState)
@@ -56,6 +57,7 @@ const MemberManagement = () => {
             </thead>
             <tbody>{<Members />}</tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>

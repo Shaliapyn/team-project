@@ -16,6 +16,6 @@ const membersSlice = createSlice({
 
 export const { setMembers } = membersSlice.actions;
 
-export const memberState = (state => state.members.members);
+export const membersState = (state => state.members.members);
 
 export default membersSlice.reducer;

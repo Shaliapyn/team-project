@@ -34,7 +34,7 @@ const ForgotPassword = () => {
       <form onSubmit={handleSubmit} className={style.plate}>
         <div className={style.img}> </div>
         <div className={style.form}>
-          <div class={style.border}>
+          <div clclassNameass={style.border}>
             <h2 className={style.title}>Forgot Your Password?</h2>
             <p className={style.parag}>
               We get it, stuff happens. Just enter your email address below and we'll send you a link <br></br>to reset
