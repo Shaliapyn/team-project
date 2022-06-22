@@ -19,11 +19,11 @@ const Manager = ({ member }) => {
           <td className="py-3  ps-4">{member.email}</td>
           <td>
             {member.role === 'manager' ? (
-              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-danger w-auto">
+              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-danger w-auto">
                 Fire manager
               </button>
             ) : (
-              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-primary w-auto">
+              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-primary w-auto">
                 Appoint manager
               </button>
             )}

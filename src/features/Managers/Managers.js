@@ -9,7 +9,7 @@ const Managers = () => {
   const members = useSelector(memberState)
   const selected = useSelector(selectState)
   const searchTerm = useSelector(inputState)
-  console.log(selected)
+  
   return (
     <>
       {members

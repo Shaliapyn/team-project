@@ -37,7 +37,7 @@ const MemberManagement = () => {
           </div>
         </div>
         <div className="card-body px-5  overflow-auto">
-          <table className={`table table-bordered shadow-sm `}>
+          <table className={`table table-bordered shadow-sm table-hover`}>
             <thead className={`table-light `}>
               <tr>
                 <th scope="col">Avatar</th>

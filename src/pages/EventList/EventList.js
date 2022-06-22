@@ -4,19 +4,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { onSnapshot, doc } from 'firebase/firestore';
 import style from '../../assets/scss/eventList.module.scss';
 import { eventsCollection } from '../../firebase-client';
-
+// import { visitedEventsState } from '../../store/slices/visitedEventsSlice';
 import VisitedEventsList from '../../features/VisitedEventsList';
 import { addVisitedEvent } from '../../store/slices/visitedEventsSlice'
+
 
 const EventList = () => {
   const currentMember = useSelector((state) => state.member.member);
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events.events);
-    
+  // const visitedEvents = useSelector(visitedEventsState);
+  
   useEffect(() => {
     let visitedEventsByCurrentMember = [];
 
-    {events && events.map((event) => {
+    events && events.map((event) => {
       const docRef = doc(eventsCollection, event.id, 'participants', currentMember.id);
       let visitedEvent; 
             
@@ -28,16 +30,16 @@ const EventList = () => {
                   score: event.score, 
                   addPoints: doc.data().addPoints
                 };
-                visitedEventsByCurrentMember = [...visitedEventsByCurrentMember, visitedEvent]
+                visitedEventsByCurrentMember = [...visitedEventsByCurrentMember, visitedEvent];
                 dispatch(addVisitedEvent(visitedEventsByCurrentMember));
               }
       })
-    if (visitedEventsByCurrentMember.length === 0) {
-      dispatch(addVisitedEvent([]))
-    }
-    })};
+      if (visitedEventsByCurrentMember.length === 0) {
+        dispatch(addVisitedEvent([]))
+      }
+    })
   }, [])
-   
+
   return (
     <div className={style.container}>
       <div className="card shadow mb-4 ">

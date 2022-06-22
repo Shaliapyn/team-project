@@ -18,7 +18,7 @@ const ManagerManagement = () => {
           </div>
         </div>
         <div className="card-body px-5  overflow-auto">
-          <table className={`table table-bordered shadow-sm`}>
+          <table className={`table table-bordered shadow-sm table-hover`}>
             <thead className={`table-light ${styles.tableHead}`}>
               <tr>
                 <th scope="col">First Name</th>
