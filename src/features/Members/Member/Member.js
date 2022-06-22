@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import styles from '../../../assets/scss/membermanagement.module.scss'
-import MenuContext from '../../../context/MenuContext'
-import { memberUpState, updateMember } from '../../../store/slices/memberUpSlice'
-import { eventsState } from '../../../store/slices/eventsSlice';
+import styles from 'assets/scss/membermanagement.module.scss'
+import MenuContext from 'context/MenuContext'
+
+import { memberUpState, updateMember } from 'store/slices/memberUpSlice'
+import { eventsState } from 'store/slices/eventsSlice';
 
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)

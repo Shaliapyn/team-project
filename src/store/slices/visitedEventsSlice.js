@@ -1,21 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    visitedEvents: []
+  visitedEvents: [],
 }
 
 const visitedEventsSlice = createSlice({
-    name: "visitedEvents",
-    initialState,
-    reducers: {
-        addVisitedEvent: (state, action) => {
-            state.visitedEvents = action.payload
-        },
-    }
+  name: 'visitedEvents',
+  initialState,
+  reducers: {
+    addVisitedEvent: (state, action) => {
+      state.visitedEvents = action.payload
+    },
+  },
 })
 
-export const {addVisitedEvent} = visitedEventsSlice.actions;
+export const { addVisitedEvent } = visitedEventsSlice.actions
 
-export const visitedEventsState = ((state) => state.visitedEvents.visitedEvents)
+export const visitedEventsState = (state) => state.visitedEvents.visitedEvents
 
-export default visitedEventsSlice.reducer;
+export default visitedEventsSlice.reducer

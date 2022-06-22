@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { collection, orderBy, query, onSnapshot, where, doc } from 'firebase/firestore'
 import { onIdTokenChanged } from 'firebase/auth'
-import { db, auth, eventsCollection, membersCollection } from '../../firebase-client'
+import { db, auth, eventsCollection, membersCollection } from 'firebase-client'
 
-import { setMember } from '../../store/slices/memberSlice'
-import { setEvents } from '../../store/slices/eventsSlice'
-import { setMembers } from '../../store/slices/membersSlice'
+import { setMember } from 'store/slices/memberSlice'
+import { setEvents } from 'store/slices/eventsSlice'
+import { setMembers } from 'store/slices/membersSlice'
 
 const GetState = ({ children }) => {
   const dispatch = useDispatch()

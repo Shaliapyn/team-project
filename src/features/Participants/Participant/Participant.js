@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { updateDoc, doc } from 'firebase/firestore'
-import { eventsCollection, membersCollection } from '../../../firebase-client'
+import { eventsCollection, membersCollection } from 'firebase-client'
 
-import { memberState } from '../../../store/slices/membersSlice'
-import Comment from '../../Comment'
+import { memberState } from 'store/slices/membersSlice'
+import Comment from 'Comment'
 
 const Participant = ({ participant, currentEvent }) => {
   let additionalPoints = participant.addPoints

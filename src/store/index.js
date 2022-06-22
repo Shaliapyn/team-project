@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import memberReducer from './slices/memberSlice'
 import eventsReducer from './slices/eventsSlice'
+import searchTermReducer from './slices/filterSlice'
+import memberReducer from './slices/memberSlice'
 import membersReducer from './slices/membersSlice'
 import memberUpReducer from './slices/memberUpSlice'
 import participantsReducer from './slices/participantsSlice'
-import searchTermReducer from './slices/filterSlice'
 import selectValueReducer from './slices/selectSlice'
 import visitedEventsReducer from './slices/visitedEventsSlice'
 

@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom'
 
-import Sidebar from '../../layout/Sidebar'
-import Topbar from '../../layout/Topbar'
+import Sidebar from 'layout/Sidebar'
+import Topbar from 'layout/Topbar'
 
-import styles from '../../assets/scss/layout.module.scss'
-import { MenuProvider } from '../../context/MenuContext'
+import styles from 'assets/scss/layout.module.scss'
+import { MenuProvider } from 'context/MenuContext'
 
 const Layout = () => {
   return (

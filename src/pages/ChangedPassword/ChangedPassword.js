@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from '../../assets/scss/changedPassword.module.scss'
+import styles from 'assets/scss/changedPassword.module.scss'
 
 function ChangedPassword() {
   return (

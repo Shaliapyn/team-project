@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { collection, addDoc, setDoc, doc } from 'firebase/firestore'
-import { db, eventsCollection } from '../../firebase-client'
+import { db, eventsCollection } from 'firebase-client'
 
-import { memberState } from '../../store/slices/membersSlice'
-import CloseButton from '../../ui/button/CloseButton'
-import Input from '../../ui/input/Input/Input'
+import { memberState } from 'store/slices/membersSlice'
+import CloseButton from 'ui/button/CloseButton'
+import Input from 'ui/input/Input/Input'
+
+import style from 'assets/scss/AddEventForm.module.scss'
 
 import style from '../../assets/scss/AddEventForm.module.scss'
 

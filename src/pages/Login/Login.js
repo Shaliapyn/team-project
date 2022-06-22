@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import {useNavigate} from 'react-router-dom';
 
 import {signInWithEmailAndPassword} from 'firebase/auth';
-import { auth } from "../../firebase-client";
+import { auth } from "firebase-client";
 
-import Input from '../../ui/input/Input'
+import Input from 'ui/input/Input'
 
-import style from "../../assets/scss/login.module.scss";
+import style from "assets/scss/login.module.scss";
 
 const Login = () => {
   
@@ -23,8 +23,8 @@ const Login = () => {
       .then(() => {
         navigate('../auth/home');
       })
-      .catch(err => {
-        setError(err.message);
+      .catch(() => {
+        setError("Wrong email or password");
         console.error(error);
       }); 
   }
@@ -39,8 +39,9 @@ const Login = () => {
       <div className={style.plate}>
         <div className={style.img}> </div>
         <form onSubmit={signIn} className={style.form}>
-          <div class={style.border}>
+          <div className={style.border}>
             <h2 className={style.title}>Welcome!</h2>
+            {error && <div className={`alert alert-danger`}>{error}</div>}
             <div className={style.element}>
               <Input 
                 type={"email"} 

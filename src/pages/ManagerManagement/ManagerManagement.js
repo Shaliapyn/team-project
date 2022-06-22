@@ -1,9 +1,9 @@
 import React from 'react'
 
-import styles from '../../assets/scss/managermanagement.module.scss'
-import InputFilter from '../../features/InputFilter'
-import Managers from '../../features/Managers/Managers'
-import SelectFilter from '../../features/SelectFilter'
+import styles from 'assets/scss/managermanagement.module.scss'
+import InputFilter from 'features/InputFilter'
+import Managers from 'features/Managers/Managers'
+import SelectFilter from 'features/SelectFilter'
 
 const ManagerManagement = () => {
 

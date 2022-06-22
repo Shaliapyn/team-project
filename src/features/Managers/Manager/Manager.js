@@ -1,6 +1,6 @@
 import { doc, updateDoc } from 'firebase/firestore'
 import React from 'react'
-import { membersCollection } from '../../../firebase-client'
+import { membersCollection } from 'firebase-client'
 
 const Manager = ({ member }) => {
 

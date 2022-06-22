@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setSelected} from '../../store/slices/selectSlice'
+import { setSelected} from 'store/slices/selectSlice'
 
 
 const SelectFilter = ({filterMembers}) => {

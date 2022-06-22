@@ -2,11 +2,11 @@ import { collection, deleteDoc, doc } from 'firebase/firestore'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import style from '../../assets/scss/AddMemberForm.module.scss'
-import { membersCollection, eventsCollection } from '../../firebase-client'
-import { memberUpState } from '../../store/slices/memberUpSlice'
-import { eventsState } from '../../store/slices/eventsSlice';
-import CloseButton from '../../ui/button/CloseButton'
+import style from 'assets/scss/AddMemberForm.module.scss'
+import { membersCollection, eventsCollection } from 'firebase-client'
+import { memberUpState } from 'store/slices/memberUpSlice'
+import { eventsState } from 'store/slices/eventsSlice';
+import CloseButton from 'ui/button/CloseButton'
 
 const DeleteMemberForm = ({ closeForm }) => {
     const member = useSelector(memberUpState)
@@ -18,11 +18,11 @@ const DeleteMemberForm = ({ closeForm }) => {
         const todoDoc = doc(membersCollection, memberId)
         await deleteDoc(todoDoc)
 
-        {events && events.map(async (event) => {
+        events && events.map(async (event) => {
           const docRef = doc(eventsCollection, event.id);
           const colRef = collection(docRef, 'participants');
           await deleteDoc(doc(colRef, memberId));
-        })} 
+        })
 
         closeForm()
       }

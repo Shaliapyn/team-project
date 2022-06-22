@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
+import { eventsCollection } from 'firebase-client'
 import { collection, onSnapshot } from 'firebase/firestore'
-import { eventsCollection } from '../../firebase-client'
 
-import { setParticipants } from '../../store/slices/participantsSlice'
-import Participants from '../../features/Participants'
+import { setParticipants } from 'store/slices/participantsSlice'
+import Participants from "features/Participants"
 
-import style from '../../assets/scss/event.module.scss'
+import style from 'assets/scss/event.module.scss'
 
 const Event = () => {
   const location = useLocation()
