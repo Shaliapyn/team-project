@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { memberState } from 'store/slices/membersSlice'
@@ -11,6 +11,7 @@ const Members = () => {
   const members = useSelector(memberState)
   const searchTerm = useSelector(inputState)
   const selected = useSelector(selectState)
+  
   return (
     <>
       {members

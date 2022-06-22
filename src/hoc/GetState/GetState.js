@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { collection, orderBy, query, onSnapshot, where, doc } from 'firebase/firestore'
+import { collection, orderBy, query, onSnapshot, where } from 'firebase/firestore'
 import { onIdTokenChanged } from 'firebase/auth'
 import { db, auth, eventsCollection, membersCollection } from 'firebase-client'
 
@@ -11,9 +11,7 @@ import { setMembers } from 'store/slices/membersSlice'
 
 const GetState = ({ children }) => {
   const dispatch = useDispatch()
-  const events = useSelector((state) => state.events.events)
-  const members = useSelector((state) => state.members.members)
-
+  
   useEffect(() => {
     onIdTokenChanged(auth, (user) => {
       if (!user) {

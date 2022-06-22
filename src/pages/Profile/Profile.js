@@ -9,9 +9,10 @@ const Profile = () => {
   const members = useSelector(memberState)
   let ratingList = []
 
-  members.map((member) => {
-    ratingList.push(member.score)
-  })
+  members &&
+    members.map((member) => {
+      ratingList.push(member.score)
+    })
 
   ratingList.sort((a, b) => b - a)
   const nth = (n) => ['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'
