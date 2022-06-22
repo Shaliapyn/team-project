@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import style from 'assets/scss/eventList.module.scss'
 import { eventsCollection } from 'firebase-client'
 import { doc, onSnapshot } from 'firebase/firestore'
 
 import VisitedEventsList from 'features/VisitedEventsList'
 import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
+import style from 'assets/scss/eventList.module.scss'
 
 const EventList = () => {
   const currentMember = useSelector((state) => state.member.member)

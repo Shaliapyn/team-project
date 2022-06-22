@@ -1,56 +1,59 @@
-import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import style from 'assets/scss/profile.module.scss'
 import AvatarForm from 'features/AvatarForm'
-import { db } from 'firebase-client'
-
-import { collection, doc, getDoc, getDocs, onSnapshot, query, where } from 'firebase/firestore'
+import { memberState } from 'store/slices/membersSlice'
 
 const Profile = () => {
-  const member = useSelector((state) => state.member.member)
+  const currentMember = useSelector((state) => state.member.member)
+  const members = useSelector(memberState)
+  let ratingList = []
 
-  useEffect(() => {
-    const eventsCollection = query(collection(db, 'events'))
-    const unsubscribe = onSnapshot(eventsCollection, (querySnapshotEvents) => {
-      querySnapshotEvents.forEach(async (event) => {
-        const eventData = event.data()
-        const participantVisitedQuery = query(collection(event.ref, 'participants'), where('visitedEvent', '==', true))
-        const participantVisited = await getDocs(participantVisitedQuery)
+  members.map((member) => {
+    ratingList.push(member.score)
+  })
 
-        participantVisited.docs.forEach(async (participant) => {
-          const userId = participant.id
-          const membersQuery = doc(db, 'members', userId)
-          const member = await getDoc(membersQuery)
-          const memberData = member.data()
-
-          const initialScore = eventData.score + memberData.initialScore
-          console.log(initialScore)
-        })
-      })
-    })
-
-    return unsubscribe
-  }, [])
+  ratingList.sort((a, b) => b - a)
+  const nth = (n) => ['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'
+  const ratingPlace = ratingList.indexOf(currentMember.score) + 1
+  const suffixRatingPlace = nth(ratingPlace)
 
   return (
-    <div className={style.profile__container}>
-      <div className={style.profile__content}>
-        <div className={style.profile__box__avatar__text}>
-          <div className={style.profile__avatar}>
-            <AvatarForm />
-          </div>
-          <div style={{ marginTop: '40px' }}>
-            <p>First Name: {member.firstName} </p>
-            <p>Last Name: {member.lastName} </p>
-            <p>Score: {member.score}</p>
-            <p>Place in the ranking</p>
-          </div>
+    <div className={style.container}>
+      <div className="card shadow mb-4 ">
+        <div className="card-header py-3 ">
+          <h2 className={`m-0 font-weight-bold text-primary  text ${style.textResponsive}`}>Profile</h2>
         </div>
-        <div className={style.profile__btn__change__pass}>
-          <button type="button" className={`btn btn-primary w-auto`}>
-            Change password
-          </button>
+        <div className="card-body px-5  overflow-auto">
+          <div className={style.profile__container}>
+            <div className={style.profile__box__avatar__text}>
+              <div className={style.profile__avatar}>
+                <AvatarForm />
+              </div>
+              <div style={{ marginTop: '40px' }}>
+                <p>
+                  First Name: <b>{currentMember.firstName}</b>{' '}
+                </p>
+                <p>
+                  Last Name: <b>{currentMember.lastName}</b>{' '}
+                </p>
+                <p>
+                  Score: <b>{currentMember.score}</b>{' '}
+                </p>
+                <p>
+                  Place in the rating:{' '}
+                  <b>
+                    {ratingPlace}<sup>{suffixRatingPlace}</sup> out of {ratingList.length}
+                  </b>
+                </p>
+              </div>
+            </div>
+            <div className={style.profile__btn__change__pass}>
+              <button type="button" className={`btn btn-primary w-auto`}>
+                Change password
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
