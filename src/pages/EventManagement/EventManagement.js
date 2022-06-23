@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import AddEventForm from 'features/AddEventForm';
 import style from 'assets/scss/eventManagement.module.scss';
+import Pagination from 'features/Pagination';
+import MenuContext from 'context/MenuContext';
 
 const EventManagement = () => {
   const [show, setShow] = useState(false);
   const events = useSelector((state) => state.events.events);
+  const {currentEventsPage} = useContext(MenuContext)
   
-  const eventsList = events.map((event) => {
+  const eventsList = currentEventsPage.map((event) => {
     return (
       <tr key={event.id}>
         <td className="py-3 pe-5 ps-4 fs-5" >
@@ -52,6 +55,7 @@ const EventManagement = () => {
               {eventsList}
             </tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>

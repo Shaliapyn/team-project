@@ -2,16 +2,40 @@ import MenuContext from 'context/MenuContext'
 import React from 'react'
 import { useContext } from 'react'
 import { useSelector } from 'react-redux'
+import { eventsState } from 'store/slices/eventsSlice'
 import { membersState } from 'store/slices/membersSlice'
 
 const Pagination = () => {
   const members = useSelector(membersState)
+  const events = useSelector(eventsState)
   const allMembers = members.length
-  const { membersPerPage, nextPage, prevPage, paginate } = useContext(MenuContext)
-  const pageNumbers = []
-  for (let i = 1; i <= Math.ceil(allMembers / membersPerPage); i++) {
-    pageNumbers.push(i)
+  const allEvents = events.length
+  const { dataPerPage, nextPage, prevPage, paginate } = useContext(MenuContext)
+  let pageNumbers = []
+  switch(window.location.pathname) {
+    case '/auth/manager-management':  
+    for (let i = 1; i <= Math.ceil(allMembers / dataPerPage); i++) {
+      pageNumbers.push(i)
+    }
+    break
+    case '/auth/member-management':  
+    for (let i = 1; i <= Math.ceil(allMembers / dataPerPage); i++) {
+      pageNumbers.push(i)
+    }
+    break
+    case '/auth/event-management':
+      for (let i = 1; i <= Math.ceil(allEvents / dataPerPage); i++) {
+        pageNumbers.push(i)
+      }
+      break
+    default:
+      for (let i = 1; i <= Math.ceil(allEvents / dataPerPage); i++) {
+        pageNumbers.push(i)
+      }
+      break
   }
+
+  
   return (
     <nav className="d-flex justify-content-center" aria-label="Page navigation example">
       <ul className="pagination">

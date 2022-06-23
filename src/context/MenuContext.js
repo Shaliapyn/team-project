@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react'
 
 import { useSelector } from 'react-redux'
+import { eventsState } from 'store/slices/eventsSlice'
 import { membersState } from 'store/slices/membersSlice'
 
 const MenuContext = createContext()
@@ -11,12 +12,14 @@ export const MenuProvider = ({ children }) => {
   const [showDeleteForm, setShowDeleteForm] = useState(false)
 
   const members = useSelector(membersState)
+  const events = useSelector(eventsState)
   const [currentPage, setCurrenPage] = useState(1)
-  const [membersPerPage, setMembersPerPage] = useState(4)
+  const [dataPerPage, setDataPerPage] = useState(4)
 
-  const indexOfLastMember = currentPage * membersPerPage
-  const indexOfFirstMember = indexOfLastMember - membersPerPage
-  const currentMembersPage = members && members.slice(indexOfFirstMember, indexOfLastMember)
+  const indexOfLastData = currentPage * dataPerPage
+  const indexOfFirstData = indexOfLastData - dataPerPage
+  const currentMembersPage = members && members.slice(indexOfFirstData, indexOfLastData)
+  const currentEventsPage = events && events.slice(indexOfFirstData, indexOfLastData)
 
   const paginate = (pageNumber) => setCurrenPage(pageNumber)
   const nextPage = (e) => {
@@ -39,8 +42,9 @@ export const MenuProvider = ({ children }) => {
       value={{
         paginate,
         setCurrenPage,
-        membersPerPage,
+        dataPerPage,
         currentMembersPage,
+        currentEventsPage,
         nextPage,
         prevPage,
         showDeleteForm,
