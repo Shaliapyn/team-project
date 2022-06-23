@@ -5,12 +5,12 @@ import { sendPasswordResetEmail } from 'firebase/auth'
 import InputEmail from 'ui/input/InputEmail'
 import LoginButton from 'ui/button/LoginButton'
 import style from 'assets/scss/forgotPassword.module.scss'
-import {auth} from "firebase-client"
+import { auth } from 'firebase-client'
 
 const ForgotPassword = () => {
-  const [message, setMessage] = useState("")
-  const [email, setEmail] = useState("")
-  const [error, setError] = useState("")
+  const [message, setMessage] = useState('')
+  const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
 
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email)
@@ -18,17 +18,17 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(email)
-    if(email) try {
-      setMessage("")
-      setError("")
-      await resetPassword(email)
-      setMessage("Check your inbox for further instructions")
-    } catch {
-      setError("Failed to reset password")
-    }
-
+    if (email)
+      try {
+        setMessage('')
+        setError('')
+        await resetPassword(email)
+        setMessage('Check your inbox for further instructions')
+      } catch {
+        setError('Failed to reset password')
+      }
   }
-  
+
   return (
     <div className={style.container}>
       <form onSubmit={handleSubmit} className={style.plate}>
@@ -43,7 +43,7 @@ const ForgotPassword = () => {
             {error && <div className={`alert alert-danger`}>{error}</div>}
             {message && <div className={`alert alert-primary`}>{message}</div>}
             <div className={style.element}>
-              <InputEmail value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <InputEmail value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             <div className={style.element}>

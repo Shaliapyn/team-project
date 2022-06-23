@@ -29,20 +29,19 @@ export const MenuProvider = ({ children }) => {
   const nextPage = (e) => {
     e.preventDefault()
     setCurrenPage((prev) => prev + 1)
-    if (window.location.pathname === "/auth/member-management") {
-      if (currentPage >= currentMembersPage.length) return setCurrenPage(prev => prev - 1)
-    } else if (window.location.pathname === "/auth/event-list") {
-      if (currentPage >= currentVisitedEventsPage.length) return setCurrenPage(prev => prev - 1)
-    } else if (window.location.pathname === "/auth/event-management") {
-      if (currentPage >= currentEventsPage.length) return setCurrenPage(prev => prev - 1)
+    if (window.location.pathname === '/auth/member-management') {
+      if (currentPage >= currentMembersPage.length) return setCurrenPage((prev) => prev - 1)
+    } else if (window.location.pathname === '/auth/event-list') {
+      if (currentPage >= currentVisitedEventsPage.length) return setCurrenPage((prev) => prev - 1)
+    } else if (window.location.pathname === '/auth/event-management') {
+      if (currentPage >= currentEventsPage.length) return setCurrenPage((prev) => prev - 1)
     }
-    
   }
 
   const prevPage = (e) => {
     e.preventDefault()
     setCurrenPage((prev) => prev - 1)
-    if (currentPage <= 1) return setCurrenPage(prev => prev + 1)
+    if (currentPage <= 1) return setCurrenPage((prev) => prev + 1)
   }
 
   const handleEdit = () => {

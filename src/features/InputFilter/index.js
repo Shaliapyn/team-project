@@ -1,2 +1,2 @@
-import InputFilter from "./InputFilter";
-export default InputFilter;
+import InputFilter from './InputFilter'
+export default InputFilter

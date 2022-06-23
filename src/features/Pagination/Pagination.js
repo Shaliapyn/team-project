@@ -15,7 +15,7 @@ const Pagination = () => {
   const allVisitedEvents = visitedEvents.length
   const { dataPerPage, nextPage, prevPage, paginate } = useContext(MenuContext)
   let pageNumbers = []
-  switch(window.location.pathname) {
+  switch (window.location.pathname) {
     case '/auth/event-management':
       for (let i = 1; i <= Math.ceil(allEvents / dataPerPage); i++) {
         pageNumbers.push(i)

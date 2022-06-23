@@ -8,12 +8,11 @@ import Member from './Member/Member'
 import { useContext } from 'react'
 import MenuContext from 'context/MenuContext'
 
-
 const Members = () => {
   const members = useSelector(membersState)
   const searchTerm = useSelector(inputState)
   const selected = useSelector(selectState)
-  const {currentMembersPage} = useContext(MenuContext)
+  const { currentMembersPage } = useContext(MenuContext)
   return (
     <>
       {searchTerm

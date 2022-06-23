@@ -1,2 +1,2 @@
-import DeleteMemberForm from "./DeleteMemberForm";
-export default DeleteMemberForm;
+import DeleteMemberForm from './DeleteMemberForm'
+export default DeleteMemberForm

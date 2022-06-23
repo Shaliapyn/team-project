@@ -1,21 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    currentMembers: null
+  currentMembers: null,
 }
 
 const currentMembersSlice = createSlice({
-    name: "currentMembers",
-    initialState,
-    reducers: {
-        setCurrentMembers: (state, action) => {
-            state.currentMembers = action.payload
-        },
-    }
+  name: 'currentMembers',
+  initialState,
+  reducers: {
+    setCurrentMembers: (state, action) => {
+      state.currentMembers = action.payload
+    },
+  },
 })
 
-export const { setCurrentMembers } = currentMembersSlice.actions;
+export const { setCurrentMembers } = currentMembersSlice.actions
 
-export const currentMembersState = (state => state.currentMembers.currentMembers);
+export const currentMembersState = (state) => state.currentMembers.currentMembers
 
-export default currentMembersSlice.reducer;
+export default currentMembersSlice.reducer

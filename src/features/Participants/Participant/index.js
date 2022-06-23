@@ -1,2 +1,2 @@
-import Participant from "./Participant"
+import Participant from './Participant'
 export default Participant

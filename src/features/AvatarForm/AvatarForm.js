@@ -87,7 +87,6 @@ const AvatarForm = () => {
       >
         Confirm
       </button>
-    
     </>
   )
 }

@@ -1,3 +1,3 @@
-import VisitedEventsList from './VisitedEventsList';
+import VisitedEventsList from './VisitedEventsList'
 
 export default VisitedEventsList
