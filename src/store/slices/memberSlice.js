@@ -37,4 +37,6 @@ const memberSlice = createSlice({
 
 export const { setMember, removeMember } = memberSlice.actions
 
+export const memberState = (state) => state.member.member
+
 export default memberSlice.reducer

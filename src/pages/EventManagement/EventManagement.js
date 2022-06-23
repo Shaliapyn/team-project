@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import AddEventForm from 'features/AddEventForm';
-import style from 'assets/scss/eventManagement.module.scss';
+import AddEventForm from 'features/AddEventForm'
+import style from 'assets/scss/eventManagement.module.scss'
+import Pagination from 'features/Pagination'
+import MenuContext from 'context/MenuContext'
 
 const EventManagement = () => {
-  const [show, setShow] = useState(false);
-  const events = useSelector((state) => state.events.events);
-  
-  const eventsList = events.map((event) => {
+  const [show, setShow] = useState(false)
+  const events = useSelector((state) => state.events.events)
+  const { currentEventsPage } = useContext(MenuContext)
+
+  const eventsList = currentEventsPage.map((event) => {
     return (
       <tr key={event.id}>
-        <td className="py-3 pe-5 ps-4 fs-5" >
-          <Link to='event' state={{ currentEvent: event }}>
+        <td className="py-3 pe-5 ps-4 fs-5">
+          <Link to="event" state={{ currentEvent: event }}>
             {event.eventName}
           </Link>
         </td>
@@ -43,15 +46,23 @@ const EventManagement = () => {
           <table className="table table-bordered table-responsive-lg table-hover">
             <thead className="table-light">
               <tr>
-                <th scope="col" className="py-3 pe-5 ps-4"> Name </th>
-                <th scope="col" className="py-3  ps-4"> Date </th>
-                <th scope="col" className="py-3  ps-4"> Score </th>
+                <th scope="col" className="py-3 pe-5 ps-4">
+                  {' '}
+                  Name{' '}
+                </th>
+                <th scope="col" className="py-3  ps-4">
+                  {' '}
+                  Date{' '}
+                </th>
+                <th scope="col" className="py-3  ps-4">
+                  {' '}
+                  Score{' '}
+                </th>
               </tr>
             </thead>
-            <tbody>
-              {eventsList}
-            </tbody>
+            <tbody>{eventsList}</tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>

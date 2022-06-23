@@ -1,12 +1,13 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { onSnapshot, doc } from 'firebase/firestore'
+import style from 'assets/scss/eventList.module.scss'
 import { eventsCollection } from 'firebase-client'
-import { doc, onSnapshot } from 'firebase/firestore'
 
 import VisitedEventsList from 'features/VisitedEventsList'
 import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
-import style from 'assets/scss/eventList.module.scss'
+import Pagination from 'features/Pagination'
 
 const EventList = () => {
   const currentMember = useSelector((state) => state.member.member)
@@ -66,6 +67,7 @@ const EventList = () => {
               <VisitedEventsList />
             </tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>

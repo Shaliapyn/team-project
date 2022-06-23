@@ -1,3 +1,3 @@
-import Participants from './Participants';
+import Participants from './Participants'
 
 export default Participants

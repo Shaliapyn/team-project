@@ -29,10 +29,18 @@
   }
 
   .btnBlock {
-    padding-left: 10px;
-    padding-right: 10px;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-between;
+    & div {
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      margin-right: 5px;
+      background-color: transparent;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   }
 
   .tableRow {

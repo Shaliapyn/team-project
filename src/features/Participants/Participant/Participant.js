@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { updateDoc, doc } from 'firebase/firestore'
-import { eventsCollection, membersCollection } from 'firebase-client'
-
-import { memberState } from 'store/slices/membersSlice'
+import { eventsCollection } from 'firebase-client'
+import { membersState } from 'store/slices/membersSlice'
 import Comment from '../../Comment'
 
 const Participant = ({ participant, currentEvent }) => {
   let additionalPoints = participant.addPoints
   let visited = participant.visitedEvent
+  
   let updatedScore
-
+  
   const [inputPoints, setInputPoints] = useState(0)
-  const members = useSelector(memberState)
+  const members = useSelector(membersState)
   const currentMember = members.find((member) => member.id === participant.id)
   const event = currentEvent.currentEvent
 
@@ -47,7 +47,6 @@ const Participant = ({ participant, currentEvent }) => {
     if (participant.visitedEvent) {
       updateMemberScore(currentMember.score + inputPoints)
     }
-  }
 
   const decreasePoints = () => {
     additionalPoints -= inputPoints
@@ -67,7 +66,6 @@ const Participant = ({ participant, currentEvent }) => {
       updatedScore = currentMember.score - event.score - participant.addPoints
       updatePoints(0)
     }
-
     updateMemberScore(updatedScore)
   }
 

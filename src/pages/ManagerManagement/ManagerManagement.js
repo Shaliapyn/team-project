@@ -4,21 +4,21 @@ import styles from 'assets/scss/managermanagement.module.scss'
 import InputFilter from 'features/InputFilter'
 import Managers from 'features/Managers/Managers'
 import SelectFilter from 'features/SelectFilter'
+import Pagination from 'features/Pagination'
 
 const ManagerManagement = () => {
-
   return (
     <div className={`${styles.tableContainerManagers}`}>
       <div className="card shadow mb-4">
         <div className={`card-header py-3 ${styles.flexBlock}`}>
           <h2 className={`m-0 pb-2 font-weight-bold text-primary  text ${styles.textResponsive}`}>Members List</h2>
-          <div className={`${styles.filterSearchBlock} w-50`}>
+        </div>
+       <div className="card-body px-5  overflow-auto">
+          <div className={`w-100 d-flex justify-content-between ${styles.filterSearchBlock}`}>
             <InputFilter />
             <SelectFilter />
           </div>
-        </div>
-        <div className="card-body px-5  overflow-auto">
-          <table className={`table table-bordered shadow-sm table-hover`}>
+          <table className={`table table-bordered shadow-sm`}>
             <thead className={`table-light ${styles.tableHead}`}>
               <tr>
                 <th scope="col">First Name</th>
@@ -31,6 +31,7 @@ const ManagerManagement = () => {
               <Managers />
             </tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>

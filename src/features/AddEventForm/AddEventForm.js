@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
 
 import { collection, addDoc, setDoc, doc } from 'firebase/firestore'
 import { db, eventsCollection } from 'firebase-client'
+import { useSelector } from 'react-redux'
 
-import { memberState } from 'store/slices/membersSlice'
-import CloseButton from 'ui/button/CloseButton'
-import Input from 'ui/input/Input/Input'
+import { membersState } from 'store/slices/membersSlice'
 
 import style from 'assets/scss/AddEventForm.module.scss'
+
+import CloseButton from 'ui/button/CloseButton'
+import Input from 'ui/input/Input/Input'
 
 const AddEventForm = ({ closeForm }) => {
   const [eventName, setEventName] = useState('')
   const [eventDate, setEventDate] = useState('')
   const [score, setScore] = useState('')
   const [error, setError] = useState('')
-  const members = useSelector(memberState)
+  const members = useSelector(membersState)
 
   const createEvent = async (e) => {
     e.preventDefault()

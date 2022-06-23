@@ -1,2 +1,2 @@
-import AddMemberForm from "./AddMemberForm";
-export default AddMemberForm;
+import AddMemberForm from './AddMemberForm'
+export default AddMemberForm

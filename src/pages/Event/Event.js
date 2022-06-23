@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-
 import { eventsCollection } from 'firebase-client'
 import { collection, onSnapshot } from 'firebase/firestore'
 

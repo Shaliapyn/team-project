@@ -2,6 +2,7 @@ import React from 'react'
 
 import styles from 'assets/scss/memberlist.module.scss'
 import Members from 'features/Members'
+import Pagination from 'features/Pagination'
 
 const MemberList = () => {
   return (
@@ -22,10 +23,9 @@ const MemberList = () => {
                 <th scope="col">Phone</th>
               </tr>
             </thead>
-            <tbody>
-              {<Members />}
-            </tbody>
+            <tbody>{<Members />}</tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>

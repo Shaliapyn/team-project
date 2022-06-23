@@ -8,25 +8,25 @@ export const SidebarData = [
     title: 'Profile',
     link: 'auth/profile',
     icon: <ImProfile size={30} />,
-    rolesAccess: ['user', 'manager', 'admin']
+    rolesAccess: ['user', 'manager', 'admin'],
   },
   {
     title: 'Member List',
     link: 'auth/member-list',
     icon: <HiUserGroup size={30} />,
-    rolesAccess: ['user']
+    rolesAccess: ['user'],
   },
   {
     title: 'Member Management',
     link: 'auth/member-management',
     icon: <FaUserTie size={30} />,
-    rolesAccess: ['manager', 'admin']
+    rolesAccess: ['manager', 'admin'],
   },
   {
     title: 'Manager Management',
     link: 'auth/manager-management',
     icon: <RiUserStarFill size={30} />,
-    rolesAccess: ['admin']
+    rolesAccess: ['admin'],
   },
   {
     title: 'Event List',
