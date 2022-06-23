@@ -31,6 +31,9 @@ export const MenuProvider = ({ children }) => {
     setCurrenPage((prev) => prev + 1)
     if (window.location.pathname === '/auth/member-management') {
       if (currentPage >= currentMembersPage.length) return setCurrenPage((prev) => prev - 1)
+    }
+      else if (window.location.pathname === '/auth/manager-management') {
+      if (currentPage >= currentMembersPage.length) return setCurrenPage((prev) => prev - 1)
     } else if (window.location.pathname === '/auth/event-list') {
       if (currentPage >= currentVisitedEventsPage.length) return setCurrenPage((prev) => prev - 1)
     } else if (window.location.pathname === '/auth/event-management') {

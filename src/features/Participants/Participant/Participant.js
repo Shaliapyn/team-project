@@ -5,6 +5,7 @@ import { updateDoc, doc } from 'firebase/firestore'
 import { eventsCollection } from 'firebase-client'
 import { membersState } from 'store/slices/membersSlice'
 import Comment from '../../Comment'
+import { membersCollection } from 'firebase-client'
 
 const Participant = ({ participant, currentEvent }) => {
   let additionalPoints = participant.addPoints
@@ -104,5 +105,5 @@ const Participant = ({ participant, currentEvent }) => {
     </tr>
   )
 }
-
+}
 export default Participant
