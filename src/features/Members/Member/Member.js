@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import styles from 'assets/scss/membermanagement.module.scss'
 import MenuContext from 'context/MenuContext'
-import { updateMember } from 'store/slices/memberUpSlice'
 import { EditSvg, DeleteSvg } from 'assets/svg/svg-icons'
+import { memberUpState, updateMember } from 'store/slices/memberUpSlice'
+import { eventsState } from 'store/slices/eventsSlice';
+
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)
   const { setShowDeleteForm } = useContext(MenuContext)
@@ -24,7 +26,6 @@ const Member = ({ member }) => {
       dispatch(updateMember(member))
     }
   }
-
   return currentUser.role === 'user' ? (
     <tr>
       <th scope="col">#</th>
@@ -41,7 +42,7 @@ const Member = ({ member }) => {
       <td>{member.organisation}</td>
       <td>{member.email}</td>
       <td>{member.phone}</td>
-      <td>{member.initialScore}</td>
+      <td>{member.score}</td>
       <td>{member.birthDate}</td>
       <td className={styles.btnBlock}>
         <div onClick={() => updateMemb(member.id)}>

@@ -11,6 +11,7 @@ const Managers = () => {
   const selected = useSelector(selectState)
   const searchTerm = useSelector(inputState)
   const { currentMembersPage } = useContext(MenuContext)
+  
   return (
     <>
       {searchTerm

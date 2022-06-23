@@ -59,7 +59,7 @@ const Comment = ({ participant, currentEvent }) => {
       handlerEmptyComment = (
         <button
           type="button"
-          className={`btn btn-primary btn-sm  btn-block`}
+          className={`btn btn-outline-primary btn-sm  btn-block`}
           onClick={() => setIsActiveComment(!isActiveComment)}
         >
           Comment

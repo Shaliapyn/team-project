@@ -5,7 +5,13 @@ import { auth } from 'firebase-client'
 const RequireAuth = ({ children }) => {
   const user = auth.currentUser
 
-  return !!user ? children : <Navigate to="/" />
+  if (!!user) {
+    <Navigate to="auth/" />
+  } else {
+    <Navigate to="/" />
+  }
+
+  return children
 }
 
 export default RequireAuth

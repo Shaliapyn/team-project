@@ -25,7 +25,7 @@ const AddEventForm = ({ closeForm }) => {
     const createdDocRef = await addDoc(eventsCollection, {
       eventName: eventName,
       eventDate: eventDate,
-      score: score,
+      score: parseInt(score),
     }).catch((err) => {
       setError(err.message)
       console.error(error)
@@ -33,17 +33,15 @@ const AddEventForm = ({ closeForm }) => {
     const docRef = doc(db, 'events', createdDocRef.id)
     const colRef = collection(docRef, 'participants')
 
-    {
-      members &&
-        members.map(
-          async (member, id) =>
-            await setDoc(doc(colRef, member.id), {
-              addPoints: 0,
-              comment: '',
-              visitedEvent: false,
-            })
-        )
-    }
+    members &&
+      members.map(
+        async (member, id) =>
+          await setDoc(doc(colRef, member.id), {
+            addPoints: 0,
+            comment: '',
+            visitedEvent: false,
+          })
+      )
 
     setEventName('')
     setEventDate('')
@@ -74,7 +72,12 @@ const AddEventForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
-              <Input type={'number'} placeholder={'Score'} value={score} onChange={(e) => setScore(e.target.value)} />
+              <Input 
+                type={'number'} 
+                placeholder={'Score'} 
+                value={score} 
+                onChange={(e) => setScore(e.target.value)} 
+              />
             </div>
             <div className={style.element}>
               <button

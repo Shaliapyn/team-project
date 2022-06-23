@@ -3,14 +3,15 @@ import { useSelector } from 'react-redux'
 
 import { updateDoc, doc } from 'firebase/firestore'
 import { eventsCollection } from 'firebase-client'
-
 import { membersState } from 'store/slices/membersSlice'
 import Comment from '../../Comment'
 
 const Participant = ({ participant, currentEvent }) => {
   let additionalPoints = participant.addPoints
   let visited = participant.visitedEvent
-
+  
+  let updatedScore
+  
   const [inputPoints, setInputPoints] = useState(0)
   const members = useSelector(membersState)
   const currentMember = members.find((member) => member.id === participant.id)
@@ -32,19 +33,40 @@ const Participant = ({ participant, currentEvent }) => {
     })
   }
 
+  const updateMemberScore = async (points) => {
+    const docRef = doc(membersCollection, currentMember.id)
+
+    await updateDoc(docRef, {
+      score: points,
+    })
+  }
+
   const increasePoints = () => {
     additionalPoints += inputPoints
     updatePoints(additionalPoints)
-  }
+    if (participant.visitedEvent) {
+      updateMemberScore(currentMember.score + inputPoints)
+    }
 
   const decreasePoints = () => {
     additionalPoints -= inputPoints
     updatePoints(additionalPoints)
+    if (participant.visitedEvent) {
+      updateMemberScore(currentMember.score - inputPoints)
+    }
   }
 
   const changeVisitedState = () => {
     visited = !visited
     updateVisitedState(visited)
+
+    if (visited) {
+      updatedScore = currentMember.score + event.score + participant.addPoints
+    } else {
+      updatedScore = currentMember.score - event.score - participant.addPoints
+      updatePoints(0)
+    }
+    updateMemberScore(updatedScore)
   }
 
   return (
@@ -65,7 +87,6 @@ const Participant = ({ participant, currentEvent }) => {
               type="text"
               className="form-control"
               placeholder="Additional points"
-              aria-describedby="button-addon2"
               onChange={(e) => setInputPoints(Number(e.target.value))}
             />
             <button className="btn btn-outline-secondary" type="button" onClick={increasePoints}>

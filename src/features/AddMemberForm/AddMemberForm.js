@@ -61,8 +61,9 @@ const AddMemberForm = ({ closeForm }) => {
           phone: phone,
           organisation: organisation,
           birthDate: birthDate,
-          initialScore: initialScore,
+          initialScore: parseInt(initialScore),
           role: 'user',
+          score: parseInt(initialScore),
         })
 
         return createdDocRef
