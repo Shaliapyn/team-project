@@ -3,6 +3,7 @@ import React, { createContext, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { eventsState } from 'store/slices/eventsSlice'
 import { membersState } from 'store/slices/membersSlice'
+import { participantsState } from 'store/slices/participantsSlice'
 import { visitedEventsState } from 'store/slices/visitedEventsSlice'
 
 const MenuContext = createContext()
@@ -15,6 +16,7 @@ export const MenuProvider = ({ children }) => {
   const members = useSelector(membersState)
   const events = useSelector(eventsState)
   const visitedEvents = useSelector(visitedEventsState)
+  const participants = useSelector(participantsState)
   const [currentPage, setCurrenPage] = useState(1)
   const [dataPerPage, setDataPerPage] = useState(4)
 
@@ -24,20 +26,20 @@ export const MenuProvider = ({ children }) => {
   const currentMembersPage = members && members.slice(indexOfFirstData, indexOfLastData)
   const currentEventsPage = events && events.slice(indexOfFirstData, indexOfLastData)
   const currentVisitedEventsPage = visitedEvents && visitedEvents.slice(indexOfFirstData, indexOfLastData)
+  const currentParticipantsPage = participants && participants.slice(indexOfFirstData, indexOfLastData)
 
   const paginate = (pageNumber) => setCurrenPage(pageNumber)
   const nextPage = (e) => {
     e.preventDefault()
     setCurrenPage((prev) => prev + 1)
-    if (window.location.pathname === '/auth/member-management') {
-      if (currentPage >= currentMembersPage.length) return setCurrenPage((prev) => prev - 1)
-    }
-      else if (window.location.pathname === '/auth/manager-management') {
-      if (currentPage >= currentMembersPage.length) return setCurrenPage((prev) => prev - 1)
-    } else if (window.location.pathname === '/auth/event-list') {
+    if (window.location.pathname === '/auth/event-list') {
       if (currentPage >= currentVisitedEventsPage.length) return setCurrenPage((prev) => prev - 1)
     } else if (window.location.pathname === '/auth/event-management') {
       if (currentPage >= currentEventsPage.length) return setCurrenPage((prev) => prev - 1)
+    } else if (window.location.pathname === '/auth/event-management/event') {
+      if (currentPage >= currentParticipantsPage.length) return setCurrenPage((prev) => prev - 1)
+    } else {
+      if (currentPage >= currentMembersPage.length) return setCurrenPage((prev) => prev - 1)
     }
   }
 
@@ -53,12 +55,17 @@ export const MenuProvider = ({ children }) => {
   return (
     <MenuContext.Provider
       value={{
+        events,
+        visitedEvents,
+        members,
+        participants,
         paginate,
         setCurrenPage,
         dataPerPage,
         currentMembersPage,
         currentEventsPage,
         currentVisitedEventsPage,
+        currentParticipantsPage,
         nextPage,
         prevPage,
         showDeleteForm,

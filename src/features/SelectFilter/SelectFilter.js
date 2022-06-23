@@ -7,7 +7,16 @@ const SelectFilter = () => {
   const filterr = (e) => {
     dispatch(setSelected(e.target.value))
   }
-  return (
+  return window.location.pathname === '/auth/event-management/event' ? (
+    <div>
+      <div className="input-group mb-3">
+        <select onChange={filterr} className="form-select w-45" aria-label="Default select example">
+          <option value="All">All</option>
+          <option value="Visited">Visited</option>
+        </select>
+      </div>
+    </div>
+  ) : (
     <div>
       <div className="input-group mb-3">
         <select onChange={filterr} className="form-select w-45" aria-label="Default select example">

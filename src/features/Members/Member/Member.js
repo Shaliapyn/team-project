@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styles from 'assets/scss/membermanagement.module.scss'
 import MenuContext from 'context/MenuContext'
 import { EditSvg, DeleteSvg } from 'assets/svg/svg-icons'
-import { memberUpState, updateMember } from 'store/slices/memberUpSlice'
-import { eventsState } from 'store/slices/eventsSlice';
+import { updateMember } from 'store/slices/memberUpSlice'
 
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)

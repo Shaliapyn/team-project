@@ -5,9 +5,12 @@ import { onSnapshot, doc } from 'firebase/firestore'
 import style from 'assets/scss/eventList.module.scss'
 import { eventsCollection } from 'firebase-client'
 
+import styles from 'assets/scss/membermanagement.module.scss'
+
 import VisitedEventsList from 'features/VisitedEventsList'
 import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
 import Pagination from 'features/Pagination'
+import InputFilter from 'features/InputFilter'
 
 const EventList = () => {
   const currentMember = useSelector((state) => state.member.member)
@@ -49,6 +52,9 @@ const EventList = () => {
           </h2>
         </div>
         <div className="card-body px-5  overflow-auto">
+        <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
+            <InputFilter />
+          </div>
           <table className="table table-bordered table-responsive-lg table-hover">
             <thead className="table-light">
               <tr>
