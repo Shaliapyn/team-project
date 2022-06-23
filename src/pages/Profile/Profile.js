@@ -33,18 +33,19 @@ const Profile = () => {
               </div>
               <div style={{ marginTop: '40px' }}>
                 <p>
-                  First Name: <b>{currentMember.firstName}</b>{' '}
+                  First Name: <b>{currentMember.firstName}</b>
                 </p>
                 <p>
-                  Last Name: <b>{currentMember.lastName}</b>{' '}
+                  Last Name: <b>{currentMember.lastName}</b>
                 </p>
                 <p>
-                  Score: <b>{currentMember.score}</b>{' '}
+                  Score: <b>{currentMember.score}</b>
                 </p>
                 <p>
                   Place in the rating:{' '}
                   <b>
-                    {ratingPlace}<sup>{suffixRatingPlace}</sup> out of {ratingList.length}
+                    {ratingPlace}
+                    <sup>{suffixRatingPlace}</sup> out of {ratingList.length}
                   </b>
                 </p>
               </div>
