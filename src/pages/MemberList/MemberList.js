@@ -12,7 +12,7 @@ const MemberList = () => {
           <div style={{ width: '200px' }}></div>
         </div>
         <div className="card-body px-5 overflow-auto">
-          <table className={`table table-bordered shadow-sm`}>
+          <table className={`table table-bordered shadow-sm table-hover`}>
             <thead className={`table-light ${styles.tableHead}`}>
               <tr>
                 <th scope="col">Avatar</th>

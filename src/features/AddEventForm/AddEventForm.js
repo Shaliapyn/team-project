@@ -10,8 +10,6 @@ import Input from 'ui/input/Input/Input'
 
 import style from 'assets/scss/AddEventForm.module.scss'
 
-import style from '../../assets/scss/AddEventForm.module.scss'
-
 const AddEventForm = ({ closeForm }) => {
   const [eventName, setEventName] = useState('')
   const [eventDate, setEventDate] = useState('')

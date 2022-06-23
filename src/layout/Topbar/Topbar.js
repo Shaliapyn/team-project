@@ -89,7 +89,7 @@ function Topbar() {
           )}
           {isOpen && (
             <form className={styles.dropdownList} onSubmit={signout} action="">
-              <button className={styles.dropdownItem} onClick={goToProfile}>
+              <button type='button' className={styles.dropdownItem} onClick={goToProfile}>
                 <img className={styles.imgProfile} src={profile} alt="profile" />
                 Profile
               </button>

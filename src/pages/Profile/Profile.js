@@ -9,9 +9,10 @@ const Profile = () => {
   const members = useSelector(memberState)
   let ratingList = []
 
-  members.map((member) => {
-    ratingList.push(member.score)
-  })
+  members &&
+    members.map((member) => {
+      ratingList.push(member.score)
+    })
 
   ratingList.sort((a, b) => b - a)
   const nth = (n) => ['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'
@@ -32,18 +33,19 @@ const Profile = () => {
               </div>
               <div style={{ marginTop: '40px' }}>
                 <p>
-                  First Name: <b>{currentMember.firstName}</b>{' '}
+                  First Name: <b>{currentMember.firstName}</b>
                 </p>
                 <p>
-                  Last Name: <b>{currentMember.lastName}</b>{' '}
+                  Last Name: <b>{currentMember.lastName}</b>
                 </p>
                 <p>
-                  Score: <b>{currentMember.score}</b>{' '}
+                  Score: <b>{currentMember.score}</b>
                 </p>
                 <p>
                   Place in the rating:{' '}
                   <b>
-                    {ratingPlace}<sup>{suffixRatingPlace}</sup> out of {ratingList.length}
+                    {ratingPlace}
+                    <sup>{suffixRatingPlace}</sup> out of {ratingList.length}
                   </b>
                 </p>
               </div>

@@ -1,6 +1,5 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-
 import { Route, Routes } from 'react-router-dom'
 
 import Layout from './ui/Layout'
@@ -22,16 +21,16 @@ import NotFound from './pages/NotFound'
 function App() {
   return (
     <div className="App">
-      <GetState>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Start />} />
-            <Route path="signin" element={<Login />} />
-            <Route path="forgot-password" element={<ForgotPassword />} />
-            <Route path="*" element={<NotFound />} />
-            <Route
-              path="auth/*"
-              element={
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Start />} />
+          <Route path="signin" element={<Login />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="*" element={<NotFound />} />
+          <Route
+            path="auth/*"
+            element={
+              <GetState>
                 <RequireAuth>
                   <Routes>
                     <Route path="home" element={<Home />} />
@@ -44,11 +43,11 @@ function App() {
                     <Route path="event-management/event" element={<Event />} />
                   </Routes>
                 </RequireAuth>
-              }
-            />
-          </Route>
-        </Routes>
-      </GetState>
+              </GetState>
+            }
+          />
+        </Route>
+      </Routes>
     </div>
   )
 }
