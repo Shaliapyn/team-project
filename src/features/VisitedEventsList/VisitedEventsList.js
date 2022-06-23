@@ -1,14 +1,15 @@
-import React from 'react';
+import MenuContext from 'context/MenuContext';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 
 import { visitedEventsState } from '../../store/slices/visitedEventsSlice';
 
 const VisitedEventsList = () => {
-    const visitedEvents =useSelector(visitedEventsState);
-  
+    const visitedEvents = useSelector(visitedEventsState);
+    const {currentVisitedEventsPage} = useContext(MenuContext)
     return (
       <>
-        {visitedEvents && visitedEvents.map((event, id) => (
+        {currentVisitedEventsPage && currentVisitedEventsPage.map((event, id) => (
           <tr key={id}>
               <td>{event.name}</td>
               <td>{event.date}</td>

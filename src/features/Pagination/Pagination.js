@@ -4,38 +4,35 @@ import { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { eventsState } from 'store/slices/eventsSlice'
 import { membersState } from 'store/slices/membersSlice'
+import { visitedEventsState } from 'store/slices/visitedEventsSlice'
 
 const Pagination = () => {
   const members = useSelector(membersState)
   const events = useSelector(eventsState)
+  const visitedEvents = useSelector(visitedEventsState)
   const allMembers = members.length
   const allEvents = events.length
+  const allVisitedEvents = visitedEvents.length
   const { dataPerPage, nextPage, prevPage, paginate } = useContext(MenuContext)
   let pageNumbers = []
   switch(window.location.pathname) {
-    case '/auth/manager-management':  
-    for (let i = 1; i <= Math.ceil(allMembers / dataPerPage); i++) {
-      pageNumbers.push(i)
-    }
-    break
-    case '/auth/member-management':  
-    for (let i = 1; i <= Math.ceil(allMembers / dataPerPage); i++) {
-      pageNumbers.push(i)
-    }
-    break
     case '/auth/event-management':
       for (let i = 1; i <= Math.ceil(allEvents / dataPerPage); i++) {
         pageNumbers.push(i)
       }
       break
+    case '/auth/event-list':
+      for (let i = 1; i <= Math.ceil(allVisitedEvents / dataPerPage); i++) {
+        pageNumbers.push(i)
+      }
+      break
     default:
-      for (let i = 1; i <= Math.ceil(allEvents / dataPerPage); i++) {
+      for (let i = 1; i <= Math.ceil(allMembers / dataPerPage); i++) {
         pageNumbers.push(i)
       }
       break
   }
 
-  
   return (
     <nav className="d-flex justify-content-center" aria-label="Page navigation example">
       <ul className="pagination">

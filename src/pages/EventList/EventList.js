@@ -7,6 +7,7 @@ import { eventsCollection } from 'firebase-client';
 
 import VisitedEventsList from 'features/VisitedEventsList';
 import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
+import Pagination from 'features/Pagination';
 
 const EventList = () => {
   const currentMember = useSelector((state) => state.member.member);
@@ -65,6 +66,7 @@ const EventList = () => {
               <VisitedEventsList />
             </tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>
