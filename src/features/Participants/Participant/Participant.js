@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { updateDoc, doc } from 'firebase/firestore'
 import { eventsCollection } from 'firebase-client'
 import { membersState } from 'store/slices/membersSlice'
-import Comment from '../../Comment'
+import Comment from 'features/Comment'
 import { membersCollection } from 'firebase-client'
 
 const Participant = ({ participant, currentEvent }) => {
@@ -48,7 +48,7 @@ const Participant = ({ participant, currentEvent }) => {
     if (participant.visitedEvent) {
       updateMemberScore(currentMember.score + inputPoints)
     }
-
+  }
   const decreasePoints = () => {
     additionalPoints -= inputPoints
     updatePoints(additionalPoints)
@@ -104,6 +104,5 @@ const Participant = ({ participant, currentEvent }) => {
       </td>
     </tr>
   )
-}
 }
 export default Participant
