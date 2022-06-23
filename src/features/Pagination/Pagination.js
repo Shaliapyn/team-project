@@ -1,19 +1,14 @@
 import MenuContext from 'context/MenuContext'
 import React from 'react'
 import { useContext } from 'react'
-import { useSelector } from 'react-redux'
-import { eventsState } from 'store/slices/eventsSlice'
-import { membersState } from 'store/slices/membersSlice'
-import { visitedEventsState } from 'store/slices/visitedEventsSlice'
 
 const Pagination = () => {
-  const members = useSelector(membersState)
-  const events = useSelector(eventsState)
-  const visitedEvents = useSelector(visitedEventsState)
+  const { dataPerPage, nextPage, prevPage, paginate, events, visitedEvents, members, participants } =
+    useContext(MenuContext)
   const allMembers = members.length
   const allEvents = events.length
   const allVisitedEvents = visitedEvents.length
-  const { dataPerPage, nextPage, prevPage, paginate } = useContext(MenuContext)
+  const allParticipants = participants.length
   let pageNumbers = []
   switch (window.location.pathname) {
     case '/auth/event-management':
@@ -23,6 +18,11 @@ const Pagination = () => {
       break
     case '/auth/event-list':
       for (let i = 1; i <= Math.ceil(allVisitedEvents / dataPerPage); i++) {
+        pageNumbers.push(i)
+      }
+      break
+      case '/event-management/event':
+      for (let i = 1; i <= Math.ceil(allParticipants / dataPerPage); i++) {
         pageNumbers.push(i)
       }
       break
