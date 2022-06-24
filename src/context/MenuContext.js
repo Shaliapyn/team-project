@@ -18,7 +18,7 @@ export const MenuProvider = ({ children }) => {
   const visitedEvents = useSelector(visitedEventsState)
   const participants = useSelector(participantsState)
   const [currentPage, setCurrenPage] = useState(1)
-  const [dataPerPage, setDataPerPage] = useState(4)
+  const [dataPerPage, setDataPerPage] = useState(8)
 
   const indexOfLastData = currentPage * dataPerPage
   const indexOfFirstData = indexOfLastData - dataPerPage
@@ -29,6 +29,12 @@ export const MenuProvider = ({ children }) => {
   const currentParticipantsPage = participants && participants.slice(indexOfFirstData, indexOfLastData)
 
   const paginate = (pageNumber) => setCurrenPage(pageNumber)
+  const showMore = () => {
+    setDataPerPage(prev => prev + 4)
+    if(dataPerPage > 100) {
+      setDataPerPage(100)
+    }
+  }
   const nextPage = (e) => {
     e.preventDefault()
     setCurrenPage((prev) => prev + 1)
@@ -55,6 +61,8 @@ export const MenuProvider = ({ children }) => {
   return (
     <MenuContext.Provider
       value={{
+        setDataPerPage,
+        showMore,
         events,
         visitedEvents,
         members,
