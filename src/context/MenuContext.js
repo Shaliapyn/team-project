@@ -19,8 +19,7 @@ export const MenuProvider = ({ children }) => {
   const participants = useSelector(participantsState)
   const [currentPage, setCurrenPage] = useState(1)
   const [inputValue, setInputValue] = useState(8)
-  const [dataPerPage, setDataPerPage] = useState(5)
-  
+  const [dataPerPage, setDataPerPage] = useState(inputValue)
 
   const indexOfLastData = currentPage * dataPerPage
   const indexOfFirstData = indexOfLastData - dataPerPage
@@ -58,6 +57,7 @@ export const MenuProvider = ({ children }) => {
   return (
     <MenuContext.Provider
       value={{
+        currentParticipantsPage,
         setInputValue,
         inputValue,
         setDataPerPage,
@@ -71,7 +71,6 @@ export const MenuProvider = ({ children }) => {
         currentMembersPage,
         currentEventsPage,
         currentVisitedEventsPage,
-        currentParticipantsPage,
         nextPage,
         prevPage,
         showDeleteForm,

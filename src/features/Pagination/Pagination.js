@@ -1,7 +1,8 @@
 import MenuContext from 'context/MenuContext'
-import React, { useRef } from 'react'
-import { useState } from 'react'
+import React from 'react'
 import { useContext } from 'react'
+
+import styles from 'assets/scss/Pagination.module.scss'
 
 const Pagination = () => {
   const {
@@ -15,12 +16,19 @@ const Pagination = () => {
     participants,
     setInputValue,
     inputValue,
+    setDataPerPage,
+    elemetsPassed,
   } = useContext(MenuContext)
   const allMembers = members.length
   const allEvents = events.length
   const allVisitedEvents = visitedEvents.length
   const allParticipants = participants.length
   let pageNumbers = []
+
+  const rered = () => {
+    setDataPerPage(inputValue)
+    console.log(elemetsPassed)
+  }
   switch (window.location.pathname) {
     case '/auth/event-management':
       for (let i = 1; i <= Math.ceil(allEvents / dataPerPage); i++) {
@@ -43,49 +51,48 @@ const Pagination = () => {
       }
       break
   }
-  console.log(inputValue)
+
   return (
     <div className="container">
-      <div className="row text-center justify-content-center">
-        <div className="col-4">
-          <span>dsadsad</span>
-          <input
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            className="border w-25 mr-10"
-            type="number"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
-          />
-          <span>dsadsadsadas</span>
-        </div>
-        <div className="col-3 text-center">
-          <span>SHowind 15 of 60 elemets</span>
-        </div>
+      <div className={styles.flexBlock}>
+        <span className="btn btn-outline-primary" onClick={rered}>
+          Show
+        </span>
+        <input
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          className="border w-25"
+          type="number"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        />
+
+        <span>Elemets</span>
       </div>
-      <div className="row">
-        <nav className="d-flex justify-content-center" aria-label="Page navigation example">
-          <ul className="pagination">
-            <li className="page-item">
-              <a onClick={prevPage} className="page-link" href="/#">
-                Previous
+      {/* <div>
+          <span>SHowind {dataPerPage} of 60 elemets</span>
+        </div> */}
+      <nav className="d-flex justify-content-center pt-3" aria-label="Page navigation example">
+        <ul className="pagination">
+          <li className="page-item">
+            <a onClick={prevPage} className="page-link" href="/#">
+              Previous
+            </a>
+          </li>
+          {pageNumbers.map((num, i) => (
+            <li key={i} className="page-item">
+              <a onClick={() => paginate(num)} className="page-link" href="#">
+                {num}
               </a>
             </li>
-            {pageNumbers.map((num, i) => (
-              <li key={i} className="page-item">
-                <a onClick={() => paginate(num)} className="page-link" href="#">
-                  {num}
-                </a>
-              </li>
-            ))}
-            <li className="page-item">
-              <a onClick={nextPage} className="page-link" href="/#">
-                Next
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+          ))}
+          <li className="page-item">
+            <a onClick={nextPage} className="page-link" href="/#">
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   )
 }

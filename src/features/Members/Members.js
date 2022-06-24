@@ -36,7 +36,9 @@ const Members = () => {
               }
             })
             .map((member, id) => <Member key={id} member={member} />)
-        : currentMembersPage && currentMembersPage.map((member, id) => <Member key={id} member={member} />)}
+        : currentMembersPage && currentMembersPage.map((member, id) => {
+        return <Member key={id} member={member} />
+        })}
     </>
   )
 }
