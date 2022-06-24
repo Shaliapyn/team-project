@@ -1,3 +1,3 @@
-import Member from "./Member";
+import Member from './Member'
 
 export default Member

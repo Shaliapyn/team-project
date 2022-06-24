@@ -2,11 +2,11 @@ import { useSelector } from 'react-redux'
 
 import style from 'assets/scss/profile.module.scss'
 import AvatarForm from 'features/AvatarForm'
-import { memberState } from 'store/slices/membersSlice'
+import { membersState } from 'store/slices/membersSlice'
 
 const Profile = () => {
   const currentMember = useSelector((state) => state.member.member)
-  const members = useSelector(memberState)
+  const members = useSelector(membersState)
   let ratingList = []
 
   members &&

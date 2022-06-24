@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier-fix": "npx prettier --no-error-on-unmatched-pattern --write **/**/*.{ts,css,scss,html,tsx,jsx}"
+    "prettier-fix": "npx prettier --no-error-on-unmatched-pattern --write **/**/*.{ts,css,scss,js,html,tsx,jsx}"
   },
   "eslintConfig": {
     "extends": [

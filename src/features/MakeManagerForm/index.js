@@ -1,2 +1,2 @@
-import MakeManagerForm from "./MakeManagerForm";
-export default MakeManagerForm;
+import MakeManagerForm from './MakeManagerForm'
+export default MakeManagerForm

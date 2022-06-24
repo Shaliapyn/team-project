@@ -1,27 +1,56 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import AddEventForm from 'features/AddEventForm';
-import style from 'assets/scss/eventManagement.module.scss';
+import styles from 'assets/scss/membermanagement.module.scss'
+
+import AddEventForm from 'features/AddEventForm'
+import style from 'assets/scss/eventManagement.module.scss'
+import Pagination from 'features/Pagination'
+import MenuContext from 'context/MenuContext'
+import InputFilter from 'features/InputFilter'
+import { inputState } from 'store/slices/filterSlice'
 
 const EventManagement = () => {
-  const [show, setShow] = useState(false);
-  const events = useSelector((state) => state.events.events);
-  
-  const eventsList = events.map((event) => {
-    return (
-      <tr key={event.id}>
-        <td className="py-3 pe-5 ps-4 fs-5" >
-          <Link to='event' state={{ currentEvent: event }}>
-            {event.eventName}
-          </Link>
-        </td>
-        <td className="py-3  ps-4">{event.eventDate}</td>
-        <td className="py-3  ps-4">{event.score}</td>
-      </tr>
-    )
-  })
+  const [show, setShow] = useState(false)
+  const events = useSelector((state) => state.events.events)
+  const { currentEventsPage } = useContext(MenuContext)
+  const searchTerm = useSelector(inputState)
+  const eventsList = searchTerm
+    ? events
+        .filter((event) => {
+          if (searchTerm === '') return event
+          else if (event.eventName.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return event
+          }
+        })
+        .map((event) => {
+          return (
+            <tr key={event.id}>
+              <td className="py-3 pe-5 ps-4 fs-5">
+                <Link to="event" state={{ currentEvent: event }}>
+                  {event.eventName}
+                </Link>
+              </td>
+              <td className="py-3  ps-4">{event.eventDate}</td>
+              <td className="py-3  ps-4">{event.score}</td>
+            </tr>
+          )
+        })
+    : currentEventsPage &&
+      currentEventsPage.map((event) => {
+        return (
+          <tr key={event.id}>
+            <td className="py-3 pe-5 ps-4 fs-5">
+              <Link to="event" state={{ currentEvent: event }}>
+                {event.eventName}
+              </Link>
+            </td>
+            <td className="py-3  ps-4">{event.eventDate}</td>
+            <td className="py-3  ps-4">{event.score}</td>
+          </tr>
+        )
+      })
 
   return (
     <div className={style.container}>
@@ -40,18 +69,29 @@ const EventManagement = () => {
         <div className={style.button__wrapper}></div>
 
         <div className="card-body px-5  overflow-auto">
+          <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
+            <InputFilter />
+          </div>
           <table className="table table-bordered table-responsive-lg table-hover">
             <thead className="table-light">
               <tr>
-                <th scope="col" className="py-3 pe-5 ps-4"> Name </th>
-                <th scope="col" className="py-3  ps-4"> Date </th>
-                <th scope="col" className="py-3  ps-4"> Score </th>
+                <th scope="col" className="py-3 pe-5 ps-4">
+                  {' '}
+                  Name{' '}
+                </th>
+                <th scope="col" className="py-3  ps-4">
+                  {' '}
+                  Date{' '}
+                </th>
+                <th scope="col" className="py-3  ps-4">
+                  {' '}
+                  Score{' '}
+                </th>
               </tr>
             </thead>
-            <tbody>
-              {eventsList}
-            </tbody>
+            <tbody>{eventsList}</tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>

@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import styles from 'assets/scss/membermanagement.module.scss'
 import MenuContext from 'context/MenuContext'
-
-import { memberUpState, updateMember } from 'store/slices/memberUpSlice'
-import { eventsState } from 'store/slices/eventsSlice';
+import { EditSvg, DeleteSvg } from 'assets/svg/svg-icons'
+import { updateMember } from 'store/slices/memberUpSlice'
 
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)
   const { setShowDeleteForm } = useContext(MenuContext)
   const dispatch = useDispatch()
-  const events = useSelector(eventsState);
-  const updatedMember = useSelector(memberUpState)
+
   const currentUser = useSelector((state) => state.member.member)
 
   const areYouSureDel = (id) => {
@@ -27,7 +25,6 @@ const Member = ({ member }) => {
       dispatch(updateMember(member))
     }
   }
-  
   return currentUser.role === 'user' ? (
     <tr>
       <th scope="col">#</th>
@@ -47,12 +44,12 @@ const Member = ({ member }) => {
       <td>{member.score}</td>
       <td>{member.birthDate}</td>
       <td className={styles.btnBlock}>
-        <button onClick={() => updateMemb(member.id)} type="button" className="btn btn-primary w-auto">
-          Edit
-        </button>
-        <button onClick={() => areYouSureDel(member.id)} type="button" className="btn btn-danger w-auto">
-          Delete
-        </button>
+        <div onClick={() => updateMemb(member.id)}>
+          <EditSvg />
+        </div>
+        <div onClick={() => areYouSureDel(member.id)}>
+          <DeleteSvg />
+        </div>
       </td>
     </tr>
   )

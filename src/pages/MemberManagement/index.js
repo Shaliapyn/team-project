@@ -1,2 +1,2 @@
-import MemberManagement from "./MemberManagement";
+import MemberManagement from './MemberManagement'
 export default MemberManagement

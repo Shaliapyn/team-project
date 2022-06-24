@@ -1,2 +1,2 @@
-import AddUpdateForm from "./AddUpdateForm";
-export default AddUpdateForm;
+import AddUpdateForm from './AddUpdateForm'
+export default AddUpdateForm

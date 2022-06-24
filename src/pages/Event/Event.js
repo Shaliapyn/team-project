@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-
 import { eventsCollection } from 'firebase-client'
 import { collection, onSnapshot } from 'firebase/firestore'
 
 import { setParticipants } from 'store/slices/participantsSlice'
 import Participants from "features/Participants"
 
+import styles from 'assets/scss/membermanagement.module.scss'
+
 import style from 'assets/scss/event.module.scss'
+import Pagination from 'features/Pagination'
+import InputFilter from 'features/InputFilter'
+import SelectFilter from 'features/SelectFilter'
 
 const Event = () => {
   const location = useLocation()
@@ -41,9 +45,14 @@ const Event = () => {
           <h2 className={`m-0 font-weight-bold text-primary  text ${style.textResponsive}`}>Participants:</h2>
         </div>
         <div className="card-body overflow-auto">
+        <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
+            <InputFilter />
+            <SelectFilter />
+          </div>
           <table className="table table-hover align-middle">
             <tbody>{<Participants currentEvent={currentEvent} />}</tbody>
           </table>
+          <Pagination />
         </div>
       </div>
     </div>

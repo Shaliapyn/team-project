@@ -1,2 +1,2 @@
-import Manager from "./Manager";
-export default Manager;
+import Manager from './Manager'
+export default Manager
