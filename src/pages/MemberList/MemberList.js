@@ -3,11 +3,8 @@ import React from 'react'
 import styles from 'assets/scss/memberlist.module.scss'
 import Members from 'features/Members'
 import Pagination from 'features/Pagination'
-import { useContext } from 'react'
-import MenuContext from 'context/MenuContext'
 
 const MemberList = () => {
-  const {showMore} = useContext(MenuContext)
   return (
     <div className={`${styles.tableContainer}`}>
       <div className="card shadow mb-4">
@@ -28,7 +25,6 @@ const MemberList = () => {
             </thead>
             <tbody>{<Members />}</tbody>
           </table>
-          <div className='text-center'><button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>Show More</button></div>
           <Pagination />
         </div>
       </div>
