@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { onSnapshot, doc } from 'firebase/firestore'
@@ -11,8 +11,10 @@ import VisitedEventsList from 'features/VisitedEventsList'
 import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
 import Pagination from 'features/Pagination'
 import InputFilter from 'features/InputFilter'
+import MenuContext from 'context/MenuContext'
 
 const EventList = () => {
+  const {showMore} = useContext(MenuContext)
   const currentMember = useSelector((state) => state.member.member)
   const dispatch = useDispatch()
   const events = useSelector((state) => state.events.events)
@@ -73,6 +75,7 @@ const EventList = () => {
               <VisitedEventsList />
             </tbody>
           </table>
+          <div className='text-center'><button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>Show More</button></div>
           <Pagination />
         </div>
       </div>
