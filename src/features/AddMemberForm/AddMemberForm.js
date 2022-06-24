@@ -12,6 +12,7 @@ import { eventsState } from 'store/slices/eventsSlice'
 import CloseButton from 'ui/button/CloseButton'
 import Input from 'ui/input/Input'
 
+
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 //   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -101,6 +102,7 @@ const AddMemberForm = ({ closeForm }) => {
   return (
     <div className={style.background}>
       <div style={{ overflow: 'hidden' }}>
+        
         <form className={style.plate} onSubmit={createMember} name="createUser">
           <CloseButton onClick={closeForm} />
           <div className={style.borders}>
