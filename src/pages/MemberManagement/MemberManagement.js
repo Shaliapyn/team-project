@@ -11,7 +11,6 @@ import DeleteMemberForm from 'features/DeleteMemberForm'
 import { useSelector } from 'react-redux'
 import { memberState } from 'store/slices/memberSlice'
 import Pagination from 'features/Pagination'
-import Input from 'ui/input/Input'
 
 const MemberManagement = () => {
   const member = useSelector(memberState)

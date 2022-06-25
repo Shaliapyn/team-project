@@ -17,7 +17,7 @@ const Members = () => {
   return (
     <>
       {searchTerm
-        ? members
+        ? members && members
             .filter((member) => {
               if (selected === 'Managers') {
                 if (member.role === 'manager') return member

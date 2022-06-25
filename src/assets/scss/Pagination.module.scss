@@ -1,6 +1,5 @@
 .flexBlock {
-    max-width: 20%;
-    margin: 0 auto;
+    max-width: 27%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,6 +7,14 @@
         max-width: 35%;
     }
     @media only screen and (max-width: 768px) {
-        max-width: 45%;
+        max-width: 65%;
+    }
+}
+.container {
+    // @media only screen and (max-width: 1024px) {
+    //     flex-direction: column;
+    // }
+    @media only screen and (max-width: 768px) {
+        flex-direction: column;
     }
 }

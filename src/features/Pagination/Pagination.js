@@ -17,7 +17,11 @@ const Pagination = () => {
     setInputValue,
     inputValue,
     setDataPerPage,
-    elemetsPassed,
+    currentPage,
+    currentMembersPage,
+    elementsPassed,
+    minPageNumberLimit,
+    maxPageNumberLimit,
   } = useContext(MenuContext)
   const allMembers = members.length
   const allEvents = events.length
@@ -27,7 +31,7 @@ const Pagination = () => {
 
   const rered = () => {
     setDataPerPage(inputValue)
-    console.log(elemetsPassed)
+    console.log(currentMembersPage.length)
   }
   switch (window.location.pathname) {
     case '/auth/event-management':
@@ -53,8 +57,8 @@ const Pagination = () => {
   }
 
   return (
-    <div className="container">
-      <div className={styles.flexBlock}>
+    <div className={`d-flex justify-content-between align-items-center ${styles.container}`}>
+      <div className={`${styles.flexBlock} pb-2`}>
         <span className="btn btn-outline-primary" onClick={rered}>
           Show
         </span>
@@ -69,30 +73,36 @@ const Pagination = () => {
 
         <span>Elemets</span>
       </div>
-      {/* <div>
-          <span>SHowind {dataPerPage} of 60 elemets</span>
-        </div> */}
-      <nav className="d-flex justify-content-center pt-3" aria-label="Page navigation example">
-        <ul className="pagination">
-          <li className="page-item">
-            <a onClick={prevPage} className="page-link" href="/#">
+      <div className={`pb-2`}>
+        <span>SHowind {elementsPassed} of 60 elemets</span>
+      </div>
+      <ul className="pagination">
+        <li className="page-item">
+          <button onClick={prevPage} disabled={currentPage == pageNumbers[0] ? true : false}>
+            <a className="page-link" href="#">
               Previous
             </a>
-          </li>
-          {pageNumbers.map((num, i) => (
-            <li key={i} className="page-item">
-              <a onClick={() => paginate(num)} className="page-link" href="#">
-                {num}
-              </a>
-            </li>
-          ))}
-          <li className="page-item">
-            <a onClick={nextPage} className="page-link" href="/#">
+          </button>
+        </li>
+        {pageNumbers.map((num) => {
+          if (num < maxPageNumberLimit + 1 && num > minPageNumberLimit) {
+            return (
+              <li key={num} id={num} className={`page-item ${currentPage === num && 'active'}`}>
+                <a onClick={() => paginate(num)} className={`page-link`} href="#">
+                  {num}
+                </a>
+              </li>
+            )
+          } else return null
+        })}
+        <li className="page-item">
+          <button disabled={currentPage == pageNumbers[pageNumbers.length - 1] ? true : false} onClick={nextPage}>
+            <a className="page-link" href="#">
               Next
             </a>
-          </li>
-        </ul>
-      </nav>
+          </button>
+        </li>
+      </ul>
     </div>
   )
 }

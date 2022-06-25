@@ -17,9 +17,15 @@ export const MenuProvider = ({ children }) => {
   const events = useSelector(eventsState)
   const visitedEvents = useSelector(visitedEventsState)
   const participants = useSelector(participantsState)
+
   const [currentPage, setCurrenPage] = useState(1)
   const [inputValue, setInputValue] = useState(8)
   const [dataPerPage, setDataPerPage] = useState(inputValue)
+  const [elementsPassed, setElementsPassed] = useState(null)
+
+  const [pageNumberLimit, setPageNumberLimit] = useState(5)
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5)
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
   const indexOfLastData = currentPage * dataPerPage
   const indexOfFirstData = indexOfLastData - dataPerPage
@@ -29,26 +35,50 @@ export const MenuProvider = ({ children }) => {
   const currentVisitedEventsPage = visitedEvents && visitedEvents.slice(indexOfFirstData, indexOfLastData)
   const currentParticipantsPage = participants && participants.slice(indexOfFirstData, indexOfLastData)
 
-  const paginate = (pageNumber) => setCurrenPage(pageNumber)
+  const paginate = (num) => {
+    setCurrenPage(num)
+    setElementsPassed(currentMembersPage.length)
+  }
  
   const nextPage = (e) => {
     e.preventDefault()
-    setCurrenPage((prev) => prev + 1)
+    console.log(currentPage)
+    setCurrenPage(prev => prev + 1)
     if (window.location.pathname === '/auth/event-list') {
-      if (currentPage >= currentVisitedEventsPage.length) return setCurrenPage((prev) => prev - 1)
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+        if(currentVisitedEventsPage.length !== 0) return setCurrenPage(currentPage)
+      } 
     } else if (window.location.pathname === '/auth/event-management') {
-      if (currentPage >= currentEventsPage.length) return setCurrenPage((prev) => prev - 1)
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+        if(currentEventsPage.length !== 0) return setCurrenPage(currentPage)
+      }
     } else if (window.location.pathname === '/auth/event-management/event') {
-      if (currentPage >= currentParticipantsPage.length) return setCurrenPage((prev) => prev - 1)
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+        if(currentParticipantsPage.length !== 0) return setCurrenPage(currentPage)
+      }
     } else {
-      if (currentPage >= currentMembersPage.length) return setCurrenPage((prev) => prev - 1)
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
+        if(currentMembersPage.length !== 0) return setCurrenPage(currentPage)
+      }
     }
   }
 
   const prevPage = (e) => {
     e.preventDefault()
-    setCurrenPage((prev) => prev - 1)
-    if (currentPage <= 1) return setCurrenPage((prev) => prev + 1)
+    setCurrenPage(prev => prev -1)
+
+    if ((currentPage -1 ) % pageNumberLimit == 0){
+      setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
+      setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
+    }
   }
 
   const handleEdit = () => {
@@ -57,6 +87,7 @@ export const MenuProvider = ({ children }) => {
   return (
     <MenuContext.Provider
       value={{
+        elementsPassed,
         currentParticipantsPage,
         setInputValue,
         inputValue,
@@ -66,6 +97,7 @@ export const MenuProvider = ({ children }) => {
         members,
         participants,
         paginate,
+        currentPage,
         setCurrenPage,
         dataPerPage,
         currentMembersPage,
@@ -80,6 +112,8 @@ export const MenuProvider = ({ children }) => {
         setIsMenuChecked,
         showUpdateForm,
         setShowUpdateForm,
+        maxPageNumberLimit,
+        minPageNumberLimit
       }}
     >
       {children}
