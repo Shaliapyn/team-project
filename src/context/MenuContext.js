@@ -31,6 +31,12 @@ export const MenuProvider = ({ children }) => {
   const indexOfFirstData = indexOfLastData - dataPerPage
 
   const currentMembersPage = members && members.slice(indexOfFirstData, indexOfLastData)
+  const managers =
+    members &&
+    members.filter((member) => {
+      return member.role !== 'admin'
+    })
+  const currentManagersPage = managers && managers.slice(indexOfFirstData, indexOfLastData)
   const currentEventsPage = events && events.slice(indexOfFirstData, indexOfLastData)
   const currentVisitedEventsPage = visitedEvents && visitedEvents.slice(indexOfFirstData, indexOfLastData)
   const currentParticipantsPage = participants && participants.slice(indexOfFirstData, indexOfLastData)
@@ -39,43 +45,49 @@ export const MenuProvider = ({ children }) => {
     setCurrenPage(num)
     setElementsPassed(currentMembersPage.length)
   }
- 
+
   const nextPage = (e) => {
     e.preventDefault()
-    console.log(currentPage)
-    setCurrenPage(prev => prev + 1)
+    console.log(managers)
+    setCurrenPage((prev) => prev + 1)
     if (window.location.pathname === '/auth/event-list') {
       if (currentPage + 1 > maxPageNumberLimit) {
-        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-        if(currentVisitedEventsPage.length !== 0) return setCurrenPage(currentPage)
-      } 
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentVisitedEventsPage.length !== 0) return setCurrenPage(currentPage)
+      }
     } else if (window.location.pathname === '/auth/event-management') {
       if (currentPage + 1 > maxPageNumberLimit) {
-        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-        if(currentEventsPage.length !== 0) return setCurrenPage(currentPage)
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentEventsPage.length !== 0) return setCurrenPage(currentPage)
       }
     } else if (window.location.pathname === '/auth/event-management/event') {
       if (currentPage + 1 > maxPageNumberLimit) {
-        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-        if(currentParticipantsPage.length !== 0) return setCurrenPage(currentPage)
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentParticipantsPage.length !== 0) return setCurrenPage(currentPage)
       }
-    } else {
+    } else if (window.location.pathname === '/auth/manager-management') {
       if (currentPage + 1 > maxPageNumberLimit) {
-        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
-        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
-        if(currentMembersPage.length !== 0) return setCurrenPage(currentPage)
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentManagersPage.length !== 0) return setCurrenPage(currentPage)
+      }
+    } else if (window.location.pathname === '/auth/member-management') {
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentMembersPage.length !== 0) return setCurrenPage(currentPage)
       }
     }
   }
 
   const prevPage = (e) => {
     e.preventDefault()
-    setCurrenPage(prev => prev -1)
+    setCurrenPage((prev) => prev - 1)
 
-    if ((currentPage -1 ) % pageNumberLimit == 0){
+    if ((currentPage - 1) % pageNumberLimit == 0) {
       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
     }
@@ -95,12 +107,14 @@ export const MenuProvider = ({ children }) => {
         events,
         visitedEvents,
         members,
+        managers,
         participants,
         paginate,
         currentPage,
         setCurrenPage,
         dataPerPage,
         currentMembersPage,
+        currentManagersPage,
         currentEventsPage,
         currentVisitedEventsPage,
         nextPage,
@@ -113,7 +127,7 @@ export const MenuProvider = ({ children }) => {
         showUpdateForm,
         setShowUpdateForm,
         maxPageNumberLimit,
-        minPageNumberLimit
+        minPageNumberLimit,
       }}
     >
       {children}

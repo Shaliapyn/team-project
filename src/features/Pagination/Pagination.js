@@ -13,53 +13,64 @@ const Pagination = () => {
     events,
     visitedEvents,
     members,
+    managers,
     participants,
     setInputValue,
     inputValue,
     setDataPerPage,
     currentPage,
-    currentMembersPage,
     elementsPassed,
     minPageNumberLimit,
     maxPageNumberLimit,
   } = useContext(MenuContext)
   const allMembers = members.length
+  const allManagers = managers.length
   const allEvents = events.length
   const allVisitedEvents = visitedEvents.length
   const allParticipants = participants.length
+  let allElements;
   let pageNumbers = []
 
-  const rered = () => {
+  const changeDataLimit = () => {
     setDataPerPage(inputValue)
-    console.log(currentMembersPage.length)
   }
   switch (window.location.pathname) {
     case '/auth/event-management':
       for (let i = 1; i <= Math.ceil(allEvents / dataPerPage); i++) {
         pageNumbers.push(i)
       }
+      allElements = allEvents;
       break
     case '/auth/event-list':
       for (let i = 1; i <= Math.ceil(allVisitedEvents / dataPerPage); i++) {
         pageNumbers.push(i)
       }
+      allElements = allVisitedEvents
       break
-    case '/event-management/event':
+    case '/auth/event-management/event':
       for (let i = 1; i <= Math.ceil(allParticipants / dataPerPage); i++) {
         pageNumbers.push(i)
       }
+      allElements = allParticipants
+      break
+      case '/auth/manager-management':
+      for (let i = 1; i <= Math.ceil(allManagers / dataPerPage); i++) {
+        pageNumbers.push(i)
+      }
+      allElements = allManagers
       break
     default:
       for (let i = 1; i <= Math.ceil(allMembers / dataPerPage); i++) {
         pageNumbers.push(i)
       }
+      allElements = allMembers
       break
   }
 
   return (
     <div className={`d-flex justify-content-between align-items-center ${styles.container}`}>
       <div className={`${styles.flexBlock} pb-2`}>
-        <span className="btn btn-outline-primary" onClick={rered}>
+        <span className="btn btn-outline-primary" onClick={changeDataLimit}>
           Show
         </span>
         <input
@@ -74,7 +85,7 @@ const Pagination = () => {
         <span>Elemets</span>
       </div>
       <div className={`pb-2`}>
-        <span>SHowind {elementsPassed} of 60 elemets</span>
+        <span>Showing {elementsPassed} of {allElements} elemets</span>
       </div>
       <ul className="pagination">
         <li className="page-item">

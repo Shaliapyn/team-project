@@ -17,14 +17,8 @@ const Members = () => {
   return (
     <>
       {searchTerm
-        ? members && members
-            .filter((member) => {
-              if (selected === 'Managers') {
-                if (member.role === 'manager') return member
-              } else if (selected === 'Users') {
-                if (member.role === 'user') return member
-              } else return member
-            })
+        ? members &&
+          members
             .filter((member) => {
               if (searchTerm === '') return member
               else if (
@@ -36,9 +30,18 @@ const Members = () => {
               }
             })
             .map((member, id) => <Member key={id} member={member} />)
-        : currentMembersPage && currentMembersPage.map((member, id) => {
-        return <Member key={id} member={member} />
-        })}
+        : currentMembersPage &&
+          currentMembersPage
+            .filter((member) => {
+              if (selected === 'Managers') {
+                if (member.role === 'manager') return member
+              } else if (selected === 'Users') {
+                if (member.role === 'user') return member
+              } else return member
+            })
+            .map((member, id) => {
+              return <Member key={id} member={member} />
+            })}
     </>
   )
 }
