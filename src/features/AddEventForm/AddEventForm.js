@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 import { membersState } from 'store/slices/membersSlice'
 
-import style from 'assets/scss/AddEventForm.module.scss'
+import styles from 'assets/scss/AddEventForm.module.scss'
 
 import CloseButton from 'ui/button/CloseButton'
 import Input from 'ui/input/Input/Input'
@@ -49,13 +49,13 @@ const AddEventForm = ({ closeForm }) => {
   }
 
   return (
-    <div className={style.background}>
+    <div className={styles.background}>
       <div style={{ overflow: 'hidden' }}>
-        <form onSubmit={createEvent} className={style.plate}>
+        <form onSubmit={createEvent} className={styles.plate}>
           <CloseButton onClick={closeForm} />
-          <div className={style.borders}>
-            <h1 className={style.title}>Add Event Form</h1>
-            <div className={style.element}>
+          <div className={styles.borders}>
+            <h1 className={styles.title}>Add Event Form</h1>
+            <div className={styles.element}>
               <Input
                 type={'text'}
                 placeholder={'Event name'}
@@ -63,7 +63,7 @@ const AddEventForm = ({ closeForm }) => {
                 onChange={(e) => setEventName(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input
                 type={'date'}
                 placeholder={'Event date'}
@@ -71,7 +71,7 @@ const AddEventForm = ({ closeForm }) => {
                 onChange={(e) => setEventDate(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input 
                 type={'number'} 
                 placeholder={'Score'} 
@@ -79,7 +79,7 @@ const AddEventForm = ({ closeForm }) => {
                 onChange={(e) => setScore(e.target.value)} 
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <button
                 type="submit"
                 style={{ fontSize: '18px', height: '50px' }}

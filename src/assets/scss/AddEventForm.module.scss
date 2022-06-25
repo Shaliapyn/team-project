@@ -8,12 +8,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  overflow: scroll;
+  // overflow: scroll;
 }
 
 .plate {
   position: absolute;
-  width: 25%;
+  width: 35%;
   background-color: white;
   border-radius: 15px;
   display: flex;
@@ -26,15 +26,15 @@
   transform: translateX(-50%);
 
   @media (max-width: 1400px) {
-    width: 40%;
-  }
-
-  @media (max-width: 1024px) {
     width: 50%;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 1024px) {
     width: 70%;
+  }
+
+  @media (max-width: 700px) {
+    width: 90%;
   }
   @media (max-width: 500px) {
     width: 90%;
@@ -42,7 +42,7 @@
 }
 
 .borders {
-  width: 70%;
+  width:80%;
   height: 100%;
   display: flex;
   text-align: center;
