@@ -1,17 +1,16 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
-import { auth } from 'firebase-client'
+import { useSelector } from 'react-redux'
 
 const RequireAuth = ({ children }) => {
-  const user = auth.currentUser
+  const user = useSelector((state) => state.member.member)
 
   if (!!user) {
     <Navigate to="auth/" />
+    return children
   } else {
     <Navigate to="/" />
   }
-
-  return children
 }
 
 export default RequireAuth
