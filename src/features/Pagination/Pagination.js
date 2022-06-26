@@ -20,8 +20,10 @@ const Pagination = () => {
     setDataPerPage,
     currentPage,
     elementsPassed,
+    setElementsPassed,
     minPageNumberLimit,
     maxPageNumberLimit,
+    currentMembersPage
   } = useContext(MenuContext)
   const allMembers = members.length
   const allManagers = managers.length
@@ -29,6 +31,7 @@ const Pagination = () => {
   const allVisitedEvents = visitedEvents.length
   const allParticipants = participants.length
   let allElements;
+  let passedFrom;
   let pageNumbers = []
 
   const changeDataLimit = () => {
@@ -66,7 +69,12 @@ const Pagination = () => {
       allElements = allMembers
       break
   }
-
+  setElementsPassed(() =>{
+    if(currentPage !== pageNumbers[pageNumbers.length-1]){
+      return currentPage * currentMembersPage.length
+    } else return allElements
+  })
+  passedFrom = elementsPassed-currentMembersPage.length+1
   return (
     <div className={`d-flex justify-content-between align-items-center ${styles.container}`}>
       <div className={`${styles.flexBlock} pb-2`}>
@@ -85,7 +93,7 @@ const Pagination = () => {
         <span>Elemets</span>
       </div>
       <div className={`pb-2`}>
-        <span>Showing {elementsPassed} of {allElements} elemets</span>
+        <span>Showing {passedFrom} to {elementsPassed} of {allElements} elemets</span>
       </div>
       <ul className="pagination">
         <li className="page-item">

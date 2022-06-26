@@ -21,7 +21,7 @@ export const MenuProvider = ({ children }) => {
   const [currentPage, setCurrenPage] = useState(1)
   const [inputValue, setInputValue] = useState(8)
   const [dataPerPage, setDataPerPage] = useState(inputValue)
-  const [elementsPassed, setElementsPassed] = useState(null)
+  const [elementsPassed, setElementsPassed] = useState(0)
 
   const [pageNumberLimit, setPageNumberLimit] = useState(5)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5)
@@ -43,12 +43,10 @@ export const MenuProvider = ({ children }) => {
 
   const paginate = (num) => {
     setCurrenPage(num)
-    setElementsPassed(currentMembersPage.length)
   }
 
   const nextPage = (e) => {
     e.preventDefault()
-    console.log(managers)
     setCurrenPage((prev) => prev + 1)
     if (window.location.pathname === '/auth/event-list') {
       if (currentPage + 1 > maxPageNumberLimit) {
@@ -100,6 +98,7 @@ export const MenuProvider = ({ children }) => {
     <MenuContext.Provider
       value={{
         elementsPassed,
+        setElementsPassed,
         currentParticipantsPage,
         setInputValue,
         inputValue,
