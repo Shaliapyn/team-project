@@ -17,42 +17,78 @@ export const MenuProvider = ({ children }) => {
   const events = useSelector(eventsState)
   const visitedEvents = useSelector(visitedEventsState)
   const participants = useSelector(participantsState)
+
   const [currentPage, setCurrenPage] = useState(1)
-  const [dataPerPage, setDataPerPage] = useState(8)
+  const [inputValue, setInputValue] = useState(8)
+  const [dataPerPage, setDataPerPage] = useState(inputValue)
+  const [elementsPassed, setElementsPassed] = useState(0)
+
+  const [pageNumberLimit, setPageNumberLimit] = useState(5)
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5)
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
   const indexOfLastData = currentPage * dataPerPage
   const indexOfFirstData = indexOfLastData - dataPerPage
 
   const currentMembersPage = members && members.slice(indexOfFirstData, indexOfLastData)
+  const managers =
+    members &&
+    members.filter((member) => {
+      return member.role !== 'admin'
+    })
+  const currentManagersPage = managers && managers.slice(indexOfFirstData, indexOfLastData)
   const currentEventsPage = events && events.slice(indexOfFirstData, indexOfLastData)
   const currentVisitedEventsPage = visitedEvents && visitedEvents.slice(indexOfFirstData, indexOfLastData)
   const currentParticipantsPage = participants && participants.slice(indexOfFirstData, indexOfLastData)
 
-  const paginate = (pageNumber) => setCurrenPage(pageNumber)
-  const showMore = () => {
-    setDataPerPage(prev => prev + 4)
-    if(dataPerPage > 100) {
-      setDataPerPage(100)
-    }
+  const paginate = (num) => {
+    setCurrenPage(num)
   }
+
   const nextPage = (e) => {
     e.preventDefault()
     setCurrenPage((prev) => prev + 1)
     if (window.location.pathname === '/auth/event-list') {
-      if (currentPage >= currentVisitedEventsPage.length) return setCurrenPage((prev) => prev - 1)
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentVisitedEventsPage.length !== 0) return setCurrenPage(currentPage)
+      }
     } else if (window.location.pathname === '/auth/event-management') {
-      if (currentPage >= currentEventsPage.length) return setCurrenPage((prev) => prev - 1)
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentEventsPage.length !== 0) return setCurrenPage(currentPage)
+      }
     } else if (window.location.pathname === '/auth/event-management/event') {
-      if (currentPage >= currentParticipantsPage.length) return setCurrenPage((prev) => prev - 1)
-    } else {
-      if (currentPage >= currentMembersPage.length) return setCurrenPage((prev) => prev - 1)
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentParticipantsPage.length !== 0) return setCurrenPage(currentPage)
+      }
+    } else if (window.location.pathname === '/auth/manager-management') {
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentManagersPage.length !== 0) return setCurrenPage(currentPage)
+      }
+    } else if (window.location.pathname === '/auth/member-management') {
+      if (currentPage + 1 > maxPageNumberLimit) {
+        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
+        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
+        if (currentMembersPage.length !== 0) return setCurrenPage(currentPage)
+      }
     }
   }
 
   const prevPage = (e) => {
     e.preventDefault()
     setCurrenPage((prev) => prev - 1)
-    if (currentPage <= 1) return setCurrenPage((prev) => prev + 1)
+
+    if ((currentPage - 1) % pageNumberLimit == 0) {
+      setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit)
+      setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
+    }
   }
 
   const handleEdit = () => {
@@ -61,19 +97,25 @@ export const MenuProvider = ({ children }) => {
   return (
     <MenuContext.Provider
       value={{
+        elementsPassed,
+        setElementsPassed,
+        currentParticipantsPage,
+        setInputValue,
+        inputValue,
         setDataPerPage,
-        showMore,
         events,
         visitedEvents,
         members,
+        managers,
         participants,
         paginate,
+        currentPage,
         setCurrenPage,
         dataPerPage,
         currentMembersPage,
+        currentManagersPage,
         currentEventsPage,
         currentVisitedEventsPage,
-        currentParticipantsPage,
         nextPage,
         prevPage,
         showDeleteForm,
@@ -83,6 +125,8 @@ export const MenuProvider = ({ children }) => {
         setIsMenuChecked,
         showUpdateForm,
         setShowUpdateForm,
+        maxPageNumberLimit,
+        minPageNumberLimit,
       }}
     >
       {children}

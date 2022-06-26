@@ -15,7 +15,7 @@ const Participants = (currentEvent) => {
   const selected = useSelector(selectState)
   return (
     <>
-      {searchTerm && 
+      {currentParticipantsPage && 
         currentParticipantsPage.filter((participant) => {
           if (selected === 'Visited') {
             if (participant.visitedEvent === true) return participant

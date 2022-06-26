@@ -10,19 +10,14 @@ const Managers = () => {
   const members = useSelector(membersState)
   const selected = useSelector(selectState)
   const searchTerm = useSelector(inputState)
-  const { currentMembersPage } = useContext(MenuContext)
-  
+  const { currentManagersPage } = useContext(MenuContext)
+
   return (
     <>
       {searchTerm
-        ? members
-            .filter((member) => {
-              if (selected === 'Managers') {
-                if (member.role === 'manager') return member
-              } else if (selected === 'Users') {
-                if (member.role === 'user') return member
-              } else return member
-            })
+        ? members.filter(member => {
+          return member.role !== "admin"
+        })
             .filter((member) => {
               if (searchTerm === '') return member
               else if (
@@ -36,7 +31,19 @@ const Managers = () => {
             .map((member, id) => {
               return <Manager key={id} member={member} />
             })
-        : currentMembersPage && currentMembersPage.map((member, id) => <Manager key={id} member={member} />)}
+        : currentManagersPage &&
+        currentManagersPage
+          .filter(member => {
+            return member.role !== "admin"
+          })
+            .filter((member) => {
+              if (selected === 'Managers') {
+                if (member.role === 'manager') return member
+              } else if (selected === 'Users') {
+                if (member.role === 'user') return member
+              } else return member
+            })
+            .map((member, id) => <Manager key={id} member={member} />)}
     </>
   )
 }

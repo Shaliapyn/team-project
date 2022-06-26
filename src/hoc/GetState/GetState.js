@@ -15,11 +15,12 @@ import MenuContext from 'context/MenuContext'
 const GetState = ({ children }) => {
   const dispatch = useDispatch()
   const location = useLocation()
-  const {setDataPerPage} = useContext(MenuContext)
+  const {setDataPerPage, inputValue, setCurrenPage} = useContext(MenuContext)
   
   useEffect(() => {
     dispatch(setInput(""))
-    setDataPerPage(8)
+    setDataPerPage(inputValue)
+    // setCurrenPage(1)
   },[location])
   
   useEffect(() => {

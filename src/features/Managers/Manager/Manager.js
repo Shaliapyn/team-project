@@ -3,7 +3,7 @@ import React from 'react'
 import { membersCollection } from 'firebase-client'
 
 const Manager = ({ member }) => {
-  if (member.role !== 'admin') {
+  
     const role = member.role === 'manager' ? 'user' : 'manager'
 
     const toogleRole = async (id) => {
@@ -29,7 +29,7 @@ const Manager = ({ member }) => {
         </td>
       </tr>
     )
-  }
+  
 }
 
 export default Manager

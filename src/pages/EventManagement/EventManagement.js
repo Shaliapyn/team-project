@@ -14,7 +14,7 @@ import { inputState } from 'store/slices/filterSlice'
 const EventManagement = () => {
   const [show, setShow] = useState(false)
   const events = useSelector((state) => state.events.events)
-  const { currentEventsPage, showMore } = useContext(MenuContext)
+  const { currentEventsPage } = useContext(MenuContext)
   const searchTerm = useSelector(inputState)
   const eventsList = searchTerm
     ? events
@@ -91,7 +91,6 @@ const EventManagement = () => {
             </thead>
             <tbody>{eventsList}</tbody>
           </table>
-          <div className='text-center'><button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>Show More</button></div>
           <Pagination />
         </div>
       </div>
