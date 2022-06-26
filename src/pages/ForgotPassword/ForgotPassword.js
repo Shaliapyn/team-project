@@ -15,7 +15,6 @@ const ForgotPassword = () => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(email)
     if (email)
       try {
         setMessage('')
@@ -32,25 +31,32 @@ const ForgotPassword = () => {
       <form onSubmit={handleSubmit} className={styles.plate}>
         <div className={styles.img}> </div>
         <div className={styles.form}>
-          <div className={styles.border}>
-            <h2 className={styles.title}>Forgot Your Password?</h2>
-            <p className={styles.parag}>
-              We get it, stuff happens. Just enter your email address below and we'll send you a link <br></br>to reset
-              your password!
-            </p>
-            {error && <div className={`alert alert-danger`}>{error}</div>}
-            {message && <div className={`alert alert-primary`}>{message}</div>}
-            <div className={styles.element}>
-              <InputEmail value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
+          {!message ? (
+            <div className={styles.border}>
+              <h2 className={styles.title}>Forgot Your Password?</h2>
+              <p className={styles.parag}>
+                We get it, stuff happens. Just enter your email address below and we'll send you a link <br></br>to
+                reset your password!
+              </p>
+              {error && <div className={`alert alert-danger`}>{error}</div>}
+              <>
+                <div className={styles.element}>
+                  <InputEmail value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
 
-            <div className={styles.element}>
-              <Button type="submit" className={`btn-primary ${styles.loginButton}`}>
-                Reset Password
-              </Button>
-              {/* <button type='submit'>reset</button> */}
+                <div className={styles.element}>
+                  <Button type="submit" className={`btn-primary ${styles.loginButton}`}>
+                    Reset Password
+                  </Button>
+                </div>
+              </>
             </div>
-          </div>
+          ) : (
+            <div className={`text-center`}>
+              <h2 className={`h2`}>Thank You!</h2>
+              {message && <div className={`alert alert-primary`}>{message}</div>}
+            </div>
+          )}
         </div>
       </form>
     </div>
