@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 
 const RequireAuth = ({ children }) => {
   const user = useSelector((state) => state.member.member)
-
-  if (!!user) {
+  
+  if (!!user.email) {
     <Navigate to="auth/" />
     return children
   } else {
-    <Navigate to="/" />
+    return <Navigate to="/" />
   }
 }
 
