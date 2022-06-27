@@ -1,7 +1,5 @@
-import MenuContext from 'context/MenuContext'
-import React from 'react'
-import { useContext } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { inputState } from 'store/slices/filterSlice'
 
 import { participantsState } from 'store/slices/participantsSlice'
@@ -9,18 +7,15 @@ import { selectState } from 'store/slices/selectSlice'
 import Participant from './Participant'
 
 const Participants = (currentEvent) => {
+  const dispatch = useDispatch()
   const searchTerm = useSelector(inputState)
   const participants = useSelector(participantsState)
-  const {currentParticipantsPage} = useContext(MenuContext)
   const selected = useSelector(selectState)
+
   return (
     <>
-      {currentParticipantsPage && 
-        currentParticipantsPage.filter((participant) => {
-          if (selected === 'Visited') {
-            if (participant.visitedEvent === true) return participant
-          } else return participant
-        }).map((participant, id) => (
+      {participants &&
+        participants.map((participant, id) => (
           <Participant key={id} participant={participant} currentEvent={currentEvent} />
         ))}
     </>

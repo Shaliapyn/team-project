@@ -54,18 +54,15 @@ const Profile = () => {
               </div>
             </div>
             <div className={style.profile__btn__change__pass}>
-              <button 
-                type="button" 
-                className={`btn btn-primary w-auto`} 
+              <button
+                type="button"
+                className={`btn btn-primary w-auto`}
                 onClick={() => setShowChangePassForm(!showChangePassForm)}
               >
                 Change password
               </button>
             </div>
-            <div>
-              {showChangePassForm && 
-                <ChangePasswordForm closeForm={() => setShowChangePassForm(false)} />}
-            </div>
+            <div>{showChangePassForm && <ChangePasswordForm closeForm={() => setShowChangePassForm(false)} />}</div>
           </div>
         </div>
       </div>

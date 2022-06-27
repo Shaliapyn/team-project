@@ -7,7 +7,7 @@ import { CancelSvg, CommentSvg, DeleteSvg, EditSvg, SaveSvg, VisibilityOffSvg } 
 import styles from '../../assets/scss/comment.module.scss'
 
 const Comment = ({ participant, currentEvent }) => {
-  let isComment = participant.comment.trim().length !== 0
+  let isComment = participant && participant.comment.trim().length !== 0
   const event = currentEvent.currentEvent
   const [isActiveComment, setIsActiveComment] = useState(false)
   const [isBeingUpdated, setIsBeingUpdated] = useState(false)

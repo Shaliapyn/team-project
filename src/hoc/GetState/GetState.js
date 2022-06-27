@@ -1,5 +1,5 @@
-import { useContext, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 import { collection, orderBy, query, onSnapshot, where } from 'firebase/firestore'
 import { onIdTokenChanged } from 'firebase/auth'
@@ -8,21 +8,10 @@ import { db, auth, eventsCollection, membersCollection } from 'firebase-client'
 import { setMember } from 'store/slices/memberSlice'
 import { setEvents } from 'store/slices/eventsSlice'
 import { setMembers } from 'store/slices/membersSlice'
-import { useLocation } from 'react-router-dom'
-import { setInput } from 'store/slices/filterSlice'
-import MenuContext from 'context/MenuContext'
 
 const GetState = ({ children }) => {
   const dispatch = useDispatch()
-  const location = useLocation()
-  const {setDataPerPage, inputValue, setCurrenPage} = useContext(MenuContext)
-  
-  useEffect(() => {
-    dispatch(setInput(""))
-    setDataPerPage(inputValue)
-    // setCurrenPage(1)
-  },[location])
-  
+
   useEffect(() => {
     onIdTokenChanged(auth, (user) => {
       if (!user) {

@@ -72,12 +72,7 @@ const AddEventForm = ({ closeForm }) => {
               />
             </div>
             <div className={styles.element}>
-              <Input 
-                type={'number'} 
-                placeholder={'Score'} 
-                value={score} 
-                onChange={(e) => setScore(e.target.value)} 
-              />
+              <Input type={'number'} placeholder={'Score'} value={score} onChange={(e) => setScore(e.target.value)} />
             </div>
             <div className={styles.element}>
               <button
