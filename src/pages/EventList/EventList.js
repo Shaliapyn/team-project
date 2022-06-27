@@ -73,7 +73,11 @@ const EventList = () => {
               <VisitedEventsList />
             </tbody>
           </table>
+
+          <div className='text-center'><button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>Show More</button></div>
+         
           <Pagination />
+
         </div>
       </div>
     </div>
