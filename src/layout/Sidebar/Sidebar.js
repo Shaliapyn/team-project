@@ -30,8 +30,6 @@ const Sidebar = () => {
       {member.email ? (
         <nav className={`${sidebarClasses} ${hideSideBarClass}`}>
           <div className={styles.roleBlock}>
-            {isSidebarBig && <SmileSvg />}
-            <h2 className={styles.roleText}>{currentUser}</h2>
           </div>
           <hr className={styles.horizonLine} />
           <ul style={{ paddingLeft: '0px' }}>

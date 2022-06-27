@@ -28,26 +28,47 @@ const DeleteMemberForm = ({ closeForm }) => {
     closeForm()
   }
   return (
-    <div>
-      <div className={style.background}>
-        <div style={{ overflow: 'hidden' }}>
-          <form onSubmit={handleRemove} className={style.plate} name="createUser">
-            <CloseButton onClick={closeForm} />
-            <div className={style.borders}>
-              <h1 className={style.title}>Are you sure, you want to delete this member?</h1>
-              <ul className={`d-flex w-100 justify-content-between`}>
-                <li>{member.firstName}</li>
-                <li>{member.lastName}</li>
-                <li>{member.email}</li>
-              </ul>
-              <div className={style.element}>
-                <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-100">
-                  I'm sure
-                </button>
-              </div>
+    <div className={`${style.background}`}>
+      <div style={{ overflow: 'hidden' }}>
+        <form onSubmit={handleRemove} className={`${style.plate} w-50 text-center flex-column align-items-center`} name="createUser">
+          <CloseButton onClick={closeForm} />
+          <div className={`${style.borders} w-100`}>
+            <div className="card-body px-5  overflow-auto">
+              <h2 className={style.title}>Are you sure, you want to delete this member?</h2>
+              <table className={`table table-bordered shadow-sm table-hover`}>
+                <thead className={`table-light `}>
+                  <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Organisation</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Birth Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ verticalAlign: 'middle' }}>
+                    <td>{member.firstName}</td>
+                    <td>{member.lastName}</td>
+                    <td>{member.organisation}</td>
+                    <td>{member.email}</td>
+                    <td>{member.phone}</td>
+                    <td>{member.score}</td>
+                    <td>{member.birthDate}</td>
+                  </tr>
+                </tbody>
+              </table>
+              {/* <Pagination /> */}
             </div>
-          </form>
-        </div>
+
+            <div className={`${style.element} justify-content-center`}>
+              <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-25">
+                Submit changes
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   )
