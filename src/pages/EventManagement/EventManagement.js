@@ -1,39 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import styles from 'assets/scss/membermanagement.module.scss'
 
 import AddEventForm from 'features/AddEventForm'
 import style from 'assets/scss/eventManagement.module.scss'
 import Pagination from 'features/Pagination'
-import MenuContext from 'context/MenuContext'
 import InputFilter from 'features/InputFilter'
 import { inputState } from 'store/slices/filterSlice'
-import { setFilteredMembers } from 'store/slices/filteredMembersSlice'
 
 const EventManagement = () => {
-  const dispatch = useDispatch()
   const [show, setShow] = useState(false)
   const events = useSelector((state) => state.events.events)
-  const { currentMembersPage } = useContext(MenuContext)
   const searchTerm = useSelector(inputState)
 
-  useEffect(() => {
-    dispatch(
-      setFilteredMembers(
-        events.filter((event) => {
-          if (searchTerm === '') return event
-          else if (event.eventName.toLowerCase().includes(searchTerm.toLowerCase())) {
-            return event
-          }
-        })
-      )
-    )
-  }, [searchTerm, events])
   const eventsList =
-    currentMembersPage &&
-    currentMembersPage.map((event) => {
+  events &&
+  events.map((event) => {
       return (
         <tr key={event.id}>
           <td className="py-3 pe-5 ps-4 fs-5">

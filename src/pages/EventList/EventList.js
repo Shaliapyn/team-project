@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { onSnapshot, doc } from 'firebase/firestore'
