@@ -52,7 +52,7 @@ const EventList = () => {
           </h2>
         </div>
         <div className="card-body px-5  overflow-auto">
-        <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
+          <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
             <InputFilter />
           </div>
           <table className="table table-bordered table-responsive-lg table-hover">
@@ -73,7 +73,7 @@ const EventList = () => {
               <VisitedEventsList />
             </tbody>
           </table>
-          <Pagination />
+          {/* <Pagination /> */}
         </div>
       </div>
     </div>

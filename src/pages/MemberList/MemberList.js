@@ -15,7 +15,7 @@ const MemberList = () => {
           <div style={{ width: '200px' }}></div>
         </div>
         <div className="card-body px-5 overflow-auto">
-        <div className={`w-100 d-flex justify-content-between ${styles.filterSearchBlock}`}>
+          <div className={`w-100 d-flex justify-content-between ${styles.filterSearchBlock}`}>
             <InputFilter />
             <SelectFilter />
           </div>
@@ -31,7 +31,7 @@ const MemberList = () => {
             </thead>
             <tbody>{<Members />}</tbody>
           </table>
-          <Pagination />
+          {/* <Pagination /> */}
         </div>
       </div>
     </div>

@@ -10,9 +10,9 @@ import { membersCollection } from 'firebase-client'
 const Participant = ({ participant, currentEvent }) => {
   let additionalPoints = participant.addPoints
   let visited = participant.visitedEvent
-  
+
   let updatedScore
-  
+
   const [inputPoints, setInputPoints] = useState(0)
   const members = useSelector(membersState)
   const currentMember = members && members.find((member) => member.id === participant.id)

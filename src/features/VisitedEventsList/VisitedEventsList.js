@@ -13,13 +13,16 @@ const VisitedEventsList = () => {
   const { currentMembersPage } = useContext(MenuContext)
   const searchTerm = useSelector(inputState)
   useEffect(() => {
-    dispatch(setFilteredMembers(visitedEvents
-      .filter((event) => {
-        if (searchTerm === '') return event
-        else if (event.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-          return event
-        }
-      })))
+    dispatch(
+      setFilteredMembers(
+        visitedEvents.filter((event) => {
+          if (searchTerm === '') return event
+          else if (event.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return event
+          }
+        })
+      )
+    )
   }, [searchTerm, visitedEvents])
 
   return (
@@ -40,7 +43,7 @@ const VisitedEventsList = () => {
               </tr>
             ))
         : currentMembersPage &&
-        currentMembersPage.map((event, id) => (
+          currentMembersPage.map((event, id) => (
             <tr key={id}>
               <td>{event.name}</td>
               <td>{event.date}</td>

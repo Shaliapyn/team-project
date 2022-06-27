@@ -10,26 +10,29 @@ import { selectState } from 'store/slices/selectSlice'
 import Participant from './Participant'
 
 const Participants = (currentEvent) => {
-  const dispatch= useDispatch()
+  const dispatch = useDispatch()
   const searchTerm = useSelector(inputState)
   const participants = useSelector(participantsState)
-  const {currentMembersPage} = useContext(MenuContext)
+  const { currentMembersPage } = useContext(MenuContext)
   const selected = useSelector(selectState)
   const filtered = useSelector(filteredMembersState)
 
   useEffect(() => {
-    dispatch(setFilteredMembers(participants
-      .filter((participant) => {
-        if (selected === 'Visited') {
-          if (participant.visitedEvent === true) return participant
-        } else if (selected === 'NotVisited') {
-          if (participant.visitedEvent === false) return participant
-        } else return participant
-      })))
+    dispatch(
+      setFilteredMembers(
+        participants.filter((participant) => {
+          if (selected === 'Visited') {
+            if (participant.visitedEvent === true) return participant
+          } else if (selected === 'NotVisited') {
+            if (participant.visitedEvent === false) return participant
+          } else return participant
+        })
+      )
+    )
   }, [selected, participants])
   return (
     <>
-      {participants && 
+      {participants &&
         participants.map((participant, id) => (
           <Participant key={id} participant={participant} currentEvent={currentEvent} />
         ))}

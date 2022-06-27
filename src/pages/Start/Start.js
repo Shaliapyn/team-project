@@ -9,13 +9,14 @@ function Start() {
   const currentMember = useSelector((state) => state.member.member)
   return (
     <div className={styles.container}>
-      {!currentMember.email &&
+      {!currentMember.email && (
         <>
           <p className={styles.logbook}>LogBook</p>
           <p> It's a private web portal to mark event visits. </p>
           <p>Please, Sign In!</p>
-        </>}
-      {!!currentMember.email && <Navigate to="auth/home" /> }
+        </>
+      )}
+      {!!currentMember.email && <Navigate to="auth/home" />}
     </div>
   )
 }
