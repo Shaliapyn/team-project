@@ -1,16 +1,17 @@
 import React, { useContext, useState } from 'react'
-import AddMemberForm from 'features/AddMemberForm'
+import { useSelector } from 'react-redux'
+import { memberState } from 'store/slices/memberSlice'
 
-import styles from 'assets/scss/membermanagement.module.scss'
+import AddMemberForm from 'features/AddMemberForm'
 import Members from 'features/Members'
 import MenuContext from 'context/MenuContext'
 import AddUpdateForm from 'features/AddUpdateForm'
 import InputFilter from 'features/InputFilter'
 import SelectFilter from 'features/SelectFilter'
 import DeleteMemberForm from 'features/DeleteMemberForm'
-import { useSelector } from 'react-redux'
-import { memberState } from 'store/slices/memberSlice'
 import Pagination from 'features/Pagination'
+
+import styles from 'assets/scss/membermanagement.module.scss'
 
 const MemberManagement = () => {
   const member = useSelector(memberState)

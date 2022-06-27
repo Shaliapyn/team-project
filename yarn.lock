@@ -2450,7 +2450,13 @@
   dependencies:
     "@types/react" "*"
 
+<<<<<<< HEAD
 "@types/react@*":
+=======
+
+"@types/react@*":
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
   "integrity" "sha512-duF1OTASSBQtcigUvhuiTB1Ya3OvSy+xORCiEf20H0P0lzx+/KeVsA99U5UjLXSbyo1DRJDlLKqTeM1ngosqtg=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.12.tgz"
   "version" "18.0.12"
@@ -2546,7 +2552,13 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+<<<<<<< HEAD
 "@typescript-eslint/eslint-plugin@^5.5.0":
+=======
+
+"@typescript-eslint/eslint-plugin@^5.5.0":
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
   "integrity" "sha512-6dM5NKT57ZduNnJfpY81Phe9nc9wolnMCnknb1im6brWi1RYv84nbMS3olJa27B6+irUVV1X/Wb+Am0FjJdGFw=="
   "resolved" "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.27.1.tgz"
   "version" "5.27.1"
@@ -2568,7 +2580,13 @@
   dependencies:
     "@typescript-eslint/utils" "5.27.1"
 
+<<<<<<< HEAD
 "@typescript-eslint/parser@^5.5.0":
+=======
+
+"@typescript-eslint/parser@^5.5.0":
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
   "integrity" "sha512-7Va2ZOkHi5NP+AZwb5ReLgNF6nWLGTeUJfxdkVUAPPSaAdbWNnFZzLZ4EGGmmiCTg+AwlbE1KyUYTBglosSLHQ=="
   "resolved" "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-5.27.1.tgz"
   "version" "5.27.1"
@@ -3421,6 +3439,10 @@
   "resolved" "https://registry.npmjs.org/browser-process-hrtime/-/browser-process-hrtime-1.0.0.tgz"
   "version" "1.0.0"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
 "browserslist@^4.0.0", "browserslist@^4.14.5", "browserslist@^4.16.6", "browserslist@^4.18.1", "browserslist@^4.20.2", "browserslist@^4.20.3":
   "integrity" "sha512-ok1d+1WpnU24XYN7oC3QWgTyMhY/avPJ/r9T00xxvUOIparA/gc+UPUMaod3i+G6s+nI2nUb9xZ5k794uIwShw=="
   "resolved" "https://registry.npmjs.org/browserslist/-/browserslist-4.20.4.tgz"
@@ -4812,6 +4834,10 @@
     "normalize-path" "^3.0.0"
     "schema-utils" "^3.1.1"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
 "eslint@^8.3.0":
   "integrity" "sha512-gq0m0BTJfci60Fz4nczYxNAlED+sMcihltndR8t9t1evnU/azx53x3t2UHXC/uRjcbvRw/XctpaNygSTcQD+Iw=="
   "resolved" "https://registry.npmjs.org/eslint/-/eslint-8.17.0.tgz"
@@ -5286,6 +5312,11 @@
   "integrity" "sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw=="
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
+
+"fsevents@^2.3.2", "fsevents@~2.3.2":
+  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
+  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
+  "version" "2.3.2"
 
 "function-bind@^1.1.1":
   "integrity" "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
@@ -8999,6 +9030,10 @@
     "serialize-javascript" "^4.0.0"
     "terser" "^5.0.0"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
 "rollup@^2.43.1":
   "integrity" "sha512-OEf0TgpC9vU6WGROJIk1JA3LR5vk/yvqlzxqdrE2CzzXnqKXNzbAwlWUXis8RS3ZPe7LAq+YUxsRa0l3r27MLA=="
   "resolved" "https://registry.npmjs.org/rollup/-/rollup-2.75.6.tgz"
@@ -9056,6 +9091,10 @@
     "klona" "^2.0.4"
     "neo-async" "^2.6.2"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
 "sass@^1.51.0":
   "integrity" "sha512-mfHB2VSeFS7sZlPv9YohB9GB7yWIgQNTGniQwfQ04EoQN0wsQEv7SwpCwy/x48Af+Z3vDeFXz+iuXM3HK/phZQ=="
   "resolved" "https://registry.npmjs.org/sass/-/sass-1.52.2.tgz"
@@ -10268,6 +10307,10 @@
     "range-parser" "^1.2.1"
     "schema-utils" "^4.0.0"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
 "webpack-dev-server@^4.6.0":
   "integrity" "sha512-H95Ns95dP24ZsEzO6G9iT+PNw4Q7ltll1GfJHV4fKphuHWgKFzGHWi4alTlTnpk1SPPk41X+l2RB7rLfIhnB9Q=="
   "resolved" "https://registry.npmjs.org/webpack-dev-server/-/webpack-dev-server-4.9.2.tgz"
@@ -10332,6 +10375,10 @@
   "resolved" "https://registry.npmjs.org/webpack-sources/-/webpack-sources-3.2.3.tgz"
   "version" "3.2.3"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ad9c1e1a2940452c39f63235d1c709963437316
 "webpack@^5.64.4":
   "integrity" "sha512-svjudQRPPa0YiOYa2lM/Gacw0r6PvxptHj4FuEKQ2kX05ZLkjbVc5MnPs6its5j7IZljnIqSVo/OsY2X0IpHGA=="
   "resolved" "https://registry.npmjs.org/webpack/-/webpack-5.73.0.tgz"

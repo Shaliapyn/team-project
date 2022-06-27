@@ -21,6 +21,7 @@ const ManagerManagement = () => {
           <table className={`table table-bordered shadow-sm`}>
             <thead className={`table-light ${styles.tableHead}`}>
               <tr>
+                <th scope="col">Avatar</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
