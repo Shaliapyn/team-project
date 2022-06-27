@@ -1,11 +1,12 @@
 import MenuContext from 'context/MenuContext'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useContext } from 'react'
 
 import styles from 'assets/scss/Pagination.module.scss'
 
 const Pagination = () => {
   const {
+    filteredMembers,
     dataPerPage,
     nextPage,
     prevPage,
@@ -25,13 +26,12 @@ const Pagination = () => {
     maxPageNumberLimit,
     currentMembersPage
   } = useContext(MenuContext)
-  const allMembers = members.length
+  const allMembers = filteredMembers.length
   const allManagers = managers.length
   const allEvents = events.length
   const allVisitedEvents = visitedEvents.length
   const allParticipants = participants.length
   let allElements;
-  let passedFrom;
   let pageNumbers = []
 
   const changeDataLimit = () => {
@@ -69,11 +69,12 @@ const Pagination = () => {
       allElements = allMembers
       break
   }
-  setElementsPassed(() =>{
-    if(currentPage !== pageNumbers[pageNumbers.length-1]){
-      return currentPage * currentMembersPage.length
-    } else return allElements
-  })
+  let passedFrom;
+    setElementsPassed(() =>{
+      if(currentPage !== pageNumbers[pageNumbers.length-1]){
+        return currentPage * currentMembersPage.length
+      } else return allElements
+    })
   passedFrom = elementsPassed-currentMembersPage.length+1
   return (
     <div className={`d-flex justify-content-between align-items-center ${styles.container}`}>

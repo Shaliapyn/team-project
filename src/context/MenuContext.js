@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 import { eventsState } from 'store/slices/eventsSlice'
+import { filteredMembersState } from 'store/slices/filteredMembersSlice'
 import { membersState } from 'store/slices/membersSlice'
 import { participantsState } from 'store/slices/participantsSlice'
 import { visitedEventsState } from 'store/slices/visitedEventsSlice'
@@ -14,6 +15,7 @@ export const MenuProvider = ({ children }) => {
   const [showDeleteForm, setShowDeleteForm] = useState(false)
 
   const members = useSelector(membersState)
+  const filteredMembers = useSelector(filteredMembersState)
   const events = useSelector(eventsState)
   const visitedEvents = useSelector(visitedEventsState)
   const participants = useSelector(participantsState)
@@ -30,7 +32,7 @@ export const MenuProvider = ({ children }) => {
   const indexOfLastData = currentPage * dataPerPage
   const indexOfFirstData = indexOfLastData - dataPerPage
 
-  const currentMembersPage = members && members.slice(indexOfFirstData, indexOfLastData)
+  const currentMembersPage = filteredMembers && filteredMembers.slice(indexOfFirstData, indexOfLastData)
   const managers =
     members &&
     members.filter((member) => {
@@ -94,9 +96,11 @@ export const MenuProvider = ({ children }) => {
   const handleEdit = () => {
     setShowUpdateForm(!showUpdateForm)
   }
+  
   return (
     <MenuContext.Provider
       value={{
+        filteredMembers,
         elementsPassed,
         setElementsPassed,
         currentParticipantsPage,

@@ -12,6 +12,7 @@ import memberUpReducer from './slices/memberUpSlice'
 import participantsReducer from './slices/participantsSlice'
 import selectValueReducer from './slices/selectSlice'
 import visitedEventsReducer from './slices/visitedEventsSlice'
+import filteredMembersReducer from "./slices/filteredMembersSlice"
 
 const persistConfig = {
   key: 'root',
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   searchTerm: searchTermReducer,
   value: selectValueReducer,
   visitedEvents: visitedEventsReducer,
+  filteredMembers: filteredMembersReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)
