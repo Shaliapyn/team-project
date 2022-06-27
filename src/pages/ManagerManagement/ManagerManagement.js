@@ -32,7 +32,7 @@ const ManagerManagement = () => {
               <Managers />
             </tbody>
           </table>
-          <Pagination />
+          {/* <Pagination /> */}
         </div>
       </div>
     </div>

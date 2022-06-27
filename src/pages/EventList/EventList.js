@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { onSnapshot, doc } from 'firebase/firestore'
@@ -52,7 +52,7 @@ const EventList = () => {
           </h2>
         </div>
         <div className="card-body px-5  overflow-auto">
-        <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
+          <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
             <InputFilter />
           </div>
           <table className="table table-bordered table-responsive-lg table-hover">
@@ -73,11 +73,7 @@ const EventList = () => {
               <VisitedEventsList />
             </tbody>
           </table>
-
-          <div className='text-center'><button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>Show More</button></div>
-         
-          <Pagination />
-
+          {/* <Pagination /> */}
         </div>
       </div>
     </div>
