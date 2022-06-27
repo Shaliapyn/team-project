@@ -54,9 +54,11 @@ const Member = ({ member }) => {
         <div onClick={() => updateMemb(member.id)}>
           <EditSvg />
         </div>
-        <div onClick={() => areYouSureDel(member.id)}>
-          <DeleteSvg />
-        </div>
+        {member.role !== 'admin' && (
+          <div onClick={() => areYouSureDel(member.id)}>
+            <DeleteSvg />
+          </div>
+        )}
       </td>
     </tr>
   )

@@ -16,7 +16,7 @@ import styles from 'assets/scss/membermanagement.module.scss'
 const MemberManagement = () => {
   const member = useSelector(memberState)
   const [showAddForm, setShowAddForm] = useState(false)
-  const { showDeleteForm, setShowDeleteForm, showMore, showUpdateForm, handleEdit } = useContext(MenuContext)
+  const { showDeleteForm, setShowDeleteForm, showUpdateForm, handleEdit } = useContext(MenuContext)
 
   return (
     <div className={`${styles.tableContainerManagement}`}>
@@ -57,7 +57,6 @@ const MemberManagement = () => {
             </thead>
             <tbody>{<Members />}</tbody>
           </table>
-          <div className='text-center'><button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>Show More</button></div>
           <Pagination />
         </div>
       </div>

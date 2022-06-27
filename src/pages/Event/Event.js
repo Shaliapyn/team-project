@@ -13,11 +13,8 @@ import style from 'assets/scss/event.module.scss'
 import Pagination from 'features/Pagination'
 import InputFilter from 'features/InputFilter'
 import SelectFilter from 'features/SelectFilter'
-import { useContext } from 'react'
-import MenuContext from 'context/MenuContext'
 
 const Event = () => {
-  const {showMore} = useContext(MenuContext)
   const location = useLocation()
   const { currentEvent } = location.state
   const dispatch = useDispatch()
@@ -55,7 +52,6 @@ const Event = () => {
           <table className="table table-hover align-middle">
             <tbody>{<Participants currentEvent={currentEvent} />}</tbody>
           </table>
-          <div className='text-center'><button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>Show More</button></div>
           <Pagination />
         </div>
       </div>

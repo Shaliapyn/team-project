@@ -8,6 +8,7 @@ const Manager = ({ member }) => {
   const defaultPhoto = 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
 
   if (member.role !== 'admin') {
+
     const role = member.role === 'manager' ? 'user' : 'manager'
 
     const toogleRole = async (id) => {
@@ -34,7 +35,7 @@ const Manager = ({ member }) => {
         </td>
       </tr>
     )
-  }
+  
 }
 
 export default Manager

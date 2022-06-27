@@ -1,13 +1,16 @@
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import style from 'assets/scss/profile.module.scss'
 import AvatarForm from 'features/AvatarForm'
 import { membersState } from 'store/slices/membersSlice'
+import ChangePasswordForm from 'features/ChangePasswordForm'
 
 const Profile = () => {
   const currentMember = useSelector((state) => state.member.member)
   const members = useSelector(membersState)
   let ratingList = []
+  const [showChangePassForm, setShowChangePassForm] = useState(false)
 
   members &&
     members.map((member) => {
@@ -52,9 +55,17 @@ const Profile = () => {
               </div>
             </div>
             <div className={style.profile__btn__change__pass}>
-              <button type="button" className={`btn btn-primary w-auto`}>
+              <button 
+                type="button" 
+                className={`btn btn-primary w-auto`} 
+                onClick={() => setShowChangePassForm(!showChangePassForm)}
+              >
                 Change password
               </button>
+            </div>
+            <div>
+              {showChangePassForm && 
+                <ChangePasswordForm closeForm={() => setShowChangePassForm(false)} />}
             </div>
           </div>
         </div>

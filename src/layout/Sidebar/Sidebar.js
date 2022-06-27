@@ -42,9 +42,11 @@ const Sidebar = () => {
                 to={el.link}
               >
                 {el.rolesAccess.includes(currentUser) && (
-                  <li className={sidebarLiClasses}>
-                    <div className={sidebarIconLiClasses}>{el.icon}</div>
-                    {isSidebarBig && <div>{el.title}</div>}
+                  <li>
+                    <a className={sidebarLiClasses} href="">
+                      <div className={sidebarIconLiClasses}>{el.icon}</div>
+                      {isSidebarBig && <div>{el.title}</div>}
+                    </a>
                   </li>
                 )}
               </Link>

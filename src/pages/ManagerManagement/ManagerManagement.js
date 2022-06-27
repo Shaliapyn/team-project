@@ -5,10 +5,8 @@ import InputFilter from 'features/InputFilter'
 import Managers from 'features/Managers/Managers'
 import SelectFilter from 'features/SelectFilter'
 import Pagination from 'features/Pagination'
-import MenuContext from 'context/MenuContext'
 
 const ManagerManagement = () => {
-  const { showMore } = useContext(MenuContext)
   return (
     <div className={`${styles.tableContainerManagers}`}>
       <div className="card shadow mb-4">
@@ -34,11 +32,6 @@ const ManagerManagement = () => {
               <Managers />
             </tbody>
           </table>
-          <div className="text-center">
-            <button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>
-              Show More
-            </button>
-          </div>
           <Pagination />
         </div>
       </div>
