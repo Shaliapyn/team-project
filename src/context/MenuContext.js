@@ -30,8 +30,8 @@ export const MenuProvider = ({ children }) => {
 
   const paginate = (pageNumber) => setCurrenPage(pageNumber)
   const showMore = () => {
-    setDataPerPage(prev => prev + 4)
-    if(dataPerPage > 100) {
+    setDataPerPage((prev) => prev + 4)
+    if (dataPerPage > 100) {
       setDataPerPage(100)
     }
   }

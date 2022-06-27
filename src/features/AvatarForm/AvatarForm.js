@@ -3,9 +3,15 @@ import React, { useState, useEffect, useRef } from 'react'
 import { onAuthStateChanged, updateProfile } from 'firebase/auth'
 import { auth } from 'firebase-client'
 import style from 'assets/scss/profile.module.scss'
+import { membersCollection } from 'firebase-client'
 
 import { storage } from 'firebase-client'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { db } from 'firebase-client'
+import { doc, updateDoc } from 'firebase/firestore'
+
+import { memberUpState } from '../../store/slices/memberUpSlice'
+import { useSelector } from 'react-redux'
 
 const AvatarForm = () => {
   const [loading, setLoading] = useState(false)
@@ -24,18 +30,26 @@ const AvatarForm = () => {
     }, [])
     return currentUser
   }
-  const currentUser = useAuth()
 
+  const currentUser = useAuth()
+  const updatedMember = useSelector(memberUpState)
+  
   //storage
   async function upload(file, currentUser, setLoading) {
     const fileRef = ref(storage, currentUser.uid)
-
+    const docRef = doc(membersCollection, updatedMember.id)
+    
     setLoading(true)
     const snapshot = await uploadBytes(fileRef, file)
     const photoURL = await getDownloadURL(fileRef)
-    updateProfile(currentUser, {
+    await updateProfile(currentUser, {
       photoURL: photoURL,
     })
+
+    await updateDoc(docRef, {
+      userPhoto: photoURL,
+    })
+
     setLoading(false)
     alert('Uploaded file!')
   }

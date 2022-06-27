@@ -39,6 +39,7 @@ const AddMemberForm = ({ closeForm }) => {
   const [phone, setPhone] = useState('')
   const [organisation, setOrganisation] = useState('')
   const [initialScore, setInitialScore] = useState('')
+
   const events = useSelector(eventsState)
 
   const createMember = (e) => {
