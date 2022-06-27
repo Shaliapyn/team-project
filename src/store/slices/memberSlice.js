@@ -11,6 +11,7 @@ const initialState = {
     birthDate: null,
     phone: null,
     organisation: null,
+    userPhoto: null,
   },
 }
 

@@ -39,6 +39,10 @@ const AddMemberForm = ({ closeForm }) => {
   const [phone, setPhone] = useState('')
   const [organisation, setOrganisation] = useState('')
   const [initialScore, setInitialScore] = useState('')
+  const [userPhoto, setUserPhoto] = useState(
+    'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+  )
+
   const events = useSelector(eventsState)
 
   const createMember = (e) => {
@@ -64,6 +68,7 @@ const AddMemberForm = ({ closeForm }) => {
           initialScore: parseInt(initialScore),
           role: 'user',
           score: parseInt(initialScore),
+          userPhoto: userPhoto,
         })
 
         return createdDocRef
