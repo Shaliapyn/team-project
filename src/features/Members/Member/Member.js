@@ -1,22 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import styles from 'assets/scss/membermanagement.module.scss'
 import MenuContext from 'context/MenuContext'
-import { EditSvg, DeleteSvg } from 'assets/svg/svg-icons'
 import { updateMember } from 'store/slices/memberUpSlice'
 
-import { auth } from 'firebase-client'
+import { EditSvg, DeleteSvg } from 'assets/svg/svg-icons'
+import styles from 'assets/scss/membermanagement.module.scss'
 
 const Member = ({ member }) => {
   const { handleEdit } = useContext(MenuContext)
   const { setShowDeleteForm } = useContext(MenuContext)
   const dispatch = useDispatch()
-  const [photo, setPhoto] = useState(
-    'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
-  )
-
   const currentUser = useSelector((state) => state.member.member)
+  const defaultPhoto =
+    'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
 
   const areYouSureDel = (id) => {
     setShowDeleteForm(true)
@@ -34,13 +31,7 @@ const Member = ({ member }) => {
   return currentUser.role === 'user' ? (
     <tr>
       <th scope="col">
-        <div
-          // src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
-          // alt="avatar"
-          className={styles.avatar}
-        >
-          {'1 '}
-        </div>
+        <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`} />
       </th>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
@@ -50,8 +41,7 @@ const Member = ({ member }) => {
   ) : (
     <tr style={{ verticalAlign: 'middle' }}>
       <th scope="col">
-        {' '}
-        <img src={member.userPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+        <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
       </th>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>

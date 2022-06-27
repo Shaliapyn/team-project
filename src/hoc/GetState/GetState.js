@@ -56,7 +56,7 @@ const GetState = ({ children }) => {
   useEffect(() => {
     onSnapshot(membersCollection, (snapshot) => {
       const memberSnap = snapshot.docs.map((doc) => {
-        console.log('doc.data', doc.data())
+       
         return { ...doc.data(), id: doc.id }
       })
       dispatch(setMembers(memberSnap))

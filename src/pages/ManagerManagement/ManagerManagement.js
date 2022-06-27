@@ -8,14 +8,14 @@ import Pagination from 'features/Pagination'
 import MenuContext from 'context/MenuContext'
 
 const ManagerManagement = () => {
-  const {showMore} = useContext(MenuContext)
+  const { showMore } = useContext(MenuContext)
   return (
     <div className={`${styles.tableContainerManagers}`}>
       <div className="card shadow mb-4">
         <div className={`card-header py-3 ${styles.flexBlock}`}>
           <h2 className={`m-0 pb-2 font-weight-bold text-primary  text ${styles.textResponsive}`}>Members List</h2>
         </div>
-       <div className="card-body px-5  overflow-auto">
+        <div className="card-body px-5  overflow-auto">
           <div className={`w-100 d-flex justify-content-between ${styles.filterSearchBlock}`}>
             <InputFilter />
             <SelectFilter />
@@ -23,6 +23,7 @@ const ManagerManagement = () => {
           <table className={`table table-bordered shadow-sm`}>
             <thead className={`table-light ${styles.tableHead}`}>
               <tr>
+                <th scope="col">Avatar</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
@@ -33,7 +34,11 @@ const ManagerManagement = () => {
               <Managers />
             </tbody>
           </table>
-          <div className='text-center'><button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>Show More</button></div>
+          <div className="text-center">
+            <button className="btn btn-outline-primary w-auto mb-4" onClick={showMore}>
+              Show More
+            </button>
+          </div>
           <Pagination />
         </div>
       </div>
