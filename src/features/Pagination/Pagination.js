@@ -11,9 +11,7 @@ const Pagination = () => {
     nextPage,
     prevPage,
     paginate,
-    events,
     visitedEvents,
-    members,
     managers,
     participants,
     setInputValue,
@@ -24,11 +22,10 @@ const Pagination = () => {
     setElementsPassed,
     minPageNumberLimit,
     maxPageNumberLimit,
-    currentMembersPage
+    currentMembersPage,
   } = useContext(MenuContext)
   const allMembers = filteredMembers.length
   const allManagers = managers.length
-  const allEvents = events.length
   const allVisitedEvents = visitedEvents.length
   const allParticipants = participants.length
   let allElements;
@@ -38,18 +35,6 @@ const Pagination = () => {
     setDataPerPage(inputValue)
   }
   switch (window.location.pathname) {
-    case '/auth/event-management':
-      for (let i = 1; i <= Math.ceil(allEvents / dataPerPage); i++) {
-        pageNumbers.push(i)
-      }
-      allElements = allEvents;
-      break
-    case '/auth/event-list':
-      for (let i = 1; i <= Math.ceil(allVisitedEvents / dataPerPage); i++) {
-        pageNumbers.push(i)
-      }
-      allElements = allVisitedEvents
-      break
     case '/auth/event-management/event':
       for (let i = 1; i <= Math.ceil(allParticipants / dataPerPage); i++) {
         pageNumbers.push(i)
@@ -90,7 +75,6 @@ const Pagination = () => {
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
         />
-
         <span>Elemets</span>
       </div>
       <div className={`pb-2`}>

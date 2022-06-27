@@ -36,39 +36,13 @@ const Members = () => {
           if (member.role === 'user') return member
         } else return member
       })))
-  }, [selected, searchTerm])
+  }, [selected, searchTerm, members])
 
   return (
     <>
      {currentMembersPage && currentMembersPage.map((member, id) => {
               return <Member key={id} member={member} />
             })}
-      {/* {searchTerm
-        ? members &&
-          members
-            .filter((member) => {
-              if (searchTerm === '') return member
-              else if (
-                member.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                member.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                member.email.toLowerCase().includes(searchTerm.toLowerCase())
-              ) {
-                return member
-              }
-            })
-            .map((member, id) => <Member key={id} member={member} />)
-        : currentMembersPage &&
-          currentMembersPage
-            .filter((member) => {
-              if (selected === 'Managers') {
-                if (member.role === 'manager') return member
-              } else if (selected === 'Users') {
-                if (member.role === 'user') return member
-              } else return member
-            })
-            .map((member, id) => {
-              return <Member key={id} member={member} />
-            })} */}
     </>
   )
 }

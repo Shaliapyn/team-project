@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from 'assets/scss/membermanagement.module.scss'
 
@@ -10,35 +10,28 @@ import Pagination from 'features/Pagination'
 import MenuContext from 'context/MenuContext'
 import InputFilter from 'features/InputFilter'
 import { inputState } from 'store/slices/filterSlice'
+import { setFilteredMembers } from 'store/slices/filteredMembersSlice'
 
 const EventManagement = () => {
+  const dispatch = useDispatch()
   const [show, setShow] = useState(false)
   const events = useSelector((state) => state.events.events)
-  const { currentEventsPage } = useContext(MenuContext)
+  const { currentMembersPage } = useContext(MenuContext)
   const searchTerm = useSelector(inputState)
-  const eventsList = searchTerm
-    ? events
-        .filter((event) => {
-          if (searchTerm === '') return event
-          else if (event.eventName.toLowerCase().includes(searchTerm.toLowerCase())) {
-            return event
-          }
-        })
-        .map((event) => {
-          return (
-            <tr key={event.id}>
-              <td className="py-3 pe-5 ps-4 fs-5">
-                <Link to="event" state={{ currentEvent: event }}>
-                  {event.eventName}
-                </Link>
-              </td>
-              <td className="py-3  ps-4">{event.eventDate}</td>
-              <td className="py-3  ps-4">{event.score}</td>
-            </tr>
-          )
-        })
-    : currentEventsPage &&
-      currentEventsPage.map((event) => {
+
+  useEffect(() => {
+    dispatch(setFilteredMembers(events
+      .filter((event) => {
+        if (searchTerm === '') return event
+        else if (
+          event.eventName.toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+          return event
+        }
+      })))
+  }, [searchTerm])
+  const eventsList = currentMembersPage &&
+    currentMembersPage.map((event) => {
         return (
           <tr key={event.id}>
             <td className="py-3 pe-5 ps-4 fs-5">

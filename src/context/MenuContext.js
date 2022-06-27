@@ -34,8 +34,8 @@ export const MenuProvider = ({ children }) => {
 
   const currentMembersPage = filteredMembers && filteredMembers.slice(indexOfFirstData, indexOfLastData)
   const managers =
-    members &&
-    members.filter((member) => {
+  filteredMembers &&
+  filteredMembers.filter((member) => {
       return member.role !== 'admin'
     })
   const currentManagersPage = managers && managers.slice(indexOfFirstData, indexOfLastData)
@@ -110,7 +110,6 @@ export const MenuProvider = ({ children }) => {
         events,
         visitedEvents,
         members,
-        managers,
         participants,
         paginate,
         currentPage,
@@ -131,6 +130,7 @@ export const MenuProvider = ({ children }) => {
         setShowUpdateForm,
         maxPageNumberLimit,
         minPageNumberLimit,
+        managers
       }}
     >
       {children}

@@ -11,6 +11,7 @@ import { setMembers } from 'store/slices/membersSlice'
 import { useLocation } from 'react-router-dom'
 import { setInput } from 'store/slices/filterSlice'
 import MenuContext from 'context/MenuContext'
+import { setSelected } from 'store/slices/selectSlice'
 
 const GetState = ({ children }) => {
   const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const GetState = ({ children }) => {
   useEffect(() => {
     dispatch(setInput(""))
     setDataPerPage(inputValue)
+    dispatch(setSelected("All"))
     // setCurrenPage(1)
   },[location])
   
