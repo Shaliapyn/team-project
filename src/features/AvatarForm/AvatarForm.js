@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 import { onAuthStateChanged, updateProfile } from 'firebase/auth'
-import { auth } from 'firebase-client'
-import style from 'assets/scss/profile.module.scss'
-
-import { storage } from 'firebase-client'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { doc, updateDoc } from 'firebase/firestore'
+
+import { membersCollection, storage, auth } from 'firebase-client'
+import { memberUpState } from '../../store/slices/memberUpSlice'
+import { useSelector } from 'react-redux'
+import { memberState } from '../../store/slices/memberSlice'
+
+import style from 'assets/scss/profile.module.scss'
 
 const AvatarForm = () => {
   const [loading, setLoading] = useState(false)
@@ -13,6 +17,9 @@ const AvatarForm = () => {
   const [photoURL, setPhotoURL] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
+  const member = useSelector(memberState)
+  const id = member.id
+
   const NONE = { display: 'none' }
 
   // info about user
@@ -24,18 +31,26 @@ const AvatarForm = () => {
     }, [])
     return currentUser
   }
+
   const currentUser = useAuth()
+  const updatedMember = useSelector(memberUpState)
 
   //storage
-  async function upload(file, currentUser, setLoading) {
-    const fileRef = ref(storage, currentUser.uid)
+  async function upload(file, id, setLoading) {
+    const fileRef = ref(storage, member.id)
+    const docRef = doc(membersCollection, member.id)
 
     setLoading(true)
     const snapshot = await uploadBytes(fileRef, file)
     const photoURL = await getDownloadURL(fileRef)
-    updateProfile(currentUser, {
+    await updateProfile(currentUser, {
       photoURL: photoURL,
     })
+
+    await updateDoc(docRef, {
+      userPhoto: photoURL,
+    })
+
     setLoading(false)
     alert('Uploaded file!')
   }
@@ -45,14 +60,14 @@ const AvatarForm = () => {
   }
 
   function handleClick() {
-    upload(photo, currentUser, setLoading)
+    upload(photo, member.id, setLoading)
   }
 
   useEffect(() => {
-    if (currentUser?.photoURL) {
-      setPhotoURL(currentUser.photoURL)
+    if (member?.userPhoto) {
+      setPhotoURL(member.userPhoto)
     }
-  }, [currentUser])
+  }, [member.userPhoto])
 
   return (
     <>

@@ -18,11 +18,12 @@ const DeleteMemberForm = ({ closeForm }) => {
     const todoDoc = doc(membersCollection, memberId)
     await deleteDoc(todoDoc)
 
-        events && events.map(async (event) => {
-          const docRef = doc(eventsCollection, event.id);
-          const colRef = collection(docRef, 'participants');
-          await deleteDoc(doc(colRef, memberId));
-        })
+    events &&
+      events.map(async (event) => {
+        const docRef = doc(eventsCollection, event.id)
+        const colRef = collection(docRef, 'participants')
+        await deleteDoc(doc(colRef, memberId))
+      })
 
     closeForm()
   }

@@ -22,10 +22,10 @@ const AddUpdateForm = ({ closeForm }) => {
   const [phone, setPhone] = useState(updatedMember.phone)
   const [organisation, setOrganisation] = useState(updatedMember.organisation)
   const [initialScore, setInitialScore] = useState(updatedMember.initialScore)
-  
+
   const updateMember = async (e) => {
     e.preventDefault()
-    
+
     const updatedDoc = doc(membersCollection, updatedMember.id)
     const newFields = {
       email: email,

@@ -21,6 +21,7 @@ const Profile = () => {
   const nth = (n) => ['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'
   const ratingPlace = ratingList.indexOf(currentMember.score) + 1
   const suffixRatingPlace = nth(ratingPlace)
+ 
 
   return (
     <div className={style.container}>
@@ -54,18 +55,15 @@ const Profile = () => {
               </div>
             </div>
             <div className={style.profile__btn__change__pass}>
-              <button 
-                type="button" 
-                className={`btn btn-primary w-auto`} 
+              <button
+                type="button"
+                className={`btn btn-primary w-auto`}
                 onClick={() => setShowChangePassForm(!showChangePassForm)}
               >
                 Change password
               </button>
             </div>
-            <div>
-              {showChangePassForm && 
-                <ChangePasswordForm closeForm={() => setShowChangePassForm(false)} />}
-            </div>
+            <div>{showChangePassForm && <ChangePasswordForm closeForm={() => setShowChangePassForm(false)} />}</div>
           </div>
         </div>
       </div>

@@ -12,7 +12,6 @@ import { eventsState } from 'store/slices/eventsSlice'
 import CloseButton from 'ui/button/CloseButton'
 import Input from 'ui/input/Input'
 
-
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 //   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -40,6 +39,10 @@ const AddMemberForm = ({ closeForm }) => {
   const [phone, setPhone] = useState('')
   const [organisation, setOrganisation] = useState('')
   const [initialScore, setInitialScore] = useState('')
+  const [userPhoto, setUserPhoto] = useState(
+    'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+  )
+
   const events = useSelector(eventsState)
 
   const createMember = (e) => {
@@ -65,6 +68,7 @@ const AddMemberForm = ({ closeForm }) => {
           initialScore: parseInt(initialScore),
           role: 'user',
           score: parseInt(initialScore),
+          userPhoto: userPhoto,
         })
 
         return createdDocRef
@@ -102,7 +106,6 @@ const AddMemberForm = ({ closeForm }) => {
   return (
     <div className={style.background}>
       <div style={{ overflow: 'hidden' }}>
-        
         <form className={style.plate} onSubmit={createMember} name="createUser">
           <CloseButton onClick={closeForm} />
           <div className={style.borders}>

@@ -13,6 +13,7 @@ const SelectFilter = () => {
         <select onChange={filterr} className="form-select w-45" aria-label="Default select example">
           <option value="All">All</option>
           <option value="Visited">Visited</option>
+          <option value="NotVisited">Not Visited</option>
         </select>
       </div>
     </div>

@@ -1,15 +1,14 @@
-import MenuContext from 'context/MenuContext'
-import React, { useContext } from 'react'
-
+import React from 'react'
 import { useSelector } from 'react-redux'
+
 import { inputState } from 'store/slices/filterSlice'
 
 import { visitedEventsState } from '../../store/slices/visitedEventsSlice'
 
 const VisitedEventsList = () => {
   const visitedEvents = useSelector(visitedEventsState)
-  const { currentVisitedEventsPage } = useContext(MenuContext)
   const searchTerm = useSelector(inputState)
+
   return (
     <>
       {searchTerm
@@ -27,8 +26,8 @@ const VisitedEventsList = () => {
                 <td>{Number(event.score) + Number(event.addPoints)}</td>
               </tr>
             ))
-        : currentVisitedEventsPage &&
-          currentVisitedEventsPage.map((event, id) => (
+        : visitedEvents &&
+        visitedEvents.map((event, id) => (
             <tr key={id}>
               <td>{event.name}</td>
               <td>{event.date}</td>
