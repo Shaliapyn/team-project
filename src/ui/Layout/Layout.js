@@ -2,18 +2,19 @@ import { Outlet } from 'react-router-dom'
 
 import Sidebar from 'layout/Sidebar'
 import Topbar from 'layout/Topbar'
+import Footer from 'layout/Footer'
 
-import styles from 'assets/scss/layout.module.scss'
 import { MenuProvider } from 'context/MenuContext'
 
 const Layout = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className='w-100 d-flex'>
       <MenuProvider>
         <Sidebar />
-        <main className={styles.container}>
+        <main className='bg-light w-100 d-flex flex-column min-vh-100'>
           <Topbar />
           <Outlet />
+          <Footer />
         </main>
       </MenuProvider>
     </div>
