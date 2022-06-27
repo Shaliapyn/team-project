@@ -39,9 +39,8 @@ export const MenuProvider = ({ children }) => {
       return member.role !== 'admin'
     })
   const currentManagersPage = managers && managers.slice(indexOfFirstData, indexOfLastData)
-  const currentEventsPage = events && events.slice(indexOfFirstData, indexOfLastData)
-  const currentVisitedEventsPage = visitedEvents && visitedEvents.slice(indexOfFirstData, indexOfLastData)
-  const currentParticipantsPage = participants && participants.slice(indexOfFirstData, indexOfLastData)
+
+  const currentParticipantsPage = filteredMembers && filteredMembers.slice(indexOfFirstData, indexOfLastData)
 
   const paginate = (num) => {
     setCurrenPage(num)
@@ -50,19 +49,7 @@ export const MenuProvider = ({ children }) => {
   const nextPage = (e) => {
     e.preventDefault()
     setCurrenPage((prev) => prev + 1)
-    if (window.location.pathname === '/auth/event-list') {
-      if (currentPage + 1 > maxPageNumberLimit) {
-        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
-        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
-        if (currentVisitedEventsPage.length !== 0) return setCurrenPage(currentPage)
-      }
-    } else if (window.location.pathname === '/auth/event-management') {
-      if (currentPage + 1 > maxPageNumberLimit) {
-        setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
-        setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
-        if (currentEventsPage.length !== 0) return setCurrenPage(currentPage)
-      }
-    } else if (window.location.pathname === '/auth/event-management/event') {
+  if (window.location.pathname === '/auth/event-management/event') {
       if (currentPage + 1 > maxPageNumberLimit) {
         setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
         setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
@@ -74,7 +61,7 @@ export const MenuProvider = ({ children }) => {
         setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
         if (currentManagersPage.length !== 0) return setCurrenPage(currentPage)
       }
-    } else if (window.location.pathname === '/auth/member-management') {
+    } else {
       if (currentPage + 1 > maxPageNumberLimit) {
         setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit)
         setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit)
@@ -117,8 +104,6 @@ export const MenuProvider = ({ children }) => {
         dataPerPage,
         currentMembersPage,
         currentManagersPage,
-        currentEventsPage,
-        currentVisitedEventsPage,
         nextPage,
         prevPage,
         showDeleteForm,

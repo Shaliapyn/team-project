@@ -10,7 +10,7 @@ import { visitedEventsState } from '../../store/slices/visitedEventsSlice'
 const VisitedEventsList = () => {
   const dispatch = useDispatch()
   const visitedEvents = useSelector(visitedEventsState)
-  const { currentVisitedEventsPage } = useContext(MenuContext)
+  const { currentMembersPage } = useContext(MenuContext)
   const searchTerm = useSelector(inputState)
   useEffect(() => {
     dispatch(setFilteredMembers(visitedEvents
@@ -39,8 +39,8 @@ const VisitedEventsList = () => {
                 <td>{Number(event.score) + Number(event.addPoints)}</td>
               </tr>
             ))
-        : currentVisitedEventsPage &&
-          currentVisitedEventsPage.map((event, id) => (
+        : currentMembersPage &&
+        currentMembersPage.map((event, id) => (
             <tr key={id}>
               <td>{event.name}</td>
               <td>{event.date}</td>

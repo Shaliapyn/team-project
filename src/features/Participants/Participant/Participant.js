@@ -15,7 +15,7 @@ const Participant = ({ participant, currentEvent }) => {
   
   const [inputPoints, setInputPoints] = useState(0)
   const members = useSelector(membersState)
-  const currentMember = members.find((member) => member.id === participant.id)
+  const currentMember = members && members.find((member) => member.id === participant.id)
   const event = currentEvent.currentEvent
 
   const updatePoints = async (additionalPoints) => {

@@ -29,7 +29,7 @@ const EventManagement = () => {
           return event
         }
       })))
-  }, [searchTerm])
+  }, [searchTerm, events])
   const eventsList = currentMembersPage &&
     currentMembersPage.map((event) => {
         return (

@@ -11,7 +11,6 @@ const Pagination = () => {
     nextPage,
     prevPage,
     paginate,
-    visitedEvents,
     managers,
     participants,
     setInputValue,
@@ -23,12 +22,13 @@ const Pagination = () => {
     minPageNumberLimit,
     maxPageNumberLimit,
     currentMembersPage,
+    currentManagersPage
   } = useContext(MenuContext)
-  const allMembers = filteredMembers.length
+  const allEntries = filteredMembers.length
   const allManagers = managers.length
-  const allVisitedEvents = visitedEvents.length
   const allParticipants = participants.length
   let allElements;
+  let passedFrom;
   let pageNumbers = []
 
   const changeDataLimit = () => {
@@ -46,21 +46,23 @@ const Pagination = () => {
         pageNumbers.push(i)
       }
       allElements = allManagers
+      passedFrom = elementsPassed-currentManagersPage.length+1
       break
     default:
-      for (let i = 1; i <= Math.ceil(allMembers / dataPerPage); i++) {
+      for (let i = 1; i <= Math.ceil(allEntries / dataPerPage); i++) {
         pageNumbers.push(i)
       }
-      allElements = allMembers
+      allElements = allEntries
+      passedFrom = elementsPassed-currentMembersPage.length+1
       break
   }
-  let passedFrom;
     setElementsPassed(() =>{
       if(currentPage !== pageNumbers[pageNumbers.length-1]){
         return currentPage * currentMembersPage.length
       } else return allElements
     })
-  passedFrom = elementsPassed-currentMembersPage.length+1
+    
+  
   return (
     <div className={`d-flex justify-content-between align-items-center ${styles.container}`}>
       <div className={`${styles.flexBlock} pb-2`}>
@@ -75,10 +77,10 @@ const Pagination = () => {
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
         />
-        <span>Elemets</span>
+        <span>Entries</span>
       </div>
       <div className={`pb-2`}>
-        <span>Showing {passedFrom} to {elementsPassed} of {allElements} elemets</span>
+        <span>Showing {passedFrom} to {elementsPassed} of {allElements} Entries</span>
       </div>
       <ul className="pagination">
         <li className="page-item">
