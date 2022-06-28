@@ -12,6 +12,8 @@ import logout from 'assets/images/logout.svg'
 import styles from 'assets/scss/topbar.module.scss'
 import MenuContext from 'context/MenuContext'
 
+import { memberState } from '../../store/slices/memberSlice'
+
 import { removeMember } from 'store/slices/memberSlice'
 
 function Topbar() {
@@ -21,12 +23,19 @@ function Topbar() {
   const [photoURL, setPhotoURL] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
+  const member = useSelector(memberState)
 
   useEffect(() => {
-    if (auth.currentUser?.photoURL) {
-      setPhotoURL(auth.currentUser.photoURL)
+    if (member?.userPhoto) {
+      setPhotoURL(member.userPhoto)
     }
-  }, [auth.currentUser])
+  }, [member.userPhoto])
+
+  // useEffect(() => {
+  //   if (auth.currentUser?.photoURL) {
+  //     setPhotoURL(auth.currentUser.photoURL)
+  //   }
+  // }, [auth.currentUser])
 
   const [isOpen, setIsOpen] = useState(false)
   const [currentUserEmail, setCurrentUserEmail] = useState(email)
