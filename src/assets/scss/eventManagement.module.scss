@@ -1,39 +1,40 @@
 .container {
   width: 90%;
   margin: 0 auto;
-  padding: 40px;
-
+  
   @media only screen and (max-width: 992px) {
-    max-width: 90%;
-    padding: 20px;
-  }
-  .flexBlock {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-
-    .textResponsive {
-      font-size: 17.5px;
-      padding-left: 42px;
-
-      @media (max-width: 500px) {
-        font-size: 14px;
-      }
+    table, thead, tbody, th, td, tr { 
+		  display: block; 
+	  }
+	
+    thead tr { 
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
     }
-    .managementBtn {
-      font-size: 17.5px;
-      margin-right: 42px;
-
-      @media (max-width: 500px) {
-        font-size: 14px;
-      }
+	
+	  tr { border: 1px solid #ccc; }
+	
+    td { 
+      border: none;
+      border-bottom: 1px solid #eee; 
+      position: relative;
+      padding-left: 50%; 
     }
+	
+    td:before { 
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%; 
+      padding-right: 10px; 
+      white-space: nowrap;
+      font-size: 12px;
+    }
+	
+    td:nth-of-type(1):before { content: "Name"; }
+    td:nth-of-type(2):before { content: "Date"; }
+    td:nth-of-type(3):before { content: "Score"; }
   }
 }
 
-.button__wrapper {
-  display: flex;
-  justify-content: end;
-  margin: 20px 40px 0 0;
-}

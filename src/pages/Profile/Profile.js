@@ -25,47 +25,41 @@ const Profile = () => {
 
   return (
     <div className={style.container}>
-      <div className="card shadow mb-4 ">
-        <div className="card-header py-3 ">
-          <h2 className={`m-0 font-weight-bold text-primary  text ${style.textResponsive}`}>Profile</h2>
-        </div>
-        <div className="card-body px-5  overflow-auto">
-          <div className={style.profile__container}>
-            <div className={style.profile__box__avatar__text}>
-              <div className={style.profile__avatar}>
-                <AvatarForm />
-              </div>
-              <div style={{ marginTop: '40px' }}>
-                <p>
-                  First Name: <b>{currentMember.firstName}</b>
-                </p>
-                <p>
-                  Last Name: <b>{currentMember.lastName}</b>
-                </p>
-                <p>
-                  Score: <b>{currentMember.score}</b>
-                </p>
-                <p>
-                  Place in the rating:{' '}
-                  <b>
-                    {ratingPlace}
-                    <sup>{suffixRatingPlace}</sup> out of {ratingList.length}
-                  </b>
-                </p>
-              </div>
-            </div>
-            <div className={style.profile__btn__change__pass}>
-              <button
-                type="button"
-                className={`btn btn-primary w-auto`}
-                onClick={() => setShowChangePassForm(!showChangePassForm)}
-              >
-                Change password
-              </button>
-            </div>
-            <div>{showChangePassForm && <ChangePasswordForm closeForm={() => setShowChangePassForm(false)} />}</div>
+      <h1 className='fs-3 mt-4 mb-4 text-primary'>Profile</h1>
+      <div className={style.profile__container}>
+        <div className={style.profile__box__avatar__text}>
+          <div className={style.profile__avatar}>
+            <AvatarForm />
+          </div>
+          <div style={{ marginTop: '40px' }}>
+            <p>
+              First Name: <b>{currentMember.firstName}</b>
+            </p>
+            <p>
+              Last Name: <b>{currentMember.lastName}</b>
+            </p>
+            <p>
+              Score: <b>{currentMember.score}</b>
+            </p>
+            <p>
+              Place in the rating:{' '}
+              <b>
+                {ratingPlace}
+                <sup>{suffixRatingPlace}</sup> out of {ratingList.length}
+              </b>
+            </p>
           </div>
         </div>
+        <div className={style.profile__btn__change__pass}>
+          <button
+            type="button"
+            className={`btn btn-primary w-auto`}
+            onClick={() => setShowChangePassForm(!showChangePassForm)}
+          >
+            Change password
+          </button>
+        </div>
+        <div>{showChangePassForm && <ChangePasswordForm closeForm={() => setShowChangePassForm(false)} />}</div>
       </div>
     </div>
   )

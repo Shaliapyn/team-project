@@ -19,10 +19,10 @@ const Manager = ({ member }) => {
     }
     return (
       <tr key={member.id} style={{ verticalAlign: 'middle' }}>
-        <td className="py-3  ps-1"> <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img></td>
-        <td className="py-3 pe-5 ps-4">{member.firstName}</td>
-        <td className="py-3  ps-4">{member.lastName}</td>
-        <td className="py-3  ps-4">{member.email}</td>
+        <td> <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img></td>
+        <td>{member.firstName}</td>
+        <td>{member.lastName}</td>
+        <td>{member.email}</td>
         <td>
           {member.role === 'manager' ? (
             <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-danger w-auto">

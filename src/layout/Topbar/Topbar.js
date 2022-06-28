@@ -78,7 +78,7 @@ function Topbar() {
           {!!currentUserEmail && (
             <div className={styles.authHeader} onClick={toggle}>
               <div>
-                <span className={styles.email}>{currentUserEmail}</span>
+                <span className='me-3'>{currentUserEmail}</span>
                 <img className={styles.avatar} src={photoURL} alt="avatar" />
               </div>
             </div>

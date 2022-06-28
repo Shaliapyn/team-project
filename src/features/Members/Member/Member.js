@@ -30,19 +30,19 @@ const Member = ({ member }) => {
 
   return currentUser.role === 'user' ? (
     <tr>
-      <th scope="col">
+      <td scope="col">
         <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`} />
-      </th>
+      </td>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
-      <td>{member.organisation}</td>
       <td>{member.phone}</td>
+      <td>{member.organisation}</td>
     </tr>
   ) : (
     <tr style={{ verticalAlign: 'middle' }}>
-      <th scope="col">
+      <td scope="col">
         <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
-      </th>
+      </td>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
       <td>{member.organisation}</td>
@@ -50,15 +50,17 @@ const Member = ({ member }) => {
       <td>{member.phone}</td>
       <td>{member.score}</td>
       <td>{member.birthDate}</td>
-      <td className={styles.btnBlock}>
-        <div onClick={() => updateMemb(member.id)}>
-          <EditSvg />
-        </div>
-        {member.role !== 'admin' && (
-          <div onClick={() => areYouSureDel(member.id)}>
-            <DeleteSvg />
+      <td >
+        <div className={styles.btnBlock}>
+          <div onClick={() => updateMemb(member.id)}>
+            <EditSvg />
           </div>
-        )}
+          {member.role !== 'admin' && (
+            <div onClick={() => areYouSureDel(member.id)}>
+              <DeleteSvg />
+            </div>
+          )}
+        </div>
       </td>
     </tr>
   )

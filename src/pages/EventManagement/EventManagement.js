@@ -2,10 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import styles from 'assets/scss/membermanagement.module.scss'
-
 import AddEventForm from 'features/AddEventForm'
-import style from 'assets/scss/eventManagement.module.scss'
+import styles from 'assets/scss/eventManagement.module.scss'
 import Pagination from 'features/Pagination'
 import InputFilter from 'features/InputFilter'
 import { inputState } from 'store/slices/filterSlice'
@@ -16,63 +14,50 @@ const EventManagement = () => {
   const searchTerm = useSelector(inputState)
 
   const eventsList =
-  events &&
-  events.map((event) => {
+    events &&
+    events.map((event) => {
       return (
         <tr key={event.id}>
-          <td className="py-3 pe-5 ps-4 fs-5">
+          <td className="fs-5">
             <Link to="event" state={{ currentEvent: event }}>
               {event.eventName}
             </Link>
           </td>
-          <td className="py-3  ps-4">{event.eventDate}</td>
-          <td className="py-3  ps-4">{event.score}</td>
+          <td >{event.eventDate}</td>
+          <td >{event.score}</td>
         </tr>
       )
     })
 
   return (
-    <div className={style.container}>
-      <div>{show ? <AddEventForm closeForm={() => setShow(false)} /> : null}</div>
-      <div className="card shadow mb-4 ">
-        <div className={`card-header py-3 ${style.flexBlock}`}>
-          <h2 className={`m-0 font-weight-bold text-primary  text ${style.textResponsive}`}>The List of all Events</h2>
-          <button
+    <div className={styles.container} >
+      <div>{show && <AddEventForm closeForm={() => setShow(false)} />}</div>
+      <div className='d-flex align-items-center'>
+        <h1 className='fs-3 mt-4 mb-4 text-primary'>Event Management</h1>
+        <button
             type="button"
-            className={`btn btn-primary w-auto ${style.managementBtn}`}
+            className={`btn btn-primary w-auto ms-auto fs-5`}
             onClick={() => setShow(!show)}
           >
             Add Event
-          </button>
-        </div>
-        <div className={style.button__wrapper}></div>
-
-        <div className="card-body px-5  overflow-auto">
-          <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
-            <InputFilter />
-          </div>
-          <table className="table table-bordered table-responsive-lg table-hover">
-            <thead className="table-light">
-              <tr>
-                <th scope="col" className="py-3 pe-5 ps-4">
-                  {' '}
-                  Name{' '}
-                </th>
-                <th scope="col" className="py-3  ps-4">
-                  {' '}
-                  Date{' '}
-                </th>
-                <th scope="col" className="py-3  ps-4">
-                  {' '}
-                  Score{' '}
-                </th>
-              </tr>
-            </thead>
-            <tbody>{eventsList}</tbody>
-          </table>
-          {/* <Pagination /> */}
-        </div>
+        </button>
       </div>
+      <div className='d-flex'>
+        <InputFilter />
+      </div>
+      <table className='table'>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {eventsList}
+        </tbody>
+      </table>
+        {/* <Pagination /> */}
     </div>
   )
 }

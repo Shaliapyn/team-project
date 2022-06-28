@@ -1,7 +1,51 @@
 .tableContainerManagement {
-  max-width: 90%;
-  margin: auto;
-  padding-top: 40px;
+  width: 90%;
+  margin: 0 auto;
+  
+  @media (max-width: 1200px) {
+    width: 96%;
+    font-size: 14px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    table, thead, tbody, th, td, tr { 
+		  display: block; 
+	  }
+	
+    thead tr { 
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+	
+	  tr { border: 1px solid #ccc; }
+	
+    td { 
+      border: none;
+      border-bottom: 1px solid #eee; 
+      position: relative;
+      padding-left: 50%; 
+    }
+	
+    td:before { 
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%; 
+      padding-right: 10px; 
+      white-space: nowrap;
+    }
+	
+    // td:nth-of-type(1):before { content: "Avatar"; }
+    td:nth-of-type(2):before { content: "First Name"; }
+    td:nth-of-type(3):before { content: "Last Name"; }
+    td:nth-of-type(4):before { content: "Organisation"; }
+    td:nth-of-type(5):before { content: "Email"; }
+    td:nth-of-type(6):before { content: "Phone"; }
+    td:nth-of-type(7):before { content: "Score"; }
+    td:nth-of-type(8):before { content: "Birth Date"; }
+    td:nth-of-type(9):before { content: "Managing"; }
+  }
 
   .flexBlock {
     display: flex;
@@ -31,7 +75,7 @@
   .btnBlock {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: left;
     & div {
       width: 30px;
       height: 30px;
@@ -41,8 +85,11 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    div:hover {
+      background-color: #bec2db;
+    }
   }
-
+  
   .tableRow {
     vertical-align: middle;
     word-break: break-all;
@@ -58,10 +105,8 @@
 
 .avatar {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 25px;
-  width: 25px;
+  height: 30px;
+  width: 30px;
   border-width: 1px;
   border-radius: 5px;
   border-color: #5a5c69;

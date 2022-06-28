@@ -6,9 +6,10 @@ import { updateDoc, doc } from 'firebase/firestore'
 import { CancelSvg, CommentSvg, DeleteSvg, EditSvg, SaveSvg, VisibilityOffSvg } from '../../assets/svg/svg-icons'
 import styles from '../../assets/scss/comment.module.scss'
 
-const Comment = ({ participant, currentEvent }) => {
+const Comment = (props) => {
+  const participant = props.participant
   let isComment = participant && participant.comment.trim().length !== 0
-  const event = currentEvent.currentEvent
+  const event = props.currentEvent.currentEvent
   const [isActiveComment, setIsActiveComment] = useState(false)
   const [isBeingUpdated, setIsBeingUpdated] = useState(false)
   const ref = useRef(null)

@@ -7,19 +7,22 @@ import { membersState } from 'store/slices/membersSlice'
 import Comment from 'features/Comment'
 import { membersCollection } from 'firebase-client'
 
-const Participant = ({ participant, currentEvent }) => {
-  let additionalPoints = participant.addPoints
-  let visited = participant.visitedEvent
+import styles from 'assets/scss/event.module.scss'
 
+const Participant = ({ participant, currentEvent }) => {
+  let currentParticipant = participant
+  let additionalPoints = currentParticipant.addPoints
+  let visited = currentParticipant.visitedEvent
+  
   let updatedScore
 
   const [inputPoints, setInputPoints] = useState(0)
   const members = useSelector(membersState)
-  const currentMember = members && members.find((member) => member.id === participant.id)
+  const currentMember = members.find((member) => member.id === currentParticipant.id)
   const event = currentEvent.currentEvent
-
+  
   const updatePoints = async (additionalPoints) => {
-    const docRef = doc(eventsCollection, event.id, 'participants', participant.id)
+    const docRef = doc(eventsCollection, event.id, 'participants', currentParticipant.id)
 
     await updateDoc(docRef, {
       addPoints: additionalPoints,
@@ -27,7 +30,7 @@ const Participant = ({ participant, currentEvent }) => {
   }
 
   const updateVisitedState = async (visited) => {
-    const docRef = doc(eventsCollection, event.id, 'participants', participant.id)
+    const docRef = doc(eventsCollection, event.id, 'participants', currentParticipant.id)
 
     await updateDoc(docRef, {
       visitedEvent: visited,
@@ -45,14 +48,14 @@ const Participant = ({ participant, currentEvent }) => {
   const increasePoints = () => {
     additionalPoints += inputPoints
     updatePoints(additionalPoints)
-    if (participant.visitedEvent) {
+    if (currentParticipant.visitedEvent) {
       updateMemberScore(currentMember.score + inputPoints)
     }
   }
   const decreasePoints = () => {
     additionalPoints -= inputPoints
     updatePoints(additionalPoints)
-    if (participant.visitedEvent) {
+    if (currentParticipant.visitedEvent) {
       updateMemberScore(currentMember.score - inputPoints)
     }
   }
@@ -62,9 +65,9 @@ const Participant = ({ participant, currentEvent }) => {
     updateVisitedState(visited)
 
     if (visited) {
-      updatedScore = currentMember.score + event.score + participant.addPoints
+      updatedScore = currentMember.score + event.score + currentParticipant.addPoints
     } else {
-      updatedScore = currentMember.score - event.score - participant.addPoints
+      updatedScore = currentMember.score - event.score - currentParticipant.addPoints
       updatePoints(0)
     }
     updateMemberScore(updatedScore)
@@ -73,14 +76,14 @@ const Participant = ({ participant, currentEvent }) => {
   return (
     <tr style={{ backgroundColor: visited ? '#edf6f8' : 'white' }}>
       <td>
-        <input type="checkbox" checked={visited ? true : false} onChange={changeVisitedState} />
+        <img src={require('../../../assets/images/eventAvatar.png')} alt="Profile Avatar" />
       </td>
       <td>
-        <img src={require('../../../assets/images/eventAvatar.png')} alt="Profile Avatar" />
+        <input type="checkbox" checked={visited ? true : false} onChange={changeVisitedState} />
       </td>
       <td>{currentMember.firstName}</td>
       <td>{currentMember.lastName}</td>
-      <td>{participant.addPoints}</td>
+      <td >{currentParticipant.addPoints}</td>
       <td className="w-auto">
         <form>
           <div className="input-group" style={{ width: '190px' }}>
@@ -99,8 +102,8 @@ const Participant = ({ participant, currentEvent }) => {
           </div>
         </form>
       </td>
-      <td style={{ textAlign: 'center' }}>
-        <Comment participant={participant} currentEvent={currentEvent} />
+      <td >
+        <Comment participant={currentParticipant} currentEvent={currentEvent} />
       </td>
     </tr>
   )
