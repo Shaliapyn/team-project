@@ -17,10 +17,6 @@ const AvatarForm = () => {
   const [photoURL, setPhotoURL] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
-  const member = useSelector(memberState)
-  const id = member.id
-
-  const NONE = { display: 'none' }
 
   // info about user
   function useAuth() {
@@ -32,13 +28,15 @@ const AvatarForm = () => {
     return currentUser
   }
 
+  const member = useSelector(memberState)
+  // const id = member.id
   const currentUser = useAuth()
-  const updatedMember = useSelector(memberUpState)
 
   //storage
   async function upload(file, id, setLoading) {
-    const fileRef = ref(storage, member.id)
-    const docRef = doc(membersCollection, member.id)
+    const fileRef = ref(storage, id)
+    const docRef = doc(membersCollection, id)
+    console.log('memberid', id)
 
     setLoading(true)
     const snapshot = await uploadBytes(fileRef, file)
@@ -56,11 +54,7 @@ const AvatarForm = () => {
   }
 
   function handleChange(e) {
-    if (e.target.files[0]) setPhoto(e.target.files[0])
-  }
-
-  function handleClick() {
-    upload(photo, member.id, setLoading)
+    if (e.target.files[0]) upload(e.target.files[0], member.id, setLoading)
   }
 
   useEffect(() => {
@@ -87,20 +81,10 @@ const AvatarForm = () => {
         className="btn btn-outline-primary"
         type="button"
         id="inputGroupFileAddon04"
-        style={{ display: photo ? 'none' : 'block' }}
+        style={{ display: 'block' }}
         onClick={() => document.getElementById('selectFile').click()}
       >
         Change photo
-      </button>
-
-      <button
-        className="btn btn-primary"
-        type="button"
-        id="inputGroupFileAddon04"
-        onClick={handleClick}
-        style={{ display: !photo ? 'none' : 'block', marginTop: '10px' }}
-      >
-        Confirm
       </button>
     </>
   )
