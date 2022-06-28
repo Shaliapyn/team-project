@@ -10,6 +10,7 @@ import { membersCollection } from 'firebase-client'
 import styles from 'assets/scss/event.module.scss'
 
 const Participant = ({ participant, currentEvent }) => {
+  const defaultPhoto = 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   let currentParticipant = participant
   let additionalPoints = currentParticipant.addPoints
   let visited = currentParticipant.visitedEvent
@@ -75,8 +76,10 @@ const Participant = ({ participant, currentEvent }) => {
 
   return (
     <tr style={{ backgroundColor: visited ? '#edf6f8' : 'white' }}>
-      <td>
-        <img src={require('../../../assets/images/eventAvatar.png')} alt="Profile Avatar" />
+      <td className="ps-0">
+        <div className='d-flex align-items-center justify-content-center'>
+          <img src={currentMember.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+        </div>
       </td>
       <td>
         <input type="checkbox" checked={visited ? true : false} onChange={changeVisitedState} />
@@ -84,9 +87,9 @@ const Participant = ({ participant, currentEvent }) => {
       <td>{currentMember.firstName}</td>
       <td>{currentMember.lastName}</td>
       <td >{currentParticipant.addPoints}</td>
-      <td className="w-auto">
-        <form>
-          <div className="input-group" style={{ width: '190px' }}>
+      <td className="w-auto ps-0">
+        <form className='d-flex align-items-center justify-content-center '>
+          <div className="input-group" style={{ width: '190px'}}>
             <input
               type="text"
               className="form-control"
@@ -102,8 +105,10 @@ const Participant = ({ participant, currentEvent }) => {
           </div>
         </form>
       </td>
-      <td >
-        <Comment participant={currentParticipant} currentEvent={currentEvent} />
+      <td className="ps-0 ">
+        <div className='d-flex align-items-center justify-content-center '>
+          <Comment participant={currentParticipant} currentEvent={currentEvent} />
+        </div>
       </td>
     </tr>
   )

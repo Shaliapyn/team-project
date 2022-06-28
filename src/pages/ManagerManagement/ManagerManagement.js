@@ -17,7 +17,7 @@ const ManagerManagement = () => {
       <table className='table'>
         <thead>
           <tr>
-            <th scope="col">Avatar</th>
+            <th scope="col"></th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>

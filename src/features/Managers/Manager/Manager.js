@@ -19,20 +19,26 @@ const Manager = ({ member }) => {
     }
     return (
       <tr key={member.id} style={{ verticalAlign: 'middle' }}>
-        <td> <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img></td>
+        <td className="ps-0"> 
+          <div className='d-flex align-items-center justify-content-center'>
+            <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+          </div>
+        </td>
         <td>{member.firstName}</td>
         <td>{member.lastName}</td>
         <td>{member.email}</td>
-        <td>
-          {member.role === 'manager' ? (
-            <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-danger w-auto">
-              Fire manager
-            </button>
-          ) : (
-            <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-primary w-auto">
-              Appoint manager
-            </button>
-          )}
+        <td className="ps-0">
+          <div className='d-flex align-items-center justify-content-center'>
+            {member.role === 'manager' ? (
+              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-danger w-auto">
+                Fire manager
+              </button>
+            ) : (
+              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-primary w-auto">
+                Appoint manager
+              </button>
+            )}
+          </div>
         </td>
       </tr>
     )

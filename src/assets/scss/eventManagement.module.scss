@@ -1,11 +1,28 @@
 .container {
   width: 90%;
   margin: 0 auto;
+
+  th, td { 
+    text-align: center; 
+  }
   
   @media only screen and (max-width: 992px) {
     table, thead, tbody, th, td, tr { 
 		  display: block; 
+
+      @media only screen and (min-width: 768px) {
+        th, td { 
+          margin-left: 20px; 
+          margin-right: 20px;
+        }
+      }  
 	  }
+
+    th, td { 
+      text-align: right; 
+      margin-left: 10px; 
+      margin-right: 10px;
+    }
 	
     thead tr { 
       position: absolute;
@@ -13,13 +30,13 @@
       left: -9999px;
     }
 	
-	  tr { border: 1px solid #ccc; }
+	  tr { border: 1px solid #36b9cc; }
 	
     td { 
       border: none;
-      border-bottom: 1px solid #eee; 
+      border-bottom: 1px solid rgba(54, 185, 204, .1); 
       position: relative;
-      padding-left: 50%; 
+      padding-left: 20%; 
     }
 	
     td:before { 
@@ -30,6 +47,7 @@
       padding-right: 10px; 
       white-space: nowrap;
       font-size: 12px;
+      text-align: left;
     }
 	
     td:nth-of-type(1):before { content: "Name"; }
