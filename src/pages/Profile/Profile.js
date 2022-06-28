@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import style from 'assets/scss/profile.module.scss'
+import styles from 'assets/scss/profile.module.scss'
 import AvatarForm from 'features/AvatarForm'
 import { membersState } from 'store/slices/membersSlice'
 import ChangePasswordForm from 'features/ChangePasswordForm'
@@ -24,11 +24,11 @@ const Profile = () => {
  
 
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
       <h1 className='fs-3 mt-4 mb-4 text-primary'>Profile</h1>
-      <div className={style.profile__container}>
-        <div className={style.profile__box__avatar__text}>
-          <div className={style.profile__avatar}>
+      <div className={styles.profile__container}>
+        <div className={styles.profile__box__avatar__text}>
+          <div className={styles.profile__avatar}>
             <AvatarForm />
           </div>
           <div style={{ marginTop: '40px' }}>
@@ -50,7 +50,7 @@ const Profile = () => {
             </p>
           </div>
         </div>
-        <div className={style.profile__btn__change__pass}>
+        <div className={styles.profile__btn__change__pass}>
           <button
             type="button"
             className={`btn btn-primary w-auto`}

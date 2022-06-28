@@ -40,7 +40,7 @@ const MemberManagement = () => {
         <InputFilter />
         <SelectFilter />
       </div>
-      <table className='table table-hover'>
+      <table className='table'>
         <thead>
           <tr>
             <th scope="col">Avatar</th>

@@ -11,7 +11,7 @@ import styles from 'assets/scss/event.module.scss'
 
 const Participant = ({ participant, currentEvent }) => {
   const defaultPhoto = 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
-  if (!participant) {window.location.reload(false)}
+  // if (!participant) {window.location.reload(false)}
   let currentParticipant = participant
   let additionalPoints = currentParticipant.addPoints
   let visited = currentParticipant.visitedEvent
