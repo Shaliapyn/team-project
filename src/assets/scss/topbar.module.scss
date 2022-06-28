@@ -16,6 +16,8 @@ $white: #fff !default;
 
 .authHeader {
   height: auto;
+  min-width: 150px;display: flex;
+  justify-content: space-between;
 }
 
 .authHeader:hover,
@@ -81,8 +83,7 @@ $white: #fff !default;
   overflow: hidden;
   border-top: 1px solid #eaecf4;
 }
-.headerBurger {
-}
+
 @media only screen and (max-width: 768px) {
   .menuBtn {
     display: flex;

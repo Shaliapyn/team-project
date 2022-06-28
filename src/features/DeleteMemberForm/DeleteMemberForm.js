@@ -64,7 +64,7 @@ const DeleteMemberForm = ({ closeForm }) => {
 
             <div className={`${style.element} justify-content-center`}>
               <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-25">
-                Submit changes
+                Delete
               </button>
             </div>
           </div>
