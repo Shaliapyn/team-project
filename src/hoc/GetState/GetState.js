@@ -8,9 +8,16 @@ import { db, auth, eventsCollection, membersCollection } from 'firebase-client'
 import { setMember } from 'store/slices/memberSlice'
 import { setEvents } from 'store/slices/eventsSlice'
 import { setMembers } from 'store/slices/membersSlice'
+import { useLocation } from 'react-router-dom'
+import { setSelected } from 'store/slices/selectSlice'
 
 const GetState = ({ children }) => {
   const dispatch = useDispatch()
+  const location = useLocation()
+
+  useEffect(() => {
+    dispatch(setSelected("All"))
+  }, [location])
 
   useEffect(() => {
     onIdTokenChanged(auth, (user) => {

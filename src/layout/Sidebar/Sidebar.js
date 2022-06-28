@@ -22,6 +22,19 @@ const Sidebar = () => {
   useEffect(() => {
     setCurrentUser(role)
   }, [role])
+  const [prevSelected, setPrevSelected] = useState(null)
+  const focus = styles.focus;
+  const menuFocus = (e) => {
+    const selected = e.currentTarget
+    if (!selected.classList.contains(focus)){
+      selected.classList.add(focus)
+    } else return selected
+    setPrevSelected(selected)
+    if (prevSelected.classList.contains(focus)) {
+      prevSelected.classList.remove(focus)
+    }
+    setIsMenuChecked(false)
+  }
   return (
     <>
       {member.email ? (
@@ -32,20 +45,14 @@ const Sidebar = () => {
             {!!currentUser &&
               SidebarData.map((el, key) => (
                 <Link
-                  onClick={() => setIsMenuChecked(false)}
                   key={key}
                   className={`text-white ${styles.Link}`}
                   to={el.link}
                 >
                   {el.rolesAccess.includes(currentUser) && (
-                    <li>
-                      <a
-                        className={isSidebarBig ? styles.sidebarLi : `${styles.sidebarLi} ${styles.sidebarLiActive}`}
-                        href=""
-                      >
+                    <li onClick={menuFocus} className={isSidebarBig ? styles.sidebarLi : `${styles.sidebarLi} ${styles.sidebarLiActive}`}>
                         <div style={isSidebarBig ? { paddingRight: '20px' } : { paddingRight: '0px' }}>{el.icon}</div>
                         {isSidebarBig && <div>{el.title}</div>}
-                      </a>
                     </li>
                   )}
                 </Link>

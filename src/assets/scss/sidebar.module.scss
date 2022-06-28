@@ -48,10 +48,6 @@
     opacity: 1;
     color: #fff;
   }
-  &:focus {
-    opacity: 1;
-    background-color: #4667c8;
-  }
 }
 
 .sidebarLiActive {
@@ -104,4 +100,8 @@
   width: 100%;
   left: 0;
   z-index: 30;
+}
+.focus {
+  opacity: 1;
+  background-color: #4667c8;
 }
