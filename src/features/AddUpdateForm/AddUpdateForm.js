@@ -21,7 +21,7 @@ const AddUpdateForm = ({ closeForm }) => {
   const [birthDate, setBirthDate] = useState(updatedMember.birthDate)
   const [phone, setPhone] = useState(updatedMember.phone)
   const [organisation, setOrganisation] = useState(updatedMember.organisation)
-  const [score, setScore] = useState(updatedMember.score)
+  const [initialScore, setInitialScore] = useState(updatedMember.initialScore)
 
   const updateMember = async (e) => {
     e.preventDefault()
@@ -34,8 +34,8 @@ const AddUpdateForm = ({ closeForm }) => {
       birthDate: birthDate,
       phone: phone,
       organisation: organisation,
-      score: parseInt(score),
-      score: updatedMember.score - updatedMember.score + parseInt(score),
+      initialScore: parseInt(initialScore),
+      score: updatedMember.score - updatedMember.initialScore + parseInt(initialScore),
     }
     await updateDoc(updatedDoc, newFields)
     handleEdit()
@@ -114,8 +114,8 @@ const AddUpdateForm = ({ closeForm }) => {
                 id="score"
                 type={'number'}
                 placeholder={'Initial score'}
-                value={score}
-                onChange={(e) => setScore(e.target.value)}
+                value={initialScore}
+                onChange={(e) => setInitialScore(e.target.value)}
               />
             </div>
             <div className={style.element}>
