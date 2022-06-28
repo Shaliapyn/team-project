@@ -53,7 +53,7 @@ const EventManagement = () => {
             <th scope="col">Score</th>
           </tr>
         </thead>
-        <tbody class="table-group-divider">
+        <tbody className="table-group-divider">
           {eventsList}
         </tbody>
       </table>
