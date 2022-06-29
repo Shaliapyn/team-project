@@ -23,10 +23,10 @@ const Sidebar = () => {
     setCurrentUser(role)
   }, [role])
   const [prevSelected, setPrevSelected] = useState(null)
-  const focus = styles.focus;
+  const focus = styles.focus
   const menuFocus = (e) => {
     const selected = e.currentTarget
-    if (!selected.classList.contains(focus)){
+    if (!selected.classList.contains(focus)) {
       selected.classList.add(focus)
     } else return selected
     setPrevSelected(selected)
@@ -44,15 +44,14 @@ const Sidebar = () => {
           <ul style={{ paddingLeft: '0px' }}>
             {!!currentUser &&
               SidebarData.map((el, key) => (
-                <Link
-                  key={key}
-                  className={`text-white ${styles.Link}`}
-                  to={el.link}
-                >
+                <Link key={key} className={`text-white ${styles.Link}`} to={el.link}>
                   {el.rolesAccess.includes(currentUser) && (
-                    <li onClick={menuFocus} className={isSidebarBig ? styles.sidebarLi : `${styles.sidebarLi} ${styles.sidebarLiActive}`}>
-                        <div style={isSidebarBig ? { paddingRight: '20px' } : { paddingRight: '0px' }}>{el.icon}</div>
-                        {isSidebarBig && <div>{el.title}</div>}
+                    <li
+                      onClick={menuFocus}
+                      className={isSidebarBig ? styles.sidebarLi : `${styles.sidebarLi} ${styles.sidebarLiActive}`}
+                    >
+                      <div style={isSidebarBig ? { paddingRight: '20px' } : { paddingRight: '0px' }}>{el.icon}</div>
+                      {isSidebarBig && <div>{el.title}</div>}
                     </li>
                   )}
                 </Link>

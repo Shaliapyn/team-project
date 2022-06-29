@@ -8,10 +8,10 @@ import { MenuProvider } from 'context/MenuContext'
 
 const Layout = () => {
   return (
-    <div className='w-100 d-flex'>
+    <div className="w-100 d-flex">
       <MenuProvider>
         <Sidebar />
-        <main className='bg-light w-100 d-flex flex-column min-vh-100'>
+        <main className="bg-light w-100 d-flex flex-column min-vh-100">
           <Topbar />
           <Outlet />
           <Footer />

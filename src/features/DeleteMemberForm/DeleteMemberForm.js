@@ -30,7 +30,11 @@ const DeleteMemberForm = ({ closeForm }) => {
   return (
     <div className={`${style.background}`}>
       <div style={{ overflow: 'hidden' }}>
-        <form onSubmit={handleRemove} className={`${style.plate} w-50 text-center flex-column align-items-center`} name="createUser">
+        <form
+          onSubmit={handleRemove}
+          className={`${style.plate} w-50 text-center flex-column align-items-center`}
+          name="createUser"
+        >
           <CloseButton onClick={closeForm} />
           <div className={`${style.borders} w-100`}>
             <div className="card-body px-5  overflow-auto">

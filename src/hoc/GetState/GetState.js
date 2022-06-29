@@ -16,7 +16,7 @@ const GetState = ({ children }) => {
   const location = useLocation()
 
   useEffect(() => {
-    dispatch(setSelected("All"))
+    dispatch(setSelected('All'))
   }, [location])
 
   useEffect(() => {
@@ -53,7 +53,6 @@ const GetState = ({ children }) => {
   useEffect(() => {
     onSnapshot(membersCollection, (snapshot) => {
       const memberSnap = snapshot.docs.map((doc) => {
-       
         return { ...doc.data(), id: doc.id }
       })
       dispatch(setMembers(memberSnap))
