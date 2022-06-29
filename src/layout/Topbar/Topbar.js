@@ -103,7 +103,7 @@ function Topbar() {
               <div className="pt-1 d-flex align-items-center">
                 <h4 className="h4">{member.role}</h4>
               </div>
-              <div style={{ marginRight: '4px', marginLeft: '4px' }} className="vr"></div>
+              <div style={{ marginRight: '14px', marginLeft: '14px' }} className="vr"></div>
               <div className="d-flex align-items-center">
                 <span className="">{currentUserEmail}</span>
                 <img className={styles.avatar} src={photoURL} alt="avatar" />

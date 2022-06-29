@@ -39,9 +39,9 @@ const Sidebar = () => {
     <>
       {member.email ? (
         <nav className={`${sidebarClasses} ${hideSideBarClass}`}>
-          <div className={styles.roleBlock}></div>
+          {isSidebarBig && <div className={styles.roleBlock}></div>}
           <hr className={styles.horizonLine} />
-          <ul style={{ paddingLeft: '0px' }}>
+          <ul className='pt-3' style={{ paddingLeft: '0px' }}>
             {!!currentUser &&
               SidebarData.map((el, key) => (
                 <Link key={key} className={`text-white ${styles.Link}`} to={el.link}>
