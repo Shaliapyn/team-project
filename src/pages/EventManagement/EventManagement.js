@@ -16,20 +16,27 @@ const EventManagement = () => {
   const searchTerm = useSelector(inputState)
 
   const eventsList =
-  events &&
-  events.map((event) => {
-      return (
-        <tr key={event.id}>
-          <td className="py-3 pe-5 ps-4 fs-5">
-            <Link to="event" state={{ currentEvent: event }}>
-              {event.eventName}
-            </Link>
-          </td>
-          <td className="py-3  ps-4">{event.eventDate}</td>
-          <td className="py-3  ps-4">{event.score}</td>
-        </tr>
-      )
-    })
+    events &&
+    events
+      .filter((member) => {
+        if (searchTerm === '') return member
+        else if (member.eventName.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return member
+        }
+      })
+      .map((event) => {
+        return (
+          <tr key={event.id}>
+            <td className="py-3 pe-5 ps-4 fs-5">
+              <Link to="event" state={{ currentEvent: event }}>
+                {event.eventName}
+              </Link>
+            </td>
+            <td className="py-3  ps-4">{event.eventDate}</td>
+            <td className="py-3  ps-4">{event.score}</td>
+          </tr>
+        )
+      })
 
   return (
     <div className={style.container}>

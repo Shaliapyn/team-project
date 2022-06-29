@@ -27,7 +27,7 @@ const VisitedEventsList = () => {
               </tr>
             ))
         : visitedEvents &&
-        visitedEvents.map((event, id) => (
+          visitedEvents.map((event, id) => (
             <tr key={id}>
               <td>{event.name}</td>
               <td>{event.date}</td>
