@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { auth } from 'firebase-client'
 import { signOut } from 'firebase/auth'
-import { memberState } from '../../store/slices/memberSlice'
-import { removeMember } from 'store/slices/memberSlice'
-
 import profile from 'assets/images/profile.svg'
 import logout from 'assets/images/logout.svg'
 
@@ -23,7 +20,6 @@ function Topbar() {
   const [photoURL, setPhotoURL] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
-  const member = useSelector(memberState)
 
   useEffect(() => {
     if (member?.userPhoto) {
