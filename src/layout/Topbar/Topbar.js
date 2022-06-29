@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { auth } from 'firebase-client'
 import { signOut } from 'firebase/auth'
+import { memberState } from '../../store/slices/memberSlice'
+import { removeMember } from 'store/slices/memberSlice'
 
 import profile from 'assets/images/profile.svg'
 import logout from 'assets/images/logout.svg'
@@ -22,15 +23,23 @@ function Topbar() {
   const [photoURL, setPhotoURL] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
+  const member = useSelector(memberState)
 
   useEffect(() => {
-    if (auth.currentUser?.photoURL) {
-      setPhotoURL(auth.currentUser.photoURL)
+    if (member?.userPhoto) {
+      setPhotoURL(member.userPhoto)
     }
-  }, [auth.currentUser])
+  }, [member.userPhoto])
 
-  const [isOpen, setIsOpen] = useState(false)
+  // useEffect(() => {
+  //   if (auth.currentUser?.photoURL) {
+  //     setPhotoURL(auth.currentUser.photoURL)
+  //   }
+  // }, [auth.currentUser])
+
+  const [show, setShow] = useState(false)
   const [currentUserEmail, setCurrentUserEmail] = useState(email)
+  const ref = useRef()
 
   useEffect(() => {
     setCurrentUserEmail(email)
@@ -38,7 +47,7 @@ function Topbar() {
 
   useEffect(() => {}, [])
 
-  const toggle = () => setIsOpen(!isOpen)
+  const toggle = () => setShow(!show)
 
   const signIn = (e) => {
     e.preventDefault()
@@ -56,6 +65,23 @@ function Topbar() {
     toggle()
     navigate('auth/profile')
   }
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (show && ref.current && !ref.current.contains(e.target)) {
+        setShow(false)
+      }
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [show])
 
   const { isMenuCheked, setIsMenuChecked } = useContext(MenuContext)
   const burgerClasses = isMenuCheked ? `${styles.menuBtn} ${styles.bgBurger}` : styles.menuBtn
@@ -93,8 +119,9 @@ function Topbar() {
               <span className={styles.signIn}>Sign In</span>
             </div>
           )}
-          {isOpen && (
-            <form className={styles.dropdownList} onSubmit={signout} action="">
+
+          {show && (
+            <form className={styles.dropdownList} onSubmit={signout} action="" ref={ref}>
               <button type="button" className={styles.dropdownItem} onClick={goToProfile}>
                 <img className={styles.imgProfile} src={profile} alt="profile" />
                 Profile

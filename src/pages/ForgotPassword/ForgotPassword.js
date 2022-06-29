@@ -1,14 +1,21 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import { sendPasswordResetEmail } from 'firebase/auth'
-import styles from 'assets/scss/forgotPassword.module.scss'
 import { auth } from 'firebase-client'
+
 import Button from 'ui/button/Button'
 import InputEmail from 'ui/input/InputEmail'
+
+import styles from 'assets/scss/forgotPassword.module.scss'
 
 const ForgotPassword = () => {
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
+
+  const user = useSelector((state) => state.member.member)
 
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email)
@@ -43,12 +50,17 @@ const ForgotPassword = () => {
                 <div className={styles.element}>
                   <InputEmail value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
-
                 <div className={styles.element}>
                   <Button type="submit" className={`btn-primary ${styles.loginButton}`}>
                     Reset Password
                   </Button>
                 </div>
+                {!user.email && (
+                  <Link to="/signin" className={`btn-link ${styles.login}`}>
+                    {' '}
+                    Login{' '}
+                  </Link>
+                )}
               </>
             </div>
           ) : (
