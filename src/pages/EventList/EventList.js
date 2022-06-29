@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { onSnapshot, doc } from 'firebase/firestore'
-import style from 'assets/scss/eventList.module.scss'
+import styles from 'assets/scss/eventList.module.scss'
 import { eventsCollection } from 'firebase-client'
-
-import styles from 'assets/scss/membermanagement.module.scss'
 
 import VisitedEventsList from 'features/VisitedEventsList'
 import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
@@ -16,6 +14,7 @@ const EventList = () => {
   const currentMember = useSelector((state) => state.member.member)
   const dispatch = useDispatch()
   const events = useSelector((state) => state.events.events)
+  const [empty, setEmpty] = useState(false)
 
   useEffect(() => {
     let visitedEventsByCurrentMember = []
@@ -35,47 +34,44 @@ const EventList = () => {
             }
             visitedEventsByCurrentMember = [...visitedEventsByCurrentMember, visitedEvent]
             dispatch(addVisitedEvent(visitedEventsByCurrentMember))
+            setEmpty(false)
           }
         })
         if (visitedEventsByCurrentMember.length === 0) {
           dispatch(addVisitedEvent([]))
+          setEmpty(true)
         }
       })
   }, [])
 
   return (
-    <div className={style.container}>
-      <div className="card shadow mb-4 ">
-        <div className="card-header py-3 ">
-          <h2 className={`m-0 font-weight-bold text-primary  text ${style.textResponsive}`}>
-            The List of Visited Events
-          </h2>
-        </div>
-        <div className="card-body px-5  overflow-auto">
-          <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
-            <InputFilter />
-          </div>
-          <table className="table table-bordered table-responsive-lg table-hover">
-            <thead className="table-light">
-              <tr>
-                <th scope="col" className="py-3 pe-5 ps-4">
-                  Name
-                </th>
-                <th scope="col" className="py-3  ps-4">
-                  Date
-                </th>
-                <th scope="col" className="py-3  ps-4">
-                  Score
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <VisitedEventsList />
-            </tbody>
-          </table>
-          {/* <Pagination /> */}
-        </div>
+    <div className={styles.container} >
+      <h1 className='fs-3 mt-4 mb-4 text-primary'>The List of Visited Events</h1>
+      {!empty && (
+        <div className='d-flex'>
+        <InputFilter />
       </div>
+      )}
+      {empty && (
+        <div className='d-flex mt-5 align-middle justify-content-center fs-4 text-secondary'>
+         You haven't visited any events
+      </div>
+      )}
+      {!empty && (
+        <table className='table'>
+          <thead>
+            <tr>
+              <th scope="col">Event Name</th>
+              <th scope="col">Date</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody className="table-group-divider">
+            <VisitedEventsList />
+          </tbody>
+        </table>
+      )}
+      {/* <Pagination /> */}
     </div>
   )
 }

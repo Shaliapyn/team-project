@@ -65,7 +65,7 @@ const AvatarForm = () => {
 
   return (
     <>
-      <img src={photoURL} alt="Profile Avatar" className={`mb-3 ${style.avatar} `} />
+      <img src={photoURL} alt="Profile Avatar" className={`mb-4 mt-2 ${style.avatar} `} />
 
       <input
         type="file"

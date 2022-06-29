@@ -30,19 +30,23 @@ const Member = ({ member }) => {
 
   return currentUser.role === 'user' ? (
     <tr>
-      <th scope="col">
-        <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`} />
-      </th>
+      <td scope="col" className="ps-0">
+        <div className='d-flex align-items-center justify-content-center'>
+          <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+        </div> 
+      </td>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
-      <td>{member.organisation}</td>
       <td>{member.phone}</td>
+      <td>{member.organisation}</td>
     </tr>
   ) : (
     <tr style={{ verticalAlign: 'middle' }}>
-      <th scope="col">
-        <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
-      </th>
+      <td scope="col" className="ps-0">
+        <div className='d-flex align-items-center justify-content-center'>
+          <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+        </div> 
+      </td>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
       <td>{member.organisation}</td>
@@ -50,15 +54,24 @@ const Member = ({ member }) => {
       <td>{member.phone}</td>
       <td>{member.score}</td>
       <td>{member.birthDate}</td>
-      <td className={styles.btnBlock}>
-        <div onClick={() => updateMemb(member.id)}>
-          <EditSvg />
-        </div>
-        {member.role !== 'admin' && (
-          <div onClick={() => areYouSureDel(member.id)}>
-            <DeleteSvg />
+      <td className="ps-0">
+        <div className='d-flex align-items-center justify-content-center'>
+          <div className={styles.btnBlock}>
+            <div onClick={() => updateMemb(member.id)}>
+              <EditSvg />
+            </div>
+            {member.role !== 'admin' && (
+              <div onClick={() => areYouSureDel(member.id)}>
+                <DeleteSvg />
+              </div>
+            )}
+            {member.role === 'admin' && (
+              <div className='invisible'>
+                <DeleteSvg />
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </td>
     </tr>
   )

@@ -1,25 +1,46 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { inputState } from 'store/slices/filterSlice'
 
-import { participantsState } from 'store/slices/participantsSlice'
-import { selectState } from 'store/slices/selectSlice'
 import Participant from './Participant'
 
 const Participants = (currentEvent) => {
-  const dispatch = useDispatch()
-  const searchTerm = useSelector(inputState)
-  const participants = useSelector(participantsState)
-  const selected = useSelector(selectState)
-
+  const searchTerm = useSelector((state) => state.searchTerm.searchTerm)
+  const participants = useSelector((state) => state.participants.participants)
+  const selected = useSelector((state) => state.value.value)
+  const members = useSelector((state) => state.members.members)
+    
   return (
     <>
-      {participants &&
-        participants.map((participant, id) => (
-          <Participant key={id} participant={participant} currentEvent={currentEvent} />
-        ))}
+      {members &&
+      members
+        .filter((member) => {
+          if (searchTerm === '') return member
+          else if (
+            member.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            member.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+          ) {
+            return member
+          }
+        })
+        .filter((member) => {
+          const foundEl = participants.find((el) => el.id === member.id)
+          if (selected === 'Visited') {
+            if (foundEl.visitedEvent) {
+              return member
+            }} 
+          if (selected === 'NotVisited') {
+            if (!foundEl.visitedEvent) {
+              return member 
+            }}
+          if (selected === 'All') return member 
+        })
+        .map((member, id) => (
+          <Participant key={id} participant={participants.find((el) => el.id === member.id)} currentEvent={currentEvent} />
+        ))  
+      }
     </>
-  )
+    )
 }
 
 export default Participants

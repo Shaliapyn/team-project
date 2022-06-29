@@ -6,9 +6,10 @@ import { updateDoc, doc } from 'firebase/firestore'
 import { CancelSvg, CommentSvg, DeleteSvg, EditSvg, SaveSvg, VisibilityOffSvg } from '../../assets/svg/svg-icons'
 import styles from '../../assets/scss/comment.module.scss'
 
-const Comment = ({ participant, currentEvent }) => {
+const Comment = (props) => {
+  const participant = props.participant
   let isComment = participant && participant.comment.trim().length !== 0
-  const event = currentEvent.currentEvent
+  const event = props.currentEvent.currentEvent
   const [isActiveComment, setIsActiveComment] = useState(false)
   const [isBeingUpdated, setIsBeingUpdated] = useState(false)
   const ref = useRef(null)
@@ -37,15 +38,16 @@ const Comment = ({ participant, currentEvent }) => {
     if (isActiveComment) {
       handlerEmptyComment = (
         <>
-          <textarea
+          <textarea 
             autoFocus
-            className={styles.textarea}
-            placeholder="Write your comment here"
+            className="form-control flex-fill"
             ref={ref}
-            rows="3"
+            placeholder="Write your comment here" 
+            cols="40" 
+            rows="2" 
+            style={{backgroundColor: 'rgba(246, 194, 62, 0)', border: '1px solid #36b9cc'}}
           ></textarea>
-
-          <div className="input-group" style={{ justifyContent: 'end' }}>
+          <div className="input-group w-auto" style={{ justifyContent: 'end'}}>
             <button className={styles.button} type="button" onClick={saveComment}>
               <SaveSvg />
             </button>
@@ -95,20 +97,22 @@ const Comment = ({ participant, currentEvent }) => {
     if (isActiveComment) {
       handlerFilledComment = (
         <>
-          <div className="mb-3">
+          <div className="align-middle text-start flex-fill">
             {isBeingUpdated ? (
-              <textarea
+              <textarea 
                 autoFocus
-                className={styles.textarea}
+                className="form-control"
                 ref={refUpdated}
-                defaultValue={participant.comment}
-                rows="3"
+                defaultValue={participant.comment} 
+                cols="40" 
+                rows="2" 
+                style={{backgroundColor: 'rgba(246, 194, 62, 0)', border: '1px solid #36b9cc'}}
               ></textarea>
-            ) : (
+              ) : (
               participant.comment
             )}
           </div>
-          <div className="input-group" style={{ justifyContent: 'end' }}>
+          <div className="input-group w-auto justify-content-end" >
             {!isBeingUpdated ? (
               <button className={styles.button} type="button" onClick={() => setIsActiveComment(!isActiveComment)}>
                 <VisibilityOffSvg />

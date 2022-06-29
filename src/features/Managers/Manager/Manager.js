@@ -17,23 +17,26 @@ const Manager = ({ member }) => {
     }
     return (
       <tr key={member.id} style={{ verticalAlign: 'middle' }}>
-        <td className="py-3  ps-1">
-          {' '}
-          <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+        <td className="ps-0"> 
+          <div className='d-flex align-items-center justify-content-center'>
+            <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+          </div>
         </td>
-        <td className="py-3 pe-5 ps-4">{member.firstName}</td>
-        <td className="py-3  ps-4">{member.lastName}</td>
-        <td className="py-3  ps-4">{member.email}</td>
-        <td>
-          {member.role === 'manager' ? (
-            <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-danger w-auto">
-              Fire manager
-            </button>
-          ) : (
-            <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-primary w-auto">
-              Appoint manager
-            </button>
-          )}
+        <td>{member.firstName}</td>
+        <td>{member.lastName}</td>
+        <td>{member.email}</td>
+        <td className="ps-0">
+          <div className='d-flex align-items-center justify-content-center'>
+            {member.role === 'manager' ? (
+              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-danger w-auto">
+                Fire manager
+              </button>
+            ) : (
+              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-primary w-auto">
+                Appoint manager
+              </button>
+            )}
+          </div>
         </td>
       </tr>
     )
