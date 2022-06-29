@@ -13,7 +13,10 @@ import logout from 'assets/images/logout.svg'
 import styles from 'assets/scss/topbar.module.scss'
 import MenuContext from 'context/MenuContext'
 
+import { memberState, removeMember } from 'store/slices/memberSlice'
+
 function Topbar() {
+  const member = useSelector(memberState)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { email } = useSelector((state) => state.member.member)
@@ -100,9 +103,13 @@ function Topbar() {
       <div>
         <div className="mt-2">
           {!!currentUserEmail && (
-            <div className={styles.authHeader} onClick={toggle}>
-              <div>
-                <span className={styles.email}>{currentUserEmail}</span>
+            <div className={`${styles.authHeader}`} onClick={toggle}>
+              <div className="pt-1 d-flex align-items-center">
+                <h4 className="h4">{member.role}</h4>
+              </div>
+              <div style={{marginRight:"4px", marginLeft:"4px"}} className="vr"></div>
+              <div className="d-flex align-items-center">
+                <span className="">{currentUserEmail}</span>
                 <img className={styles.avatar} src={photoURL} alt="avatar" />
               </div>
             </div>

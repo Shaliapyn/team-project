@@ -45,8 +45,6 @@ const EventManagement = () => {
             Add Event
           </button>
         </div>
-        <div className={style.button__wrapper}></div>
-
         <div className="card-body px-5  overflow-auto">
           <div className={`w-100 d-flex justify-content-between ${styles.filterBlock}`}>
             <InputFilter />
