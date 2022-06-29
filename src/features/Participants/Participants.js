@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { inputState } from 'store/slices/filterSlice'
 
-import { participantsState } from 'store/slices/participantsSlice'
-import { membersState } from 'store/slices/membersSlice'
-import { selectState } from 'store/slices/selectSlice'
 import Participant from './Participant'
 
 const Participants = (currentEvent) => {
-  const dispatch = useDispatch()
-  const searchTerm = useSelector(inputState)
-  const participants = useSelector(participantsState)
-  const selected = useSelector(selectState)
-  const members = useSelector(membersState)
+  const searchTerm = useSelector((state) => state.searchTerm.searchTerm)
+  const participants = useSelector((state) => state.participants.participants)
+  const selected = useSelector((state) => state.value.value)
+  const members = useSelector((state) => state.members.members)
     
   return (
     <>

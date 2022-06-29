@@ -61,7 +61,7 @@ const EventList = () => {
         <table className='table'>
           <thead>
             <tr>
-              <th scope="col">Name</th>
+              <th scope="col">Event Name</th>
               <th scope="col">Date</th>
               <th scope="col">Score</th>
             </tr>

@@ -14,17 +14,15 @@ import SelectFilter from 'features/SelectFilter'
 
 const Event = () => {
   const location = useLocation()
-  const { currentEvent } = location.state
   const dispatch = useDispatch()
+  const { currentEvent } = location.state
   const participantsCollection = collection(eventsCollection, currentEvent.id, 'participants')
- 
-  useEffect(() => {
-    onSnapshot(participantsCollection, (snapshot) => {
-      const participantSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      dispatch(setParticipants(participantSnap))
-    })
-  }, [])
   
+  onSnapshot(participantsCollection, (snapshot) => {
+    const participantSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    dispatch(setParticipants(participantSnap))
+  })
+
   return (
     <div className={styles.event__container} >
       <div className='d-flex flex-column align-items-start '>
@@ -45,7 +43,7 @@ const Event = () => {
             <th scope="col">Last Name</th>
             <th scope="col" >Additional points</th>
             <th scope="col"></th>
-            <th scope="col" >Comment</th>
+            <th scope="col" ></th>
           </tr>
         </thead>
         <tbody class="table-group-divider">

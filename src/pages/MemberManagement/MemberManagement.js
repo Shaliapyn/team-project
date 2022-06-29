@@ -43,7 +43,7 @@ const MemberManagement = () => {
       <table className='table'>
         <thead>
           <tr>
-            <th scope="col">Avatar</th>
+            <th scope="col"></th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Organisation</th>
@@ -51,7 +51,7 @@ const MemberManagement = () => {
             <th scope="col">Phone</th>
             <th scope="col">Score</th>
             <th scope="col">Birth Date</th>
-            <th scope="col">Managing</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody class="table-group-divider">

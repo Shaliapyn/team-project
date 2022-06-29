@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -12,12 +12,12 @@ const EventManagement = () => {
   const [show, setShow] = useState(false)
   const events = useSelector((state) => state.events.events)
   const searchTerm = useSelector(inputState)
-
+  
   const eventsList =
     events &&
     events.map((event) => {
       return (
-        <tr key={event.id}>
+        <tr key={event.id} className='p-4'>
           <td className="fs-5">
             <Link to="event" state={{ currentEvent: event }}>
               {event.eventName}
@@ -47,8 +47,8 @@ const EventManagement = () => {
       </div>
       <table className='table'>
         <thead>
-          <tr>
-            <th scope="col">Name</th>
+          <tr className='p-4'>
+            <th scope="col">Event Name</th>
             <th scope="col">Date</th>
             <th scope="col">Score</th>
           </tr>

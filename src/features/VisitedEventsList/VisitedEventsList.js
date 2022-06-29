@@ -20,7 +20,7 @@ const VisitedEventsList = () => {
               }
             })
             .map((event, id) => (
-              <tr key={id}>
+              <tr key={id} className='p-4'>
                 <td>{event.name}</td>
                 <td>{event.date}</td>
                 <td>{Number(event.score) + Number(event.addPoints)}</td>
@@ -28,7 +28,7 @@ const VisitedEventsList = () => {
             ))
         : visitedEvents &&
         visitedEvents.map((event, id) => (
-            <tr key={id}>
+            <tr key={id} className='p-4'>
               <td>{event.name}</td>
               <td>{event.date}</td>
               <td>{Number(event.score) + Number(event.addPoints)}</td>

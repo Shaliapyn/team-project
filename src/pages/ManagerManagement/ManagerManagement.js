@@ -21,7 +21,7 @@ const ManagerManagement = () => {
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Management</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
