@@ -8,7 +8,7 @@ import { MenuProvider } from 'context/MenuContext'
 
 const Layout = () => {
   return (
-    <div className='w-100 d-flex'>
+    <div className="w-100 d-flex">
       <MenuProvider>
         <Sidebar />
         <main className='w-100 d-flex flex-column min-vh-100' style={{backgroundColor: '#f2f8f8'}}>

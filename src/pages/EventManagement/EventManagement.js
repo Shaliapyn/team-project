@@ -15,18 +15,25 @@ const EventManagement = () => {
   
   const eventsList =
     events &&
-    events.map((event) => {
-      return (
-        <tr key={event.id} className='p-4'>
-          <td className="fs-5">
-            <Link to="event" state={{ currentEvent: event }}>
-              {event.eventName}
-            </Link>
-          </td>
-          <td >{event.eventDate}</td>
-          <td >{event.score}</td>
-        </tr>
-      )
+    events
+      .filter((member) => {
+        if (searchTerm === '') return member
+        else if (member.eventName.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return member
+        }
+      })
+      .map((event) => {
+        return (
+          <tr key={event.id} className='p-4'>
+            <td className="fs-5">
+              <Link to="event" state={{ currentEvent: event }}>
+                {event.eventName}
+              </Link>
+            </td>
+            <td >{event.eventDate}</td>
+            <td >{event.score}</td>
+          </tr>
+        )
     })
 
   return (
