@@ -145,55 +145,29 @@ const AddMemberForm = ({ closeForm }) => {
 
             <div className={style.element}>
               <label htmlFor="email">Email</label>
-              <Input
-                id="email"
-                type={'email'}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <Input id="email" type={'email'} value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             <div className={style.element}>
               <label htmlFor="email">Password</label>
-              <Input
-                type={'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <Input type={'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
 
             <div className={style.element}>
               <label htmlFor="birthDate">Birth Date</label>
-              <Input
-                id="birthDate"
-                type={'date'}
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-              />
+              <Input id="birthDate" type={'date'} value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
             </div>
             <div className={style.element}>
               <label htmlFor="birthDate">Phone number</label>
-              <Input
-                type={'tel'}
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
+              <Input type={'tel'} value={phone} onChange={(e) => setPhone(e.target.value)} />
             </div>
             <div className={style.element}>
               <label htmlFor="birthDate">Organisation</label>
-              <Input
-                type={'text'}
-                value={organisation}
-                onChange={(e) => setOrganisation(e.target.value)}
-              />
+              <Input type={'text'} value={organisation} onChange={(e) => setOrganisation(e.target.value)} />
             </div>
             <div className={style.element}>
               <label htmlFor="birthDate">Initial score</label>
-              <Input
-                type={'number'}
-                value={initialScore}
-                onChange={(e) => setInitialScore(e.target.value)}
-              />
+              <Input type={'number'} value={initialScore} onChange={(e) => setInitialScore(e.target.value)} />
             </div>
             <div className={style.element}>
               <button
