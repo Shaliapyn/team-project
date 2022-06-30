@@ -26,6 +26,7 @@ const Sidebar = () => {
   const focus = styles.focus
   const menuFocus = (e) => {
     const selected = e.currentTarget
+    console.log(selected.classList)
     if (!selected.classList.contains(focus)) {
       selected.classList.add(focus)
     } else return selected

@@ -10,6 +10,7 @@ import { setEvents } from 'store/slices/eventsSlice'
 import { setMembers } from 'store/slices/membersSlice'
 import { useLocation } from 'react-router-dom'
 import { setSelected } from 'store/slices/selectSlice'
+import { setInput } from 'store/slices/filterSlice'
 
 const GetState = ({ children }) => {
   const dispatch = useDispatch()
@@ -17,6 +18,10 @@ const GetState = ({ children }) => {
 
   useEffect(() => {
     dispatch(setSelected('All'))
+  }, [location])
+
+  useEffect(() => {
+    dispatch(setInput(''))
   }, [location])
 
   useEffect(() => {

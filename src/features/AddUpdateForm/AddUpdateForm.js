@@ -3,18 +3,17 @@ import React, { useContext, useState } from 'react'
 import { updateDoc, doc } from 'firebase/firestore'
 import { membersCollection } from '../../firebase-client'
 
-import style from '../../assets/scss/AddMemberForm.module.scss'
+import styles from '../../assets/scss/AddMemberForm.module.scss'
 
 import CloseButton from '../../ui/button/CloseButton'
 import Input from '../../ui/input/Input'
 import { useSelector } from 'react-redux'
 import { memberUpState } from '../../store/slices/memberUpSlice'
-import MenuContext from '../../context/MenuContext'
 
 const AddUpdateForm = ({ closeForm }) => {
+  const regex = /^[\d\(\)\+\-\s]*$/gi
   const updatedMember = useSelector(memberUpState)
-  const { handleEdit } = useContext(MenuContext)
-
+  
   const [email, setEmail] = useState(updatedMember.email)
   const [firstName, setFirstName] = useState(updatedMember.firstName)
   const [lastName, setLastName] = useState(updatedMember.lastName)
@@ -22,6 +21,8 @@ const AddUpdateForm = ({ closeForm }) => {
   const [phone, setPhone] = useState(updatedMember.phone)
   const [organisation, setOrganisation] = useState(updatedMember.organisation)
   const [initialScore, setInitialScore] = useState(updatedMember.initialScore)
+  const [showError, setShowError] = useState(false)
+  const [message, setMessage] = useState(false)
 
   const updateMember = async (e) => {
     e.preventDefault()
@@ -38,17 +39,30 @@ const AddUpdateForm = ({ closeForm }) => {
       score: updatedMember.score - updatedMember.initialScore + parseInt(initialScore),
     }
     await updateDoc(updatedDoc, newFields)
-    handleEdit()
+    setMessage(true)
   }
 
+  const handlerTel = (e) => {
+    let tel = e.target.value
+    
+    if (tel.match(regex)) {
+      setPhone(tel)
+      setShowError(false)
+    } else {
+      setShowError(true)
+    }
+  }
+  
   return (
-    <div className={style.background}>
+    <>
+    {!message && (
+    <div className={styles.background}>
       <div style={{ overflow: 'hidden' }}>
-        <form className={style.plate} onSubmit={updateMember} name="createUser">
+        <form className={styles.plate} onSubmit={updateMember} name="createUser">
           <CloseButton onClick={closeForm} />
-          <div className={style.borders}>
-            <h1 className={style.title}>Update Member Data</h1>
-            <div className={style.element}>
+          <div className={styles.borders}>
+            <h1 className={styles.title}>Update Member Data</h1>
+            <div className={styles.element}>
               <label htmlFor="firstName">First Name</label>
               <Input
                 id="firstName"
@@ -58,7 +72,7 @@ const AddUpdateForm = ({ closeForm }) => {
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <label htmlFor="firstName">Last Name</label>
               <Input
                 id="lastName"
@@ -68,7 +82,7 @@ const AddUpdateForm = ({ closeForm }) => {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <label htmlFor="email">Email</label>
               <Input
                 id="email"
@@ -78,7 +92,7 @@ const AddUpdateForm = ({ closeForm }) => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <label htmlFor="birthDate">Birth Date</label>
               <Input
                 id="birthDate"
@@ -88,17 +102,17 @@ const AddUpdateForm = ({ closeForm }) => {
                 onChange={(e) => setBirthDate(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <label htmlFor="phone">Phone</label>
               <Input
                 id="phone"
                 type={'tel'}
                 placeholder={'Phone number'}
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={handlerTel}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <label htmlFor="organisation">Organisation</label>
               <Input
                 id="organisation"
@@ -108,7 +122,7 @@ const AddUpdateForm = ({ closeForm }) => {
                 onChange={(e) => setOrganisation(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <label htmlFor="score">Initial Score</label>
               <Input
                 id="score"
@@ -118,15 +132,34 @@ const AddUpdateForm = ({ closeForm }) => {
                 onChange={(e) => setInitialScore(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-100">
                 Submit changes
               </button>
             </div>
+            {showError && (
+              <div className={styles.element}>
+                <p className="fs-5 text-danger">Enter correct phone number</p>
+              </div>
+            )}
           </div>
         </form>
       </div>
     </div>
+    )}
+    {message && (
+      <div className={styles.background}>
+        <form className={styles.plate}>
+          <div className={styles.borders}>
+            <p className="mt-4 fs-4 lh-base text-primary">This member has been updated successfully!</p>
+            <button type="button" className="btn btn-outline-primary rounded-pill w-auto mb-4" onClick={closeForm}>
+              OK
+            </button>
+          </div>
+        </form>
+      </div>
+    )}
+  </>
   )
 }
 

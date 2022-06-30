@@ -13,7 +13,7 @@ const Participant = ({ participant, currentEvent }) => {
   const defaultPhoto = 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   
   if (!participant) {window.location.reload(false)}
-  
+
   let currentParticipant = participant
   let additionalPoints = currentParticipant.addPoints
   let visited = currentParticipant.visitedEvent
@@ -48,10 +48,14 @@ const Participant = ({ participant, currentEvent }) => {
   }
 
   const increasePoints = () => {
-    additionalPoints += inputPoints
-    updatePoints(additionalPoints)
-    if (currentParticipant.visitedEvent) {
-      updateMemberScore(currentMember.score + inputPoints)
+    if (inputPoints !== NaN) {
+      additionalPoints += inputPoints
+      updatePoints(additionalPoints)
+      if (currentParticipant.visitedEvent) {
+        updateMemberScore(currentMember.score + inputPoints)
+      }
+    } else {
+      setInputPoints(0)
     }
   }
   const decreasePoints = () => {
@@ -75,6 +79,13 @@ const Participant = ({ participant, currentEvent }) => {
     updateMemberScore(updatedScore)
   }
 
+  const handlerInputPoints = (e) => {
+    const number = Number(e.target.value)
+    if (isNaN(number)) {
+      setInputPoints(0)
+    } else {setInputPoints(number)}
+  }
+
   return (
     <tr style={{ backgroundColor: visited ? '#edf6f8' : 'white' }}>
       <td className="ps-0">
@@ -95,7 +106,7 @@ const Participant = ({ participant, currentEvent }) => {
               type="text"
               className="form-control"
               placeholder="Additional points"
-              onChange={(e) => setInputPoints(Number(e.target.value))}
+              onChange={handlerInputPoints}
             />
             <button className="btn btn-outline-secondary" type="button" onClick={increasePoints}>
               +

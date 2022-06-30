@@ -49,9 +49,9 @@ const Member = ({ member }) => {
       </td>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
-      <td>{member.organisation}</td>
       <td>{member.email}</td>
       <td>{member.phone}</td>
+      <td>{member.organisation}</td>
       <td>{member.score}</td>
       <td>{member.birthDate}</td>
       <td className="ps-0">

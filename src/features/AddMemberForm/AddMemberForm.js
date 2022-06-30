@@ -6,7 +6,7 @@ import { getAuth, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
 import { collection, addDoc, setDoc, doc } from 'firebase/firestore'
 import { db } from 'firebase-client'
 
-import style from 'assets/scss/AddMemberForm.module.scss'
+import styles from 'assets/scss/AddMemberForm.module.scss'
 
 import { eventsState } from 'store/slices/eventsSlice'
 import CloseButton from 'ui/button/CloseButton'
@@ -30,6 +30,7 @@ const firebaseConfig = {
 }
 
 const AddMemberForm = ({ closeForm }) => {
+  const regex = /^[\d\(\)\+\-\s]*$/gi
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -39,6 +40,9 @@ const AddMemberForm = ({ closeForm }) => {
   const [phone, setPhone] = useState('')
   const [organisation, setOrganisation] = useState('')
   const [initialScore, setInitialScore] = useState('')
+  const [showError1, setShowError1] = useState(false)
+  const [showError2, setShowError2] = useState(false)
+  const [message, setMessage] = useState(false)
   const [userPhoto, setUserPhoto] = useState(
     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   )
@@ -49,68 +53,82 @@ const AddMemberForm = ({ closeForm }) => {
     e.preventDefault()
     setError('')
 
-    let secondaryApp = initializeApp(firebaseConfig, 'secondary')
-    const secondaryAuth = getAuth(secondaryApp)
+    if (password.trim().length >= 6) {
 
-    createUserWithEmailAndPassword(secondaryAuth, email, password)
-      .then(signOut(secondaryAuth))
-      .then(() => {
-        secondaryApp = null
-      })
-      .then(() => {
-        const createdDocRef = addDoc(collection(db, 'members'), {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          phone: phone,
-          organisation: organisation,
-          birthDate: birthDate,
-          initialScore: parseInt(initialScore),
-          role: 'user',
-          score: parseInt(initialScore),
-          userPhoto: userPhoto,
+      let secondaryApp = initializeApp(firebaseConfig, 'secondary')
+      const secondaryAuth = getAuth(secondaryApp)
+
+      createUserWithEmailAndPassword(secondaryAuth, email, password)
+        .then(signOut(secondaryAuth))
+        .then(() => {
+          secondaryApp = null
         })
+        .then(() => {
+          const createdDocRef = addDoc(collection(db, 'members'), {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            organisation: organisation,
+            birthDate: birthDate,
+            initialScore: parseInt(initialScore),
+            role: 'user',
+            score: parseInt(initialScore),
+            userPhoto: userPhoto,
+          })
 
-        return createdDocRef
-      })
-      .then((createdDocRef) => {
-        {
-          events &&
-            events.map(async (event, id) => {
-              const docRef = doc(db, 'events', event.id)
-              const colRef = collection(docRef, 'participants')
+          return createdDocRef
+        })
+        .then((createdDocRef) => {
+          {
+            events &&
+              events.map(async (event, id) => {
+                const docRef = doc(db, 'events', event.id)
+                const colRef = collection(docRef, 'participants')
 
-              await setDoc(doc(colRef, createdDocRef.id), {
-                addPoints: 0,
-                comment: '',
-                visitedEvent: false,
+                await setDoc(doc(colRef, createdDocRef.id), {
+                  addPoints: 0,
+                  comment: '',
+                  visitedEvent: false,
+                })
               })
-            })
-        }
-      })
-      .catch((err) => {
-        setError(err.message)
-        console.error(error)
-      })
-
-    setFirstName('')
-    setLastName('')
-    setEmail('')
-    setPassword('')
-    setPhone('')
-    setOrganisation('')
-    setBirthDate('')
-    setInitialScore('')
+          }
+        })
+        .then(() => {
+          setMessage(true)
+        })
+        .catch((err) => {
+          setError(err.message)
+          console.error(error)
+        })
+    } else {
+      setShowError2(true)
+      setPassword('')
+    }
   }
 
+  const handlerTel = (e) => {
+    let tel = e.target.value
+    
+    if (tel.match(regex)) {
+      setPhone(tel)
+      setShowError1(false)
+    } else {
+      setShowError1(true)
+    }
+  }
+  
+
   return (
-    <div className={style.background}>
+    <>
+    {!message && (
+    <div className={styles.background}>
       <div style={{ overflow: 'hidden' }}>
-        <form className={style.plate} onSubmit={createMember} name="createUser">
+        <form className={styles.plate} onSubmit={createMember} name="createUser">
           <CloseButton onClick={closeForm} />
-          <div className={style.borders}>
-            <h1 className={style.title}>Add Member Form</h1>
-            <div className={style.element}>
+          <div className={styles.borders}>
+            <h1 className={styles.title}>Add Member Form</h1>
+            <div className={styles.element}>
               <Input
                 type={'text'}
                 placeholder={'First name'}
@@ -118,7 +136,7 @@ const AddMemberForm = ({ closeForm }) => {
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input
                 type={'text'}
                 placeholder={'Last name'}
@@ -126,18 +144,21 @@ const AddMemberForm = ({ closeForm }) => {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input type={'email'} placeholder={'Email'} value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input
                 type={'password'}
                 placeholder={'Password'}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                  setShowError2(false)
+                }}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input
                 type={'date'}
                 placeholder={'birth date'}
@@ -145,15 +166,15 @@ const AddMemberForm = ({ closeForm }) => {
                 onChange={(e) => setBirthDate(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input
                 type={'tel'}
                 placeholder={'Phone number'}
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={handlerTel}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input
                 type={'text'}
                 placeholder={'Organisation'}
@@ -161,7 +182,7 @@ const AddMemberForm = ({ closeForm }) => {
                 onChange={(e) => setOrganisation(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <Input
                 type={'number'}
                 placeholder={'Initial score'}
@@ -169,7 +190,7 @@ const AddMemberForm = ({ closeForm }) => {
                 onChange={(e) => setInitialScore(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={styles.element}>
               <button
                 type="submit"
                 style={{ fontSize: '18px', height: '50px' }}
@@ -178,10 +199,36 @@ const AddMemberForm = ({ closeForm }) => {
                 Add new Member
               </button>
             </div>
+            {showError1 && (
+              <div className={styles.element}>
+                <p className="fs-5 text-danger">Enter correct phone number</p>
+              </div>
+            )}
+            {showError2 && (
+              <div className={styles.element}>
+                <p className="fs-5 text-danger lh-base">
+                  Enter correct new password (six or more characters)
+                </p>
+              </div>
+            )}
           </div>
         </form>
       </div>
     </div>
+    )}
+    {message && (
+      <div className={styles.background}>
+        <form className={styles.plate}>
+          <div className={styles.borders}>
+            <p className="mt-4 fs-4 lh-base text-primary">A new member has been added successfully!</p>
+            <button type="button" className="btn btn-outline-primary rounded-pill w-auto mb-4" onClick={closeForm}>
+              OK
+            </button>
+          </div>
+        </form>
+      </div>
+    )}
+  </>
   )
 }
 

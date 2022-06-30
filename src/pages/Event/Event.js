@@ -8,14 +8,13 @@ import { setParticipants } from 'store/slices/participantsSlice'
 import Participants from 'features/Participants'
 
 import styles from 'assets/scss/event.module.scss'
-import Pagination from 'features/Pagination'
 import InputFilter from 'features/InputFilter'
 import SelectFilter from 'features/SelectFilter'
 
 const Event = () => {
   const location = useLocation()
   const dispatch = useDispatch()
-  const { currentEvent } = location.state
+  const {currentEvent}  = location.state
   const participantsCollection = collection(eventsCollection, currentEvent.id, 'participants')
   
   onSnapshot(participantsCollection, (snapshot) => {
@@ -50,9 +49,8 @@ const Event = () => {
         <Participants currentEvent={currentEvent} />
         </tbody>
       </table>
-        {/* <Pagination /> */}
     </div>
-  )
+  ) 
 }
 
 export default Event

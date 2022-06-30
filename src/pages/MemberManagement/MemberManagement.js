@@ -9,7 +9,6 @@ import AddUpdateForm from 'features/AddUpdateForm'
 import InputFilter from 'features/InputFilter'
 import SelectFilter from 'features/SelectFilter'
 import DeleteMemberForm from 'features/DeleteMemberForm'
-import Pagination from 'features/Pagination'
 
 import styles from 'assets/scss/membermanagement.module.scss'
 
@@ -46,9 +45,9 @@ const MemberManagement = () => {
             <th scope="col"></th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
-            <th scope="col">Organisation</th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
+            <th scope="col">Organisation</th>
             <th scope="col">Score</th>
             <th scope="col">Birth Date</th>
             <th scope="col"></th>
@@ -58,7 +57,6 @@ const MemberManagement = () => {
           <Members />
         </tbody>
       </table>
-        {/* <Pagination /> */}
     </div>
   )
 }
