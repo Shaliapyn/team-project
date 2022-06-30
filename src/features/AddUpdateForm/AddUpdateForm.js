@@ -47,7 +47,7 @@ const AddUpdateForm = ({ closeForm }) => {
         <form className={style.plate} onSubmit={updateMember} name="createUser">
           <CloseButton onClick={closeForm} />
           <div className={style.borders}>
-            <h1 className={style.title}>Update Member Data</h1>
+            <h1 className={`${style.title} text-light`}>Update Member Data</h1>
             <div className={style.element}>
               <label htmlFor="firstName">First Name</label>
               <Input
@@ -119,7 +119,7 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
-              <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-100">
+              <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-50">
                 Submit changes
               </button>
             </div>
