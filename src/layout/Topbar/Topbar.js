@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { auth } from 'firebase-client'
 import { signOut } from 'firebase/auth'
-import profile from 'assets/images/profile.svg'
-import logout from 'assets/images/logout.svg'
-
-import styles from 'assets/scss/topbar.module.scss'
+import { memberState, removeMember } from 'store/slices/memberSlice'
 import MenuContext from 'context/MenuContext'
 
-import { memberState, removeMember } from 'store/slices/memberSlice'
+import profile from 'assets/images/profile.svg'
+import logout from 'assets/images/logout.svg'
+import styles from 'assets/scss/topbar.module.scss'
+
+
+
 
 function Topbar() {
   const member = useSelector(memberState)

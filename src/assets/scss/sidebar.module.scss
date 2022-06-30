@@ -58,19 +58,10 @@
 .sidebarLi:hover {
   background-color: #4667c8;
 }
-.roleBlock {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4.375rem;
-  @media only screen and (max-width: 768px) {
-    height: 0;
-  }
-}
 
 .horizonLine {
   width: 80%;
-  margin: 0 auto;
+  margin: 4.375rem auto 0;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
