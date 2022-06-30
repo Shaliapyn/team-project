@@ -21,7 +21,7 @@ import NotFound from './pages/NotFound'
 
 function App() {
   return (
-    <div className="App">
+    // <div className="App">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Start />} />
@@ -50,7 +50,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </div>
+    // </div>
   )
 }
 
