@@ -31,6 +31,9 @@
   text-align: center;
   width: 6rem;
   font-size: 14px;
+  @media only screen and (min-width: 768px) {
+    
+  }
 }
 
 .sidebarLi {
@@ -103,3 +106,4 @@
   opacity: 1;
   background-color: #4667c8;
 }
+
