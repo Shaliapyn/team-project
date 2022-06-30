@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import { updateDoc, doc } from 'firebase/firestore'
 import { membersCollection } from '../../firebase-client'
@@ -9,6 +9,8 @@ import CloseButton from '../../ui/button/CloseButton'
 import Input from '../../ui/input/Input'
 import { useSelector } from 'react-redux'
 import { memberUpState } from '../../store/slices/memberUpSlice'
+
+import MenuContext from 'context/MenuContext'
 
 const AddUpdateForm = ({ closeForm }) => {
   const regex = /^[\d\(\)\+\-\s]*$/gi
@@ -53,15 +55,36 @@ const AddUpdateForm = ({ closeForm }) => {
     }
   }
   
+  const { showUpdateForm, setShowUpdateForm } = useContext(MenuContext)
+  const ref = useRef()
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the modal
+      if (showUpdateForm && ref.current && !ref.current.contains(e.target)) {
+        setShowUpdateForm(false)
+      }
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [showUpdateForm])
+
   return (
     <>
     {!message && (
     <div className={styles.background}>
       <div style={{ overflow: 'hidden' }}>
-        <form className={styles.plate} onSubmit={updateMember} name="createUser">
+        <form className={styles.plate} onSubmit={updateMember} name="createUser" ref={ref} action="">
           <CloseButton onClick={closeForm} />
           <div className={styles.borders}>
-            <h1 className={styles.title}>Update Member Data</h1>
+
+            <h1 className={`${styles.title} text-light`}>Update Member Data</h1>
             <div className={styles.element}>
               <label htmlFor="firstName">First Name</label>
               <Input
@@ -133,7 +156,12 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={styles.element}>
-              <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-100">
+              <button
+                type="submit"
+                style={{ fontSize: '16px' }}
+                className={`btn btn-primary rounded-pill ${styles.button}`}
+              >
+
                 Submit changes
               </button>
             </div>

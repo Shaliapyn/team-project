@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { useSelector } from 'react-redux'
 
 import { initializeApp } from 'firebase/app'
@@ -11,6 +11,7 @@ import styles from 'assets/scss/AddMemberForm.module.scss'
 import { eventsState } from 'store/slices/eventsSlice'
 import CloseButton from 'ui/button/CloseButton'
 import Input from 'ui/input/Input'
+import MenuContext from 'context/MenuContext'
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -119,17 +120,38 @@ const AddMemberForm = ({ closeForm }) => {
   }
   
 
+  const { showAddForm, setShowAddForm } = useContext(MenuContext)
+  const ref = useRef()
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the modal
+      if (showAddForm && ref.current && !ref.current.contains(e.target)) {
+        setShowAddForm(false)
+      }
+      console.log(showAddForm, ref.current, !ref.current.contains(e.target))
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [showAddForm])
+
   return (
     <>
     {!message && (
     <div className={styles.background}>
-      <div style={{ overflow: 'hidden' }}>
+      <div className={styles.formParent} style={{ overflow: 'hidden' }}>
         <form className={styles.plate} onSubmit={createMember} name="createUser">
           <CloseButton onClick={closeForm} />
           <div className={styles.borders}>
-            <h1 className={styles.title}>Add Member Form</h1>
+            <h1 className={`${styles.title} text-light`}>Add Member Form</h1>
             <div className={styles.element}>
               <Input
+                id="firstName"
                 type={'text'}
                 placeholder={'First name'}
                 value={firstName}
@@ -138,15 +160,24 @@ const AddMemberForm = ({ closeForm }) => {
             </div>
             <div className={styles.element}>
               <Input
+                id="lastName"
                 type={'text'}
                 placeholder={'Last name'}
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
+
             <div className={styles.element}>
-              <Input type={'email'} placeholder={'Email'} value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input
+                id="email"
+                type={'email'}
+                placeholder={'Email'}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
+
             <div className={styles.element}>
               <Input
                 type={'password'}
@@ -160,6 +191,7 @@ const AddMemberForm = ({ closeForm }) => {
             </div>
             <div className={styles.element}>
               <Input
+                id="birthDate"
                 type={'date'}
                 placeholder={'birth date'}
                 value={birthDate}
@@ -194,9 +226,11 @@ const AddMemberForm = ({ closeForm }) => {
               <button
                 type="submit"
                 style={{ fontSize: '18px', height: '50px' }}
-                className="btn btn-primary rounded-pill w-100"
+
+                className={`btn btn-primary rounded-pill ${style.button}`}
+
               >
-                Add new Member
+                Add Member
               </button>
             </div>
             {showError1 && (

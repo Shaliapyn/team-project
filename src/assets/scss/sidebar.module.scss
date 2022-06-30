@@ -1,12 +1,13 @@
 .sidebar {
   height: 100vh;
-  width: 20rem;
+  width: 21rem;
   position: sticky;
   top: 0;
   padding: 0;
   background-color: #4e73df;
   color: #fff;
   font-size: 18px;
+  overflow: auto;
   @media only screen and (max-width: 768px) {
     display: block;
     position: fixed;
@@ -30,6 +31,9 @@
   text-align: center;
   width: 6rem;
   font-size: 14px;
+  @media only screen and (min-width: 768px) {
+    
+  }
 }
 
 .sidebarLi {
@@ -57,22 +61,10 @@
 .sidebarLi:hover {
   background-color: #4667c8;
 }
-.roleBlock {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4.375rem;
-
-  .roleText {
-    padding-left: 20px;
-    font-size: 25px;
-    margin-bottom: 0;
-  }
-}
 
 .horizonLine {
   width: 80%;
-  margin: 0 auto;
+  margin: 4.375rem auto 0;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -105,3 +97,4 @@
   opacity: 1;
   background-color: #4667c8;
 }
+

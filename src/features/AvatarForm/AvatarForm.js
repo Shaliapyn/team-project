@@ -81,7 +81,7 @@ const AvatarForm = () => {
         className="btn btn-outline-primary"
         type="button"
         id="inputGroupFileAddon04"
-        style={{ display: 'block' }}
+        style={{ display: 'block', height: '33px' }}
         onClick={() => document.getElementById('selectFile').click()}
       >
         Change photo

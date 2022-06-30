@@ -42,7 +42,8 @@ const EventManagement = () => {
         <h1 className='fs-3 mt-4 mb-4 text-primary'>Event Management</h1>
         <button
             type="button"
-            className={`btn btn-primary w-auto ms-auto fs-5`}
+            className={`btn btn-primary w-auto ms-auto`}
+            style={{height: '33px'}}
             onClick={() => setShow(!show)}
           >
             Add Event

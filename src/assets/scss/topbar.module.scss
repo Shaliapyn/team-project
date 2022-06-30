@@ -12,6 +12,9 @@ $white: #fff !default;
   color: $secondary;
   background-color: $white;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+  position: sticky;
+  top: 0px;
+  z-index: 100;
 }
 
 .authHeader {
@@ -83,6 +86,14 @@ $white: #fff !default;
   margin: 0.5rem 0;
   overflow: hidden;
   border-top: 1px solid #eaecf4;
+}
+
+.mailbox {
+  display: flex !important;
+}
+
+.mail {
+  margin-right: 10px;
 }
 
 @media only screen and (max-width: 768px) {

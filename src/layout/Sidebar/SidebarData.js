@@ -35,8 +35,8 @@ export const SidebarData = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="27"
-        height="27"
+        width="30"
+        height="30"
         fill="currentColor"
         className="bi bi-calendar-week"
         viewBox="0 0 16 16"
@@ -53,8 +53,8 @@ export const SidebarData = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="27"
-        height="27"
+        width="30"
+        height="30"
         fill="currentColor"
         className="bi bi-calendar-plus"
         viewBox="0 0 16 16"

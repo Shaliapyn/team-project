@@ -2,7 +2,7 @@ import { collection, deleteDoc, doc } from 'firebase/firestore'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import style from 'assets/scss/AddMemberForm.module.scss'
+import style from 'assets/scss/deleteMemberFrom.module.scss'
 import { membersCollection, eventsCollection } from 'firebase-client'
 import { memberUpState } from 'store/slices/memberUpSlice'
 import { eventsState } from 'store/slices/eventsSlice'
@@ -27,21 +27,24 @@ const DeleteMemberForm = ({ closeForm }) => {
 
     closeForm()
   }
+  const defaultPhoto =
+    'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
   return (
     <div className={`${style.background}`}>
-      <div style={{ overflow: 'hidden' }}>
+      <div className={style.formParent} style={{ overflow: 'hidden' }}>
         <form
           onSubmit={handleRemove}
-          className={`${style.plate} w-50 text-center flex-column align-items-center`}
+          className={`${style.plate} text-center flex-column align-items-center`}
           name="createUser"
         >
           <CloseButton onClick={closeForm} />
           <div className={`${style.borders} w-100`}>
             <div className="card-body px-5  overflow-auto">
-              <h2 className={style.title}>Are you sure, you want to delete this member?</h2>
-              <table className={`table table-bordered shadow-sm table-hover`}>
-                <thead className={`table-light `}>
-                  <tr>
+              <h4 className={`h5 pb-3 text-light title-form`}>Are you sure, you want to delete this member?</h4>
+              <table className={`table`}>
+                <thead>
+                  <tr className="trDel">
+                    <th scope="col">Avatar</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Organisation</th>
@@ -51,8 +54,18 @@ const DeleteMemberForm = ({ closeForm }) => {
                     <th scope="col">Birth Date</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr style={{ verticalAlign: 'middle' }}>
+                <tbody className="table-group-divider">
+                  <tr className="trDel" style={{ verticalAlign: 'middle' }}>
+                    <td scope="col" className="ps-0">
+                      <div className="d-flex align-items-center justify-content-center">
+                        <img
+                          src={member.userPhoto || defaultPhoto}
+                          alt="avatar"
+                          className={style.avatar}
+                          type={`image / png`}
+                        ></img>
+                      </div>
+                    </td>
                     <td>{member.firstName}</td>
                     <td>{member.lastName}</td>
                     <td>{member.organisation}</td>

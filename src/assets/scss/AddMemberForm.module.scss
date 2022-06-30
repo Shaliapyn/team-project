@@ -10,19 +10,28 @@
   left: 0;
   overflow: scroll;
 }
+.formParent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 .plate {
   position: absolute;
-  width: 35%;
-  background-color: white;
+  width: 30%;
+  background: linear-gradient(to top, white 84%, $primary 16%);
   border-radius: 15px;
   display: flex;
-  padding: 5px 20px;
+  padding: 5px 0px;
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.3);
-  left: 50%;
   margin-top: 20px;
   margin-bottom: 20px;
   z-index: 2;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 
   @media (max-width: 1370px) {
     width: 30%;
@@ -46,7 +55,7 @@
 }
 
 .borders {
-  width: 70%;
+  width: 90%;
   height: 100%;
   display: flex;
   text-align: center;
@@ -67,15 +76,22 @@
 }
 
 .element {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  & label {
-    width: 150px;
-  }
+  align-items: flex-start;
+
 }
 
 .element:last-child {
   margin-top: 10px;
 }
+
+.button {
+  margin: 0 auto;
+	height: 50px;
+	width: 100%;
+  max-width: 210px;
+}
+

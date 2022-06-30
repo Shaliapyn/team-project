@@ -50,11 +50,11 @@ const AddEventForm = ({ closeForm }) => {
 
   return (
     <div className={styles.background}>
-      <div style={{ overflow: 'hidden' }}>
+      <div className={styles.formParent} style={{ overflow: 'hidden' }}>
         <form onSubmit={createEvent} className={styles.plate}>
           <CloseButton onClick={closeForm} />
           <div className={styles.borders}>
-            <h1 className={styles.title}>Add Event Form</h1>
+            <h1 className={`${styles.title} text-light`}>Add Event Form</h1>
             <div className={styles.element}>
               <Input
                 type={'text'}
@@ -78,7 +78,7 @@ const AddEventForm = ({ closeForm }) => {
               <button
                 type="submit"
                 style={{ fontSize: '18px', height: '50px' }}
-                className="btn btn-primary rounded-pill w-100"
+                className="btn btn-primary rounded-pill w-50"
               >
                 Add Event
               </button>
