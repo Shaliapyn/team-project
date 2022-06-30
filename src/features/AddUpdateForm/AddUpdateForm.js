@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { updateDoc, doc } from 'firebase/firestore'
 import { membersCollection } from '../../firebase-client'
 
-import styles from '../../assets/scss/AddMemberForm.module.scss'
+import styles from '../../assets/scss/updateMemberData.module.scss'
 
 import CloseButton from '../../ui/button/CloseButton'
 import Input from '../../ui/input/Input'
