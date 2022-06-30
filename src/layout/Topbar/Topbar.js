@@ -28,12 +28,6 @@ function Topbar() {
     }
   }, [member.userPhoto])
 
-  // useEffect(() => {
-  //   if (auth.currentUser?.photoURL) {
-  //     setPhotoURL(auth.currentUser.photoURL)
-  //   }
-  // }, [auth.currentUser])
-
   const [show, setShow] = useState(false)
   const [currentUserEmail, setCurrentUserEmail] = useState(email)
   const ref = useRef()
