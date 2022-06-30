@@ -15,8 +15,7 @@ import styles from 'assets/scss/membermanagement.module.scss'
 
 const MemberManagement = () => {
   const member = useSelector(memberState)
-  const [showAddForm, setShowAddForm] = useState(false)
-  const { showDeleteForm, setShowDeleteForm, showUpdateForm, handleEdit } = useContext(MenuContext)
+  const { showDeleteForm, setShowDeleteForm, showUpdateForm, handleEdit, showAddForm, setShowAddForm } = useContext(MenuContext)
 
   return (
     <div className={styles.tableContainerManagement} >

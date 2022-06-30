@@ -67,15 +67,21 @@
 }
 
 .element {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  & label {
-    width: 150px;
-  }
+  align-items: flex-start;
 }
 
 .element:last-child {
   margin-top: 10px;
 }
+
+.button {
+  margin: 0 auto;
+	height: 50px;
+	width: 100%;
+  max-width: 210px;
+}
+

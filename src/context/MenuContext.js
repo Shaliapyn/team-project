@@ -9,6 +9,8 @@ export const MenuProvider = ({ children }) => {
   const [isMenuCheked, setIsMenuChecked] = useState(false)
   const [showUpdateForm, setShowUpdateForm] = useState(false)
   const [showDeleteForm, setShowDeleteForm] = useState(false)
+  const [showAddForm, setShowAddForm] = useState(false)
+
 
   const members = useSelector(membersState)
 
@@ -27,6 +29,8 @@ export const MenuProvider = ({ children }) => {
         setIsMenuChecked,
         showUpdateForm,
         setShowUpdateForm,
+        showAddForm,
+        setShowAddForm,
       }}
     >
       {children}

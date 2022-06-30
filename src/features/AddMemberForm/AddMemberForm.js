@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { useSelector } from 'react-redux'
 
 import { initializeApp } from 'firebase/app'
@@ -11,6 +11,7 @@ import style from 'assets/scss/AddMemberForm.module.scss'
 import { eventsState } from 'store/slices/eventsSlice'
 import CloseButton from 'ui/button/CloseButton'
 import Input from 'ui/input/Input'
+import MenuContext from 'context/MenuContext'
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -103,68 +104,93 @@ const AddMemberForm = ({ closeForm }) => {
     setInitialScore('')
   }
 
+  const { showAddForm, setShowAddForm } = useContext(MenuContext)
+  const ref = useRef()
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the modal
+      if (showAddForm && ref.current && !ref.current.contains(e.target)) {
+        setShowAddForm(false)
+      }
+      console.log(showAddForm, ref.current, !ref.current.contains(e.target))
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [showAddForm])
+
   return (
     <div className={style.background}>
       <div style={{ overflow: 'hidden' }}>
-        <form className={style.plate} onSubmit={createMember} name="createUser">
+        <form className={style.plate} onSubmit={createMember} name="createUser" ref={ref} action="">
           <CloseButton onClick={closeForm} />
           <div className={style.borders}>
             <h1 className={style.title}>Add Member Form</h1>
+
             <div className={style.element}>
+              <label htmlFor="firstName">First Name</label>
+              <Input id="firstName" type={'text'} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+            </div>
+
+            <div className={style.element}>
+              <label htmlFor="firstName">Last Name</label>
+              <Input id="lastName" type={'text'} value={lastName} onChange={(e) => setLastName(e.target.value)} />
+            </div>
+
+            <div className={style.element}>
+              <label htmlFor="email">Email</label>
               <Input
-                type={'text'}
-                placeholder={'First name'}
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                id="email"
+                type={'email'}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
+
             <div className={style.element}>
-              <Input
-                type={'text'}
-                placeholder={'Last name'}
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-            <div className={style.element}>
-              <Input type={'email'} placeholder={'Email'} value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div className={style.element}>
+              <label htmlFor="email">Password</label>
               <Input
                 type={'password'}
-                placeholder={'Password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+
             <div className={style.element}>
+              <label htmlFor="birthDate">Birth Date</label>
               <Input
+                id="birthDate"
                 type={'date'}
-                placeholder={'birth date'}
                 value={birthDate}
                 onChange={(e) => setBirthDate(e.target.value)}
               />
             </div>
             <div className={style.element}>
+              <label htmlFor="birthDate">Phone number</label>
               <Input
                 type={'tel'}
-                placeholder={'Phone number'}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
             <div className={style.element}>
+              <label htmlFor="birthDate">Organisation</label>
               <Input
                 type={'text'}
-                placeholder={'Organisation'}
                 value={organisation}
                 onChange={(e) => setOrganisation(e.target.value)}
               />
             </div>
             <div className={style.element}>
+              <label htmlFor="birthDate">Initial score</label>
               <Input
                 type={'number'}
-                placeholder={'Initial score'}
                 value={initialScore}
                 onChange={(e) => setInitialScore(e.target.value)}
               />
@@ -173,7 +199,7 @@ const AddMemberForm = ({ closeForm }) => {
               <button
                 type="submit"
                 style={{ fontSize: '18px', height: '50px' }}
-                className="btn btn-primary rounded-pill w-100"
+                className={`btn btn-primary rounded-pill ${style.button}`}
               >
                 Add new Member
               </button>

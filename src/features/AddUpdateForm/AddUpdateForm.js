@@ -52,7 +52,6 @@ const AddUpdateForm = ({ closeForm }) => {
       if (showUpdateForm && ref.current && !ref.current.contains(e.target)) {
         setShowUpdateForm(false)
       }
-      
     }
 
     document.addEventListener('mousedown', checkIfClickedOutside)
@@ -64,7 +63,7 @@ const AddUpdateForm = ({ closeForm }) => {
   }, [showUpdateForm])
 
   return (
-    <div className={style.background} >
+    <div className={style.background}>
       <div style={{ overflow: 'hidden' }}>
         <form className={style.plate} onSubmit={updateMember} name="createUser" ref={ref} action="">
           <CloseButton onClick={closeForm} />
