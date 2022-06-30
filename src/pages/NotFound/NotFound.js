@@ -2,14 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import styles from 'assets/scss/start.module.scss'
-
 function NotFound() {
   const user = useSelector((state) => state.member.member)
   return (
     <>
       {!user.email && (
-        <div className={styles.container}>
+        <div className='w-100 text-center fs-3' style={{marginTop: '160px'}}>
           <p> Page Not Found. </p>
           <p> Please, welcome to our </p>
           <p>
@@ -21,7 +19,7 @@ function NotFound() {
         </div>
       )}
       {!!user.email && (
-        <div className={styles.container}>
+        <div className='w-100 text-center fs-3' style={{marginTop: '160px'}}>
           <p> Page Not Found. </p>
           <p> Please, welcome to your </p>
           <p className="text-reset">
