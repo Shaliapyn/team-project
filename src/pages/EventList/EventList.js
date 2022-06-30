@@ -7,7 +7,6 @@ import { eventsCollection } from 'firebase-client'
 
 import VisitedEventsList from 'features/VisitedEventsList'
 import { addVisitedEvent } from 'store/slices/visitedEventsSlice'
-import Pagination from 'features/Pagination'
 import InputFilter from 'features/InputFilter'
 
 const EventList = () => {
@@ -71,7 +70,6 @@ const EventList = () => {
           </tbody>
         </table>
       )}
-      {/* <Pagination /> */}
     </div>
   )
 }

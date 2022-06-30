@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 
 import AddEventForm from 'features/AddEventForm'
 import styles from 'assets/scss/eventManagement.module.scss'
-import Pagination from 'features/Pagination'
 import InputFilter from 'features/InputFilter'
 import { inputState } from 'store/slices/filterSlice'
 
@@ -65,7 +64,6 @@ const EventManagement = () => {
           {eventsList}
         </tbody>
       </table>
-        {/* <Pagination /> */}
     </div>
   )
 }

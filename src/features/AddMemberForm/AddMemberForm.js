@@ -126,11 +126,12 @@ const AddMemberForm = ({ closeForm }) => {
 
   return (
     <div className={style.background}>
-      <div style={{ overflow: 'hidden' }}>
-        <form className={style.plate} onSubmit={createMember} name="createUser" ref={ref} action="">
+
+      <div className={style.formParent} style={{ overflow: 'hidden' }}>
+        <form className={style.plate} onSubmit={createMember} name="createUser">
           <CloseButton onClick={closeForm} />
           <div className={style.borders}>
-            <h1 className={style.title}>Add Member Form</h1>
+            <h1 className={`${style.title} text-light`}>Add Member Form</h1>
 
             <div className={style.element}>
               <Input
@@ -204,13 +205,15 @@ const AddMemberForm = ({ closeForm }) => {
                 onChange={(e) => setInitialScore(e.target.value)}
               />
             </div>
-            <div className={style.element}>
+            <div className={`${style.element}`}>
               <button
                 type="submit"
                 style={{ fontSize: '18px', height: '50px' }}
+
                 className={`btn btn-primary rounded-pill ${style.button}`}
+
               >
-                Add new Member
+                Add Member
               </button>
             </div>
           </div>
