@@ -52,7 +52,7 @@ const AddUpdateForm = ({ closeForm }) => {
       if (showUpdateForm && ref.current && !ref.current.contains(e.target)) {
         setShowUpdateForm(false)
       }
-      console.log(showUpdateForm, ref.current, !ref.current.contains(e.target))
+      
     }
 
     document.addEventListener('mousedown', checkIfClickedOutside)
