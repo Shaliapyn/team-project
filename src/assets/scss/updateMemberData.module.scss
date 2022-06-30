@@ -4,7 +4,7 @@
   background: rgba(145, 145, 192, 0.678);
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 11;
   position: absolute;
   top: 0;
   left: 0;
@@ -13,7 +13,8 @@
 .plate {
   position: absolute;
   width: 30%;
-  background-color: white;
+  height: 690px;
+  background: linear-gradient(to top, white 87%, $primary 13%);
   border-radius: 15px;
   display: flex;
   padding: 5px 0px;
@@ -21,7 +22,7 @@
   left: 50%;
   margin-top: 20px;
   margin-bottom: 20px;
-  z-index: 2;
+  z-index: 12;
   transform: translateX(-50%);
 
   @media (max-width: 1370px) {

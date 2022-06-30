@@ -130,7 +130,6 @@ const AddMemberForm = ({ closeForm }) => {
       if (showAddForm && ref.current && !ref.current.contains(e.target)) {
         setShowAddForm(false)
       }
-      console.log(showAddForm, ref.current, !ref.current.contains(e.target))
     }
 
     document.addEventListener('mousedown', checkIfClickedOutside)
@@ -145,7 +144,8 @@ const AddMemberForm = ({ closeForm }) => {
     {!message && (
     <div className={styles.background}>
       <div className={styles.formParent} style={{ overflow: 'hidden' }}>
-        <form className={styles.plate} onSubmit={createMember} name="createUser">
+        <form className={styles.plate} onSubmit={createMember} name="createUser" ref={ref}>
+
           <CloseButton onClick={closeForm} />
           <div className={styles.borders}>
             <h1 className={`${styles.title} text-light`}>Add Member Form</h1>
