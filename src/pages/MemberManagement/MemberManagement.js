@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { memberState } from 'store/slices/memberSlice'
 
@@ -15,8 +15,7 @@ import styles from 'assets/scss/membermanagement.module.scss'
 
 const MemberManagement = () => {
   const member = useSelector(memberState)
-  const [showAddForm, setShowAddForm] = useState(false)
-  const { showDeleteForm, setShowDeleteForm, showUpdateForm, handleEdit } = useContext(MenuContext)
+  const { showDeleteForm, setShowDeleteForm, showUpdateForm, handleEdit, showAddForm, setShowAddForm } = useContext(MenuContext)
 
   return (
     <div className={styles.tableContainerManagement} >
@@ -28,8 +27,8 @@ const MemberManagement = () => {
         {member.role === 'admin' && (
               <button
                 type="button"
-                className={`btn btn-primary w-auto ms-auto fs-5`}
-                style={{height: '40px'}}
+                className={`btn btn-primary w-auto ms-auto`}
+                style={{height: '33px'}}
                 onClick={() => setShowAddForm(!showAddForm)}
               >
                 Add Member

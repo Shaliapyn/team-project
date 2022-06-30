@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { auth } from 'firebase-client'
 import { signOut } from 'firebase/auth'
-import profile from 'assets/images/profile.svg'
-import logout from 'assets/images/logout.svg'
-
-import styles from 'assets/scss/topbar.module.scss'
+import { memberState, removeMember } from 'store/slices/memberSlice'
 import MenuContext from 'context/MenuContext'
 
-import { memberState, removeMember } from 'store/slices/memberSlice'
+import profile from 'assets/images/profile.svg'
+import logout from 'assets/images/logout.svg'
+import styles from 'assets/scss/topbar.module.scss'
+
+
+
 
 function Topbar() {
   const member = useSelector(memberState)
@@ -26,12 +28,6 @@ function Topbar() {
       setPhotoURL(member.userPhoto)
     }
   }, [member.userPhoto])
-
-  // useEffect(() => {
-  //   if (auth.currentUser?.photoURL) {
-  //     setPhotoURL(auth.currentUser.photoURL)
-  //   }
-  // }, [auth.currentUser])
 
   const [show, setShow] = useState(false)
   const [currentUserEmail, setCurrentUserEmail] = useState(email)
@@ -104,8 +100,8 @@ function Topbar() {
                 <h4 className="h4">{member.role}</h4>
               </div>
               <div style={{ marginRight: '14px', marginLeft: '14px' }} className="vr"></div>
-              <div className="d-flex align-items-center">
-                <span className="">{currentUserEmail}</span>
+              <div className={`d-flex align-items-center ${styles.mailbox}`}>
+                <span className={styles.mail}>{currentUserEmail}</span>
                 <img className={styles.avatar} src={photoURL} alt="avatar" />
               </div>
             </div>

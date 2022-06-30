@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import { updateDoc, doc } from 'firebase/firestore'
 import { membersCollection } from '../../firebase-client'
 
-import style from '../../assets/scss/AddMemberForm.module.scss'
+import style from '../../assets/scss/updateMemberData.module.scss'
 
 import CloseButton from '../../ui/button/CloseButton'
 import Input from '../../ui/input/Input'
 import { useSelector } from 'react-redux'
 import { memberUpState } from '../../store/slices/memberUpSlice'
-import MenuContext from '../../context/MenuContext'
+
+import MenuContext from 'context/MenuContext'
 
 const AddUpdateForm = ({ closeForm }) => {
   const updatedMember = useSelector(memberUpState)
@@ -41,12 +42,33 @@ const AddUpdateForm = ({ closeForm }) => {
     handleEdit()
   }
 
+  const { showUpdateForm, setShowUpdateForm } = useContext(MenuContext)
+  const ref = useRef()
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the modal
+      if (showUpdateForm && ref.current && !ref.current.contains(e.target)) {
+        setShowUpdateForm(false)
+      }
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [showUpdateForm])
+
   return (
     <div className={style.background}>
       <div style={{ overflow: 'hidden' }}>
-        <form className={style.plate} onSubmit={updateMember} name="createUser">
+        <form className={style.plate} onSubmit={updateMember} name="createUser" ref={ref} action="">
           <CloseButton onClick={closeForm} />
           <div className={style.borders}>
+
             <h1 className={`${style.title} text-light`}>Update Member Data</h1>
             <div className={style.element}>
               <label htmlFor="firstName">First Name</label>
@@ -58,6 +80,7 @@ const AddUpdateForm = ({ closeForm }) => {
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
+
             <div className={style.element}>
               <label htmlFor="firstName">Last Name</label>
               <Input
@@ -68,6 +91,7 @@ const AddUpdateForm = ({ closeForm }) => {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
+
             <div className={style.element}>
               <label htmlFor="email">Email</label>
               <Input
@@ -119,7 +143,12 @@ const AddUpdateForm = ({ closeForm }) => {
               />
             </div>
             <div className={style.element}>
-              <button type="submit" style={{ fontSize: '16px' }} className="btn btn-primary rounded-pill w-50">
+              <button
+                type="submit"
+                style={{ fontSize: '16px' }}
+                className={`btn btn-primary rounded-pill ${style.button}`}
+              >
+
                 Submit changes
               </button>
             </div>
