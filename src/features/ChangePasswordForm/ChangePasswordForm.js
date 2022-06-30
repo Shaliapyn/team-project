@@ -70,8 +70,8 @@ const ChangePassword = ({ closeForm }) => {
         <div className={styles.background}>
 
           <form onSubmit={handlerChangePassword} name="changePassword" className={styles.plate} ref={ref}>
-            <CloseButton onClick={closeForm} />
             <div className={styles.borders}>
+            <CloseButton onClick={closeForm} />
               <h1 className={`${styles.title} text-light`}>Change Password</h1>
 
               <div className={styles.element}>
@@ -132,8 +132,6 @@ const ChangePassword = ({ closeForm }) => {
             </div>
           </form>
           </div>
-          
-        </div>
       )}
       {message && (
         <div className={styles.background}>
