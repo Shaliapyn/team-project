@@ -10,7 +10,7 @@ export const MenuProvider = ({ children }) => {
   const [showUpdateForm, setShowUpdateForm] = useState(false)
   const [showDeleteForm, setShowDeleteForm] = useState(false)
   const [showAddForm, setShowAddForm] = useState(false)
-
+  const [showChangePass, setShowChangePass] = useState(false)
 
   const members = useSelector(membersState)
 
@@ -31,6 +31,8 @@ export const MenuProvider = ({ children }) => {
         setShowUpdateForm,
         showAddForm,
         setShowAddForm,
+        showChangePass,
+        setShowChangePass,
       }}
     >
       {children}
