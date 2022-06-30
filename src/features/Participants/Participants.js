@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { inputState } from 'store/slices/filterSlice'
 
 import Participant from './Participant'
 
@@ -9,13 +8,15 @@ const Participants = (currentEvent) => {
   const participants = useSelector((state) => state.participants.participants)
   const selected = useSelector((state) => state.value.value)
   const members = useSelector((state) => state.members.members)
-    
+  
+  if (!participants) {window.location.reload(false)}
+      
   return (
     <>
       {members &&
       members
         .filter((member) => {
-          if (searchTerm === '') return member
+          if (searchTerm === '') {return member}
           else if (
             member.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
             member.lastName.toLowerCase().includes(searchTerm.toLowerCase())
