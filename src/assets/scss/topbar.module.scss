@@ -85,6 +85,14 @@ $white: #fff !default;
   border-top: 1px solid #eaecf4;
 }
 
+.mailbox {
+  display: flex !important;
+}
+
+.mail {
+  margin-right: 10px;
+}
+
 @media only screen and (max-width: 768px) {
   .menuBtn {
     display: flex;

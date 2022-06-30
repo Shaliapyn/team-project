@@ -27,12 +27,6 @@ function Topbar() {
     }
   }, [member.userPhoto])
 
-  // useEffect(() => {
-  //   if (auth.currentUser?.photoURL) {
-  //     setPhotoURL(auth.currentUser.photoURL)
-  //   }
-  // }, [auth.currentUser])
-
   const [show, setShow] = useState(false)
   const [currentUserEmail, setCurrentUserEmail] = useState(email)
   const ref = useRef()
@@ -104,8 +98,8 @@ function Topbar() {
                 <h4 className="h4">{member.role}</h4>
               </div>
               <div style={{ marginRight: '14px', marginLeft: '14px' }} className="vr"></div>
-              <div className="d-flex align-items-center">
-                <span className="">{currentUserEmail}</span>
+              <div className={`d-flex align-items-center ${styles.mailbox}`}>
+                <span className={styles.mail}>{currentUserEmail}</span>
                 <img className={styles.avatar} src={photoURL} alt="avatar" />
               </div>
             </div>

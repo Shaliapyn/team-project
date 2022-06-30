@@ -1,0 +1,90 @@
+@import './variables.scss';
+
+.background {
+  background: rgba(145, 145, 192, 0.678);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+}
+.plate {
+  position: absolute;
+  width: 35%;
+  background-color: white;
+  border-radius: 15px;
+  display: flex;
+  padding: 5px 20px;
+  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.3);
+  left: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  z-index: 2;
+  transform: translateX(-50%);
+
+  @media (max-width: 1370px) {
+    width: 30%;
+  }
+  @media (max-width: 1270px) {
+    width: 35%;
+  }
+  @media (max-width: 1170px) {
+    width: 40%;
+  }
+  @media (max-width: 1024px) {
+    width: 50%;
+  }
+
+  @media (max-width: 700px) {
+    width: 70%;
+  }
+  @media (max-width: 500px) {
+    width: 90%;
+  }
+}
+
+.borders {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 25px auto;
+
+  @media (max-width: 500px) {
+    font-size: 10px;
+  }
+}
+
+.title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  margin-bottom: 30px;
+  font-size: 23px;
+}
+
+.element {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  
+}
+
+label {
+	margin-left: 20px;
+}
+
+.element:last-child {
+  margin-top: 10px;
+}
+
+.button {
+	margin: 0 auto;
+	height: 50px;
+	width: 100%;
+max-width: 210px;
+}
