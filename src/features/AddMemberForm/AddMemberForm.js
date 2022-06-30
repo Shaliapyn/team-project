@@ -118,7 +118,6 @@ const AddMemberForm = ({ closeForm }) => {
     }
 
     document.addEventListener('mousedown', checkIfClickedOutside)
-
     return () => {
       // Cleanup the event listener
       document.removeEventListener('mousedown', checkIfClickedOutside)
@@ -134,40 +133,76 @@ const AddMemberForm = ({ closeForm }) => {
             <h1 className={style.title}>Add Member Form</h1>
 
             <div className={style.element}>
-              <label htmlFor="firstName">First Name</label>
-              <Input id="firstName" type={'text'} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+              <Input
+                id="firstName"
+                type={'text'}
+                placeholder={'First name'}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
             </div>
 
             <div className={style.element}>
-              <label htmlFor="firstName">Last Name</label>
-              <Input id="lastName" type={'text'} value={lastName} onChange={(e) => setLastName(e.target.value)} />
+              <Input
+                id="lastName"
+                type={'text'}
+                placeholder={'Last name'}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
             </div>
 
             <div className={style.element}>
-              <label htmlFor="email">Email</label>
-              <Input id="email" type={'email'} value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input
+                id="email"
+                type={'email'}
+                placeholder={'Email'}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className={style.element}>
-              <label htmlFor="email">Password</label>
-              <Input type={'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Input
+                type={'password'}
+                placeholder={'Password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
 
             <div className={style.element}>
-              <label htmlFor="birthDate">Birth Date</label>
-              <Input id="birthDate" type={'date'} value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
+              <Input
+                id="birthDate"
+                type={'date'}
+                placeholder={'birth date'}
+                value={birthDate}
+                onChange={(e) => setBirthDate(e.target.value)}
+              />
             </div>
             <div className={style.element}>
-              <label htmlFor="birthDate">Phone number</label>
-              <Input type={'tel'} value={phone} onChange={(e) => setPhone(e.target.value)} />
+              <Input
+                type={'tel'}
+                placeholder={'Phone number'}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </div>
             <div className={style.element}>
-              <label htmlFor="birthDate">Organisation</label>
-              <Input type={'text'} value={organisation} onChange={(e) => setOrganisation(e.target.value)} />
+              <Input
+                type={'text'}
+                placeholder={'Organisation'}
+                value={organisation}
+                onChange={(e) => setOrganisation(e.target.value)}
+              />
             </div>
             <div className={style.element}>
-              <label htmlFor="birthDate">Initial score</label>
-              <Input type={'number'} value={initialScore} onChange={(e) => setInitialScore(e.target.value)} />
+              <Input
+                type={'number'}
+                placeholder={'Initial score'}
+                value={initialScore}
+                onChange={(e) => setInitialScore(e.target.value)}
+              />
             </div>
             <div className={style.element}>
               <button

@@ -10,7 +10,12 @@ const SelectFilter = () => {
   return window.location.pathname === '/auth/event-management/event' ? (
     <div>
       <div className="input-group mb-3">
-        <select onChange={filterr} className="form-select w-45" aria-label="Default select example">
+        <select
+          onChange={filterr}
+          className="form-select w-45"
+          style={{ height: '33px' }}
+          aria-label="Default select example"
+        >
           <option value="All">All</option>
           <option value="Visited">Visited</option>
           <option value="NotVisited">Not Visited</option>
@@ -20,7 +25,7 @@ const SelectFilter = () => {
   ) : (
     <div>
       <div className="input-group mb-3">
-        <select onChange={filterr} className="form-select w-45" aria-label="Default select example">
+        <select onChange={filterr} className="form-select w-45" style={{ height: '33px' }} aria-label="Default select example">
           <option value="All">All</option>
           <option value="Managers">Managers</option>
           <option value="Users">Users</option>

@@ -50,6 +50,7 @@ const Profile = () => {
           <button
             type="button"
             className={`btn btn-primary w-auto`}
+            style={{ height: '33px'}}
             onClick={() => setShowChangePassForm(!showChangePassForm)}
           >
             Change password

@@ -12,11 +12,11 @@
 }
 .plate {
   position: absolute;
-  width: 35%;
+  width: 30%;
   background-color: white;
   border-radius: 15px;
   display: flex;
-  padding: 5px 20px;
+  padding: 5px 0px;
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.3);
   left: 50%;
   margin-top: 20px;
@@ -46,7 +46,7 @@
 }
 
 .borders {
-  width: 70%;
+  width: 90%;
   height: 100%;
   display: flex;
   text-align: center;

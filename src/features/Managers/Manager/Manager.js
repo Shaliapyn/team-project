@@ -28,11 +28,11 @@ const Manager = ({ member }) => {
         <td className="ps-0">
           <div className='d-flex align-items-center justify-content-center'>
             {member.role === 'manager' ? (
-              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-danger w-auto">
+              <button onClick={() => toogleRole(member.id)} type="button" style={{ height: '33px', width: '133px' }} className="btn btn-outline-danger ">
                 Fire manager
               </button>
             ) : (
-              <button onClick={() => toogleRole(member.id)} type="button" className="btn btn-outline-primary w-auto">
+              <button onClick={() => toogleRole(member.id)} type="button" style={{ height: '33px', width: '133px' }} className="btn btn-outline-primary ">
                 Appoint manager
               </button>
             )}

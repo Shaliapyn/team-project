@@ -27,8 +27,8 @@ const MemberManagement = () => {
         {member.role === 'admin' && (
               <button
                 type="button"
-                className={`btn btn-primary w-auto ms-auto fs-5`}
-                style={{height: '40px'}}
+                className={`btn btn-primary w-auto ms-auto`}
+                style={{height: '33px'}}
                 onClick={() => setShowAddForm(!showAddForm)}
               >
                 Add Member
