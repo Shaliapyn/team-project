@@ -39,7 +39,7 @@ const Sidebar = () => {
     <>
       {member.email ? (
         <nav className={`${sidebarClasses} ${hideSideBarClass}`}>
-          {isSidebarBig && <div className={styles.roleBlock}></div>}
+          <div className={styles.roleBlock}></div>
           <hr className={styles.horizonLine} />
           <ul className='pt-3' style={{ paddingLeft: '0px' }}>
             {!!currentUser &&

@@ -10,19 +10,28 @@
   left: 0;
   overflow: scroll;
 }
-.plate {
-  position: absolute;
-  width: 35%;
-  background-color: white;
-  border-radius: 15px;
+.formParent {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.plate {
+  display: flex;
+  position: relative;
+  width: 35%;
+  background: linear-gradient(to top, white 84%, $primary 16%);
+  border-radius: 15px;
   padding: 5px 20px;
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.3);
-  left: 50%;
   margin-top: 20px;
   margin-bottom: 20px;
   z-index: 2;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 
   @media (max-width: 1370px) {
     width: 30%;
@@ -69,7 +78,7 @@
 .element {
   margin-bottom: 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   & label {
     width: 150px;
