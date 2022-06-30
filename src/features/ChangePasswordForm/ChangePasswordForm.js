@@ -48,10 +48,11 @@ const ChangePassword = ({ closeForm }) => {
     <>
       {!message && (
         <div className={styles.background}>
+          <div className={styles.formParent}>
           <form onSubmit={handlerChangePassword} className={styles.plate}>
             <CloseButton onClick={closeForm} />
             <div className={styles.borders}>
-              <h1 className={styles.title}>Change Password</h1>
+              <h1 className={`${styles.title} text-light`}>Change Password Form</h1>
               <div className={styles.element}>
                 <Input
                   type={'password'}
@@ -89,7 +90,7 @@ const ChangePassword = ({ closeForm }) => {
                 <button
                   type="submit"
                   style={{ fontSize: '18px', height: '50px' }}
-                  className="btn btn-primary rounded-pill w-100"
+                  className="btn btn-primary rounded-pill w-50"
                 >
                   Change password
                 </button>
@@ -108,6 +109,8 @@ const ChangePassword = ({ closeForm }) => {
               )}
             </div>
           </form>
+          </div>
+          
         </div>
       )}
       {message && (
