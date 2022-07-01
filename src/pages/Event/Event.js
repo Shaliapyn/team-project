@@ -20,6 +20,7 @@ const Event = () => {
   onSnapshot(participantsCollection, (snapshot) => {
     const participantSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
     dispatch(setParticipants(participantSnap))
+    // false
   })
 
   return (
@@ -47,6 +48,10 @@ const Event = () => {
         </thead>
         <tbody class="table-group-divider">
         <Participants currentEvent={currentEvent} />
+        {/* {} */}
+        {/* {!isLoading & participants.?length ? <ParticipanthList /> : <Spinner />} */}
+        {/* {!isLoading & participants.?length ? <ParticipanthList /> : null}
+{isLoading ? <Spinner />:null} */}
         </tbody>
       </table>
     </div>
