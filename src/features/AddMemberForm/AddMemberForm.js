@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import { useSelector } from 'react-redux'
 
 import { initializeApp } from 'firebase/app'
-import { getAuth, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth'
 import { collection, addDoc, setDoc, doc } from 'firebase/firestore'
 import { db } from 'firebase-client'
 
@@ -12,6 +12,7 @@ import { eventsState } from 'store/slices/eventsSlice'
 import CloseButton from 'ui/button/CloseButton'
 import Input from 'ui/input/Input'
 import MenuContext from 'context/MenuContext'
+import { auth } from 'firebase-client'
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -49,7 +50,13 @@ const AddMemberForm = ({ closeForm }) => {
   )
 
   const events = useSelector(eventsState)
-
+  const sendPassword = (email) => {
+    return sendPasswordResetEmail(auth, email)
+  }
+  const handleSubmit = () => {
+    if (email) {
+        sendPassword(email)
+      }           }
   const createMember = (e) => {
     e.preventDefault()
     setError('')
@@ -77,7 +84,7 @@ const AddMemberForm = ({ closeForm }) => {
             score: parseInt(initialScore),
             userPhoto: userPhoto,
           })
-
+          handleSubmit()
           return createdDocRef
         })
         .then((createdDocRef) => {
@@ -138,7 +145,6 @@ const AddMemberForm = ({ closeForm }) => {
       document.removeEventListener('mousedown', checkIfClickedOutside)
     }
   }, [showAddForm])
-
   return (
     <>
     {!message && (
@@ -177,7 +183,13 @@ const AddMemberForm = ({ closeForm }) => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-
+            {showError2 && (
+              <div className={`${styles.customError} text-danger`}>
+                <span>
+                  Enter correct password (six or more characters)
+                </span>
+              </div>
+            )}
             <div className={styles.element}>
               <Input
                 type={'password'}
@@ -198,7 +210,9 @@ const AddMemberForm = ({ closeForm }) => {
                 onChange={(e) => setBirthDate(e.target.value)}
               />
             </div>
+            {showError1 && <div className={`${styles.customError}  text-danger`}><span>Enter correct number</span> </div>}
             <div className={styles.element}>
+              
               <Input
                 type={'tel'}
                 placeholder={'Phone number'}
@@ -232,18 +246,18 @@ const AddMemberForm = ({ closeForm }) => {
                 Add Member
               </button>
             </div>
-            {showError1 && (
+            {/* {showError1 && (
               <div className={styles.element}>
                 <p className="fs-5 text-danger">Enter correct phone number</p>
               </div>
-            )}
-            {showError2 && (
+            )} */}
+            {/* {showError2 && (
               <div className={styles.element}>
                 <p className="fs-5 text-danger lh-base">
                   Enter correct new password (six or more characters)
                 </p>
               </div>
-            )}
+            )} */}
           </div>
         </form>
       </div>

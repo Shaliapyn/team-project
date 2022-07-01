@@ -79,15 +79,16 @@ const AddUpdateForm = ({ closeForm }) => {
     <>
     {!message && (
     <div className={styles.background}>
-      <div style={{ overflow: 'hidden' }}>
+      <div className={styles.formParent} style={{ overflow: 'hidden' }}>
         <form className={styles.plate} onSubmit={updateMember} name="createUser" ref={ref} action="">
-          <CloseButton onClick={closeForm} />
+        <CloseButton onClick={closeForm} />
           <div className={styles.borders}>
-
-            <h1 className={`${styles.title} text-light`}>Update Member Data</h1>
+          
+            <h1 className={`${styles.title} h4 text-light`}>Update Member Data</h1>
             <div className={styles.element}>
               <label htmlFor="firstName">First Name</label>
               <Input
+                
                 id="firstName"
                 type={'text'}
                 placeholder={'First name'}

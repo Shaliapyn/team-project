@@ -60,8 +60,8 @@
   width: 90%;
   height: 100%;
   display: flex;
-  text-align: center;
   flex-direction: column;
+  text-align: center;
   justify-content: center;
   margin: 25px auto;
 
@@ -78,11 +78,10 @@
 }
 
 .element {
+  position: relative;
   margin-bottom: 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
 
 }
 
@@ -96,4 +95,8 @@
 	width: 100%;
   max-width: 210px;
 }
-
+.customError {
+  position: relative;
+  vertical-align: middle;
+  padding-bottom: 10px;
+}

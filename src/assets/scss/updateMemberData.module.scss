@@ -10,21 +10,29 @@
   left: 0;
   overflow: scroll;
 }
-
+.formParent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 .plate {
-  position: absolute;
-  width: 30%;
-  height: 690px;
-  background: linear-gradient(to top, white 87%, $primary 13%);
+  position: relative;
+  width: 35%;
+  height: 660px;
+  background: linear-gradient(to top, white 86%, $primary 14%);
   border-radius: 15px;
   display: flex;
   padding: 5px 0px;
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.3);
-  left: 50%;
   margin-top: 20px;
   margin-bottom: 20px;
   z-index: 12;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 
   @media (max-width: 1370px) {
     width: 30%;
@@ -64,15 +72,16 @@
 .title {
   font-family: 'Nunito', sans-serif;
   font-weight: 300;
-  margin-bottom: 30px;
   font-size: 23px;
+  position: relative;
+  bottom: 45px;
 }
 
 .element {
   margin-bottom: 10px;
   display: flex;
-  align-items: flex-start;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   
 }
 
