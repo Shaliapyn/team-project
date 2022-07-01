@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { eventsCollection } from 'firebase-client'
 import { collection, onSnapshot } from 'firebase/firestore'
 
@@ -10,19 +10,24 @@ import Participants from 'features/Participants'
 import styles from 'assets/scss/event.module.scss'
 import InputFilter from 'features/InputFilter'
 import SelectFilter from 'features/SelectFilter'
+import Spinner from 'features/Spinner'
 
 const Event = () => {
   const location = useLocation()
   const dispatch = useDispatch()
   const {currentEvent}  = location.state
   const participantsCollection = collection(eventsCollection, currentEvent.id, 'participants')
+  const [isLoading, setIsLoading] = useState(true)
+  const participants = useSelector((state) => state.participants.participants)
   
-  onSnapshot(participantsCollection, (snapshot) => {
-    const participantSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    dispatch(setParticipants(participantSnap))
-    // false
-  })
-
+  useEffect(() => {
+    onSnapshot(participantsCollection, (snapshot) => {
+      const participantSnap = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      dispatch(setParticipants(participantSnap))
+      setIsLoading(false)
+    })
+  }, [])
+  
   return (
     <div className={styles.event__container} >
       <div className='d-flex flex-column align-items-start '>
@@ -47,11 +52,8 @@ const Event = () => {
           </tr>
         </thead>
         <tbody class="table-group-divider">
-        <Participants currentEvent={currentEvent} />
-        {/* {} */}
-        {/* {!isLoading & participants.?length ? <ParticipanthList /> : <Spinner />} */}
-        {/* {!isLoading & participants.?length ? <ParticipanthList /> : null}
-{isLoading ? <Spinner />:null} */}
+          {!isLoading && participants.length && <Participants currentEvent={currentEvent} /> } 
+          {isLoading && <Spinner /> } 
         </tbody>
       </table>
     </div>
