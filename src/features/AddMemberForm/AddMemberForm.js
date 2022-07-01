@@ -171,7 +171,6 @@ const AddMemberForm = ({ closeForm }) => {
                     onChange={(e) => setLastName(e.target.value)}
                   />
                 </div>
-
                 <div className={styles.element}>
                   <Input
                     id="email"
