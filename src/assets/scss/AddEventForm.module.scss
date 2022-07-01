@@ -18,9 +18,9 @@
 }
 .plate {
   display: flex;
-  position: absolute;
+  position: relative;
   width: 30%;
-  background: linear-gradient(to top, white 71%, $primary 29%);
+  background: linear-gradient(to top, white 77%, $primary 23%);
   border-radius: 15px;
   padding: 5px 0px;
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.3);
@@ -74,7 +74,7 @@
   align-items: center;
 }
 
-.element:last-child {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
+// .element:last-child {
+//   margin-top: 10px;
+//   margin-bottom: 20px;
+// }
