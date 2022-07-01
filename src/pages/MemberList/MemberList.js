@@ -7,12 +7,12 @@ import InputFilter from 'features/InputFilter'
 
 const MemberList = () => {
   return (
-    <div className={styles.tableContainer} >
-      <h1 className='fs-3 mt-4 mb-4 text-primary'>Member List</h1>
-      <div className='d-flex'>
+    <div className={styles.tableContainer}>
+      <h1 className="fs-3 mt-4 mb-4 text-primary">Member List</h1>
+      <div className="d-flex">
         <InputFilter />
       </div>
-      <table className='table'>
+      <table className="table">
         <thead>
           <tr>
             <th scope="col"></th>
@@ -26,7 +26,7 @@ const MemberList = () => {
           <Members />
         </tbody>
       </table>
-        {/* <Pagination /> */}
+      {/* <Pagination /> */}
     </div>
   )
 }

@@ -8,13 +8,13 @@ import Pagination from 'features/Pagination'
 
 const ManagerManagement = () => {
   return (
-    <div className={styles.tableContainerManagers} >
-      <h1 className='fs-3 mt-4 mb-4 text-primary'>Manager Management</h1>
-      <div className='d-flex'>
+    <div className={styles.tableContainerManagers}>
+      <h1 className="fs-3 mt-4 mb-4 text-primary">Manager Management</h1>
+      <div className="d-flex">
         <InputFilter />
         <SelectFilter />
       </div>
-      <table className='table'>
+      <table className="table">
         <thead>
           <tr>
             <th scope="col"></th>
@@ -28,7 +28,7 @@ const ManagerManagement = () => {
           <Managers />
         </tbody>
       </table>
-        {/* <Pagination /> */}
+      {/* <Pagination /> */}
     </div>
   )
 }

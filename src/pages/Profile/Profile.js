@@ -24,33 +24,44 @@ const Profile = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className='fs-3 mt-4 mb-4 text-primary align-self-start'>Profile</h1>
+      <h1 className="fs-3 mt-4 mb-4 text-primary align-self-start">Profile</h1>
       <div className={styles.profile__container}>
-        <div className='d-flex flex-column flex-nowrap align-items-center justify-content-center w-75'>
-          <div className='m-5 text-center'>
+        <div className="d-flex flex-column flex-nowrap align-items-center justify-content-center w-75">
+          <div className="m-5 text-center">
             <AvatarForm />
           </div>
-          <hr className='w-100 bg-info mt-0'/>
-          <div className='d-flex align-items-center justify-content-between w-100'>
-            <ul className='text-start p-0'>
-              <li className='p-2'>First Name:</li>
-              <li className='p-2'>Last Name:</li>
-              <li className='p-2'>Score:</li>
-              <li className='p-2'>Place in the rating:</li>
+          <hr className="w-100 bg-info mt-0" />
+          <div className="d-flex align-items-center justify-content-between w-100">
+            <ul className="text-start p-0">
+              <li className="p-2">First Name:</li>
+              <li className="p-2">Last Name:</li>
+              <li className="p-2">Score:</li>
+              <li className="p-2">Place in the rating:</li>
             </ul>
-            <ul className='text-end '>
-              <li className='p-2'><b>{currentMember.firstName}</b></li>
-              <li className='p-2'><b>{currentMember.lastName}</b></li>
-              <li className='p-2'><b>{currentMember.score}</b></li>
-              <li className='p-2'><b>{ratingPlace}<sup>{suffixRatingPlace}</sup> out of {ratingList.length}</b></li>
+            <ul className="text-end ">
+              <li className="p-2">
+                <b>{currentMember.firstName}</b>
+              </li>
+              <li className="p-2">
+                <b>{currentMember.lastName}</b>
+              </li>
+              <li className="p-2">
+                <b>{currentMember.score}</b>
+              </li>
+              <li className="p-2">
+                <b>
+                  {ratingPlace}
+                  <sup>{suffixRatingPlace}</sup> out of {ratingList.length}
+                </b>
+              </li>
             </ul>
           </div>
         </div>
-        <div className='my-5'>
+        <div className="my-5">
           <button
             type="button"
             className={`btn btn-primary w-auto`}
-            style={{ height: '33px'}}
+            style={{ height: '33px' }}
             onClick={() => setShowChangePassForm(!showChangePassForm)}
           >
             Change password

@@ -10,10 +10,13 @@ import { membersCollection } from 'firebase-client'
 import styles from 'assets/scss/event.module.scss'
 
 const Participant = ({ participant, currentEvent }) => {
-  const defaultPhoto = 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
-  
-  if (!participant) {window.location.reload(false)}
-  
+  const defaultPhoto =
+    'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+
+  if (!participant) {
+    window.location.reload(false)
+  }
+
   let currentParticipant = participant
   let additionalPoints = currentParticipant.addPoints
   let visited = currentParticipant.visitedEvent
@@ -22,7 +25,7 @@ const Participant = ({ participant, currentEvent }) => {
   const members = useSelector(membersState)
   const currentMember = members.find((member) => member.id === currentParticipant.id)
   const event = currentEvent.currentEvent
-  
+
   const updatePoints = async (additionalPoints) => {
     const docRef = doc(eventsCollection, event.id, 'participants', currentParticipant.id)
 
@@ -83,14 +86,21 @@ const Participant = ({ participant, currentEvent }) => {
     const number = Number(e.target.value)
     if (isNaN(number)) {
       setInputPoints(0)
-    } else {setInputPoints(number)}
+    } else {
+      setInputPoints(number)
+    }
   }
 
   return (
     <tr style={{ backgroundColor: visited ? '#edf6f8' : 'white' }}>
       <td className="ps-0">
-        <div className='d-flex align-items-center justify-content-center'>
-          <img src={currentMember.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+        <div className="d-flex align-items-center justify-content-center">
+          <img
+            src={currentMember.userPhoto || defaultPhoto}
+            alt="avatar"
+            className={styles.avatar}
+            type={`image / png`}
+          ></img>
         </div>
       </td>
       <td>
@@ -98,16 +108,11 @@ const Participant = ({ participant, currentEvent }) => {
       </td>
       <td>{currentMember.firstName}</td>
       <td>{currentMember.lastName}</td>
-      <td >{currentParticipant.addPoints}</td>
+      <td>{currentParticipant.addPoints}</td>
       <td className="w-auto ps-0">
-        <form className='d-flex align-items-center justify-content-center '>
-          <div className="input-group" style={{ width: '190px'}}>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Additional points"
-              onChange={handlerInputPoints}
-            />
+        <form className="d-flex align-items-center justify-content-center ">
+          <div className="input-group" style={{ width: '190px' }}>
+            <input type="text" className="form-control" placeholder="Additional points" onChange={handlerInputPoints} />
             <button className="btn btn-outline-secondary" type="button" onClick={increasePoints}>
               +
             </button>
@@ -118,7 +123,7 @@ const Participant = ({ participant, currentEvent }) => {
         </form>
       </td>
       <td className="ps-0 ">
-        <div className='d-flex align-items-center justify-content-center'>
+        <div className="d-flex align-items-center justify-content-center">
           <Comment participant={currentParticipant} currentEvent={currentEvent} />
         </div>
       </td>

@@ -38,16 +38,16 @@ const Comment = (props) => {
     if (isActiveComment) {
       handlerEmptyComment = (
         <>
-          <textarea 
+          <textarea
             autoFocus
             className="form-control flex-fill"
             ref={ref}
-            placeholder="Write your comment here" 
-            cols="40" 
-            rows="2" 
-            style={{backgroundColor: 'rgba(246, 194, 62, 0)', border: '1px solid #36b9cc'}}
+            placeholder="Write your comment here"
+            cols="40"
+            rows="2"
+            style={{ backgroundColor: 'rgba(246, 194, 62, 0)', border: '1px solid #36b9cc' }}
           ></textarea>
-          <div className="input-group w-auto" style={{ justifyContent: 'end'}}>
+          <div className="input-group w-auto" style={{ justifyContent: 'end' }}>
             <button className={styles.button} type="button" onClick={saveComment}>
               <SaveSvg />
             </button>
@@ -99,20 +99,20 @@ const Comment = (props) => {
         <>
           <div className="align-middle text-start flex-fill">
             {isBeingUpdated ? (
-              <textarea 
+              <textarea
                 autoFocus
                 className="form-control"
                 ref={refUpdated}
-                defaultValue={participant.comment} 
-                cols="40" 
-                rows="2" 
-                style={{backgroundColor: 'rgba(246, 194, 62, 0)', border: '1px solid #36b9cc'}}
+                defaultValue={participant.comment}
+                cols="40"
+                rows="2"
+                style={{ backgroundColor: 'rgba(246, 194, 62, 0)', border: '1px solid #36b9cc' }}
               ></textarea>
-              ) : (
+            ) : (
               participant.comment
             )}
           </div>
-          <div className="input-group w-auto justify-content-end" >
+          <div className="input-group w-auto justify-content-end">
             {!isBeingUpdated ? (
               <button className={styles.button} type="button" onClick={() => setIsActiveComment(!isActiveComment)}>
                 <VisibilityOffSvg />

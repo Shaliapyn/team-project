@@ -82,11 +82,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
 }
 
 label {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
 .element:last-child {
@@ -130,14 +129,19 @@ label {
 }
 
 .button {
-	margin: 0 auto;
-	height: 50px;
-	width: 100%;
-max-width: 210px;
+  margin: 0 auto;
+  height: 50px;
+  width: 100%;
+  max-width: 210px;
 }
 .buttonOk {
-	margin: 0 auto;
-	height: 33px;
-	width: 100%;
-max-width: 210px;
+  margin: 0 auto;
+  height: 33px;
+  width: 100%;
+  max-width: 210px;
+}
+.customError {
+  position: relative;
+  vertical-align: middle;
+  padding-bottom: 10px;
 }

@@ -55,14 +55,14 @@ const AddMemberForm = ({ closeForm }) => {
   }
   const handleSubmit = () => {
     if (email) {
-        sendPassword(email)
-      }           }
+      sendPassword(email)
+    }
+  }
   const createMember = (e) => {
     e.preventDefault()
     setError('')
 
     if (password.trim().length >= 6) {
-
       let secondaryApp = initializeApp(firebaseConfig, 'secondary')
       const secondaryAuth = getAuth(secondaryApp)
 
@@ -117,7 +117,7 @@ const AddMemberForm = ({ closeForm }) => {
 
   const handlerTel = (e) => {
     let tel = e.target.value
-    
+
     if (tel.match(regex)) {
       setPhone(tel)
       setShowError1(false)
@@ -125,7 +125,6 @@ const AddMemberForm = ({ closeForm }) => {
       setShowError1(true)
     }
   }
-  
 
   const { showAddForm, setShowAddForm } = useContext(MenuContext)
   const ref = useRef()
@@ -147,135 +146,129 @@ const AddMemberForm = ({ closeForm }) => {
   }, [showAddForm])
   return (
     <>
-    {!message && (
-    <div className={styles.background}>
-      <div className={styles.formParent} style={{ overflow: 'hidden' }}>
-        <form className={styles.plate} onSubmit={createMember} name="createUser" ref={ref}>
+      {!message && (
+        <div className={styles.background}>
+          <div className={styles.formParent} style={{ overflow: 'hidden' }}>
+            <form className={styles.plate} onSubmit={createMember} name="createUser" ref={ref}>
+              <CloseButton onClick={closeForm} />
+              <div className={styles.borders}>
+                <h1 className={`${styles.title} text-light`}>Add Member Form</h1>
+                <div className={styles.element}>
+                  <Input
+                    id="firstName"
+                    type={'text'}
+                    placeholder={'First name'}
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </div>
+                <div className={styles.element}>
+                  <Input
+                    id="lastName"
+                    type={'text'}
+                    placeholder={'Last name'}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                </div>
 
-          <CloseButton onClick={closeForm} />
-          <div className={styles.borders}>
-            <h1 className={`${styles.title} text-light`}>Add Member Form</h1>
-            <div className={styles.element}>
-              <Input
-                id="firstName"
-                type={'text'}
-                placeholder={'First name'}
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-            <div className={styles.element}>
-              <Input
-                id="lastName"
-                type={'text'}
-                placeholder={'Last name'}
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-
-            <div className={styles.element}>
-              <Input
-                id="email"
-                type={'email'}
-                placeholder={'Email'}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            {showError2 && (
-              <div className={`${styles.customError} text-danger`}>
-                <span>
-                  Enter correct password (six or more characters)
-                </span>
-              </div>
-            )}
-            <div className={styles.element}>
-              <Input
-                type={'password'}
-                placeholder={'Password'}
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                  setShowError2(false)
-                }}
-              />
-            </div>
-            <div className={styles.element}>
-              <Input
-                id="birthDate"
-                type={'date'}
-                placeholder={'birth date'}
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-              />
-            </div>
-            {showError1 && <div className={`${styles.customError}  text-danger`}><span>Enter correct number</span> </div>}
-            <div className={styles.element}>
-              
-              <Input
-                type={'tel'}
-                placeholder={'Phone number'}
-                value={phone}
-                onChange={handlerTel}
-              />
-            </div>
-            <div className={styles.element}>
-              <Input
-                type={'text'}
-                placeholder={'Organisation'}
-                value={organisation}
-                onChange={(e) => setOrganisation(e.target.value)}
-              />
-            </div>
-            <div className={styles.element}>
-              <Input
-                type={'number'}
-                placeholder={'Initial score'}
-                value={initialScore}
-                onChange={(e) => setInitialScore(e.target.value)}
-              />
-            </div>
-            <div className={styles.element}>
-              <button
-                type="submit"
-                style={{ fontSize: '18px', height: '50px' }}
-                className={`btn btn-primary rounded-pill ${styles.button}`}
-
-              >
-                Add Member
-              </button>
-            </div>
-            {/* {showError1 && (
+                <div className={styles.element}>
+                  <Input
+                    id="email"
+                    type={'email'}
+                    placeholder={'Email'}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                {showError2 && (
+                  <div className={`${styles.customError} text-danger`}>
+                    <span>Enter correct password (six or more characters)</span>
+                  </div>
+                )}
+                <div className={styles.element}>
+                  <Input
+                    type={'password'}
+                    placeholder={'Password'}
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                      setShowError2(false)
+                    }}
+                  />
+                </div>
+                <div className={styles.element}>
+                  <Input
+                    id="birthDate"
+                    type={'date'}
+                    placeholder={'birth date'}
+                    value={birthDate}
+                    onChange={(e) => setBirthDate(e.target.value)}
+                  />
+                </div>
+                {showError1 && (
+                  <div className={`${styles.customError}  text-danger`}>
+                    <span>Enter correct number</span>{' '}
+                  </div>
+                )}
+                <div className={styles.element}>
+                  <Input type={'tel'} placeholder={'Phone number'} value={phone} onChange={handlerTel} />
+                </div>
+                <div className={styles.element}>
+                  <Input
+                    type={'text'}
+                    placeholder={'Organisation'}
+                    value={organisation}
+                    onChange={(e) => setOrganisation(e.target.value)}
+                  />
+                </div>
+                <div className={styles.element}>
+                  <Input
+                    type={'number'}
+                    placeholder={'Initial score'}
+                    value={initialScore}
+                    onChange={(e) => setInitialScore(e.target.value)}
+                  />
+                </div>
+                <div className={styles.element}>
+                  <button
+                    type="submit"
+                    style={{ fontSize: '18px', height: '50px' }}
+                    className={`btn btn-primary rounded-pill ${styles.button}`}
+                  >
+                    Add Member
+                  </button>
+                </div>
+                {/* {showError1 && (
               <div className={styles.element}>
                 <p className="fs-5 text-danger">Enter correct phone number</p>
               </div>
             )} */}
-            {/* {showError2 && (
+                {/* {showError2 && (
               <div className={styles.element}>
                 <p className="fs-5 text-danger lh-base">
                   Enter correct new password (six or more characters)
                 </p>
               </div>
             )} */}
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
-    )}
-    {message && (
-      <div className={styles.background}>
-        <form className={styles.plate}>
-          <div className={styles.borders}>
-            <p className="mt-4 fs-4 lh-base text-primary">A new member has been added successfully!</p>
-            <button type="button" className="btn btn-outline-primary rounded-pill w-auto mb-4" onClick={closeForm}>
-              OK
-            </button>
-          </div>
-        </form>
-      </div>
-    )}
-  </>
+        </div>
+      )}
+      {message && (
+        <div className={styles.background}>
+          <form className={styles.plate}>
+            <div className={styles.borders}>
+              <p className="mt-4 fs-4 lh-base text-primary">A new member has been added successfully!</p>
+              <button type="button" className="btn btn-outline-primary rounded-pill w-auto mb-4" onClick={closeForm}>
+                OK
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+    </>
   )
 }
 
