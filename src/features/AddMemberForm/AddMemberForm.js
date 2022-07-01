@@ -227,7 +227,6 @@ const AddMemberForm = ({ closeForm }) => {
                 type="submit"
                 style={{ fontSize: '18px', height: '50px' }}
                 className={`btn btn-primary rounded-pill ${styles.button}`}
-
               >
                 Add Member
               </button>

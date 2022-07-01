@@ -9,7 +9,7 @@ const Participants = (currentEvent) => {
   const selected = useSelector((state) => state.value.value)
   const members = useSelector((state) => state.members.members)
   
-  if (!participants) {window.location.reload(false)}
+  // if (!participants) {window.location.reload(false)}
       
   return (
     <>
