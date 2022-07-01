@@ -11,7 +11,7 @@ const EventManagement = () => {
   const [show, setShow] = useState(false)
   const events = useSelector((state) => state.events.events)
   const searchTerm = useSelector(inputState)
-  
+
   const eventsList =
     events &&
     events
@@ -23,46 +23,44 @@ const EventManagement = () => {
       })
       .map((event) => {
         return (
-          <tr key={event.id} className='p-4'>
+          <tr key={event.id} className="p-4">
             <td className="fs-5">
               <Link to="event" state={{ currentEvent: event }}>
                 {event.eventName}
               </Link>
             </td>
-            <td >{event.eventDate}</td>
-            <td >{event.score}</td>
+            <td>{event.eventDate}</td>
+            <td>{event.score}</td>
           </tr>
         )
-    })
+      })
 
   return (
-    <div className={styles.container} >
+    <div className={styles.container}>
       <div>{show && <AddEventForm closeForm={() => setShow(false)} />}</div>
-      <div className='d-flex align-items-center'>
-        <h1 className='fs-3 mt-4 mb-4 text-primary'>Event Management</h1>
+      <div className="d-flex align-items-center">
+        <h1 className="fs-3 mt-4 mb-4 text-primary">Event Management</h1>
         <button
-            type="button"
-            className={`btn btn-primary w-auto ms-auto`}
-            style={{height: '33px'}}
-            onClick={() => setShow(!show)}
-          >
-            Add Event
+          type="button"
+          className={`btn btn-primary w-auto ms-auto`}
+          style={{ height: '33px' }}
+          onClick={() => setShow(!show)}
+        >
+          Add Event
         </button>
       </div>
-      <div className='d-flex'>
+      <div className="d-flex">
         <InputFilter />
       </div>
-      <table className='table'>
+      <table className="table">
         <thead>
-          <tr className='p-4'>
+          <tr className="p-4">
             <th scope="col">Event Name</th>
             <th scope="col">Date</th>
             <th scope="col">Score</th>
           </tr>
         </thead>
-        <tbody className="table-group-divider">
-          {eventsList}
-        </tbody>
+        <tbody className="table-group-divider">{eventsList}</tbody>
       </table>
     </div>
   )

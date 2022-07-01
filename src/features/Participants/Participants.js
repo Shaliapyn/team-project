@@ -8,40 +8,47 @@ const Participants = (currentEvent) => {
   const participants = useSelector((state) => state.participants.participants)
   const selected = useSelector((state) => state.value.value)
   const members = useSelector((state) => state.members.members)
+
   
   // if (!participants) {window.location.reload(false)}
       
   return (
     <>
       {members &&
-      members
-        .filter((member) => {
-          if (searchTerm === '') {return member}
-          else if (
-            member.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            member.lastName.toLowerCase().includes(searchTerm.toLowerCase())
-          ) {
-            return member
-          }
-        })
-        .filter((member) => {
-          const foundEl = participants.find((el) => el.id === member.id)
-          if (selected === 'Visited') {
-            if (foundEl.visitedEvent) {
+        members
+          .filter((member) => {
+            if (searchTerm === '') {
               return member
-            }} 
-          if (selected === 'NotVisited') {
-            if (!foundEl.visitedEvent) {
-              return member 
-            }}
-          if (selected === 'All') return member 
-        })
-        .map((member, id) => (
-          <Participant key={id} participant={participants.find((el) => el.id === member.id)} currentEvent={currentEvent} />
-        ))  
-      }
+            } else if (
+              member.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              member.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return member
+            }
+          })
+          .filter((member) => {
+            const foundEl = participants.find((el) => el.id === member.id)
+            if (selected === 'Visited') {
+              if (foundEl.visitedEvent) {
+                return member
+              }
+            }
+            if (selected === 'NotVisited') {
+              if (!foundEl.visitedEvent) {
+                return member
+              }
+            }
+            if (selected === 'All') return member
+          })
+          .map((member, id) => (
+            <Participant
+              key={id}
+              participant={participants.find((el) => el.id === member.id)}
+              currentEvent={currentEvent}
+            />
+          ))}
     </>
-    )
+  )
 }
 
 export default Participants

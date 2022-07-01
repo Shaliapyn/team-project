@@ -17,22 +17,37 @@ const Manager = ({ member }) => {
     }
     return (
       <tr key={member.id} style={{ verticalAlign: 'middle' }}>
-        <td className="ps-0"> 
-          <div className='d-flex align-items-center justify-content-center'>
-            <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
+        <td className="ps-0">
+          <div className="d-flex align-items-center justify-content-center">
+            <img
+              src={member.userPhoto || defaultPhoto}
+              alt="avatar"
+              className={styles.avatar}
+              type={`image / png`}
+            ></img>
           </div>
         </td>
         <td>{member.firstName}</td>
         <td>{member.lastName}</td>
         <td>{member.email}</td>
         <td className="ps-0">
-          <div className='d-flex align-items-center justify-content-center'>
+          <div className="d-flex align-items-center justify-content-center">
             {member.role === 'manager' ? (
-              <button onClick={() => toogleRole(member.id)} type="button" style={{ height: '33px', width: '133px' }} className="btn btn-outline-danger ">
+              <button
+                onClick={() => toogleRole(member.id)}
+                type="button"
+                style={{ height: '33px', width: '133px' }}
+                className="btn btn-outline-danger "
+              >
                 Fire manager
               </button>
             ) : (
-              <button onClick={() => toogleRole(member.id)} type="button" style={{ height: '33px', width: '133px' }} className="btn btn-outline-primary ">
+              <button
+                onClick={() => toogleRole(member.id)}
+                type="button"
+                style={{ height: '33px', width: '133px' }}
+                className="btn btn-outline-primary "
+              >
                 Appoint manager
               </button>
             )}

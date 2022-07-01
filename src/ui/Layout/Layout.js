@@ -11,7 +11,7 @@ const Layout = () => {
     <div className="w-100 d-flex">
       <MenuProvider>
         <Sidebar />
-        <main className='w-100 d-flex flex-column min-vh-100' style={{backgroundColor: '#f2f8f8'}}>
+        <main className="w-100 d-flex flex-column min-vh-100" style={{ backgroundColor: '#f2f8f8' }}>
           <Topbar />
           <Outlet />
           <Footer />

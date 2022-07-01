@@ -14,7 +14,7 @@ const InputFilter = () => {
           className="form-control input-group"
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
-          style={{height: '33px'}}
+          style={{ height: '33px' }}
         />
       </div>
     </div>

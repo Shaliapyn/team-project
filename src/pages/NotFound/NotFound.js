@@ -7,7 +7,7 @@ function NotFound() {
   return (
     <>
       {!user.email && (
-        <div className='w-100 text-center fs-3' style={{marginTop: '160px'}}>
+        <div className="w-100 text-center fs-3" style={{ marginTop: '160px' }}>
           <p> Page Not Found. </p>
           <p> Please, welcome to our </p>
           <p>
@@ -19,7 +19,7 @@ function NotFound() {
         </div>
       )}
       {!!user.email && (
-        <div className='w-100 text-center fs-3' style={{marginTop: '160px'}}>
+        <div className="w-100 text-center fs-3" style={{ marginTop: '160px' }}>
           <p> Page Not Found. </p>
           <p> Please, welcome to your </p>
           <p className="text-reset">

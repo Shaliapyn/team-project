@@ -14,31 +14,32 @@ import styles from 'assets/scss/membermanagement.module.scss'
 
 const MemberManagement = () => {
   const member = useSelector(memberState)
-  const { showDeleteForm, setShowDeleteForm, showUpdateForm, handleEdit, showAddForm, setShowAddForm } = useContext(MenuContext)
+  const { showDeleteForm, setShowDeleteForm, showUpdateForm, handleEdit, showAddForm, setShowAddForm } =
+    useContext(MenuContext)
 
   return (
-    <div className={styles.tableContainerManagement} >
+    <div className={styles.tableContainerManagement}>
       <div>{showAddForm && <AddMemberForm closeForm={() => setShowAddForm(false)} />}</div>
       <div>{showUpdateForm && <AddUpdateForm closeForm={() => handleEdit()} />}</div>
       <div>{showDeleteForm && <DeleteMemberForm closeForm={() => setShowDeleteForm(false)} />}</div>
-      <div className='d-flex align-items-center'>
-        <h1 className='fs-3 mt-4 mb-4 text-primary'>Member Management</h1>
+      <div className="d-flex align-items-center">
+        <h1 className="fs-3 mt-4 mb-4 text-primary">Member Management</h1>
         {member.role === 'admin' && (
-              <button
-                type="button"
-                className={`btn btn-primary w-auto ms-auto`}
-                style={{height: '33px'}}
-                onClick={() => setShowAddForm(!showAddForm)}
-              >
-                Add Member
-              </button>
-            )}
+          <button
+            type="button"
+            className={`btn btn-primary w-auto ms-auto`}
+            style={{ height: '33px' }}
+            onClick={() => setShowAddForm(!showAddForm)}
+          >
+            Add Member
+          </button>
+        )}
       </div>
-      <div className='d-flex'>
+      <div className="d-flex">
         <InputFilter />
         <SelectFilter />
       </div>
-      <table className='table'>
+      <table className="table">
         <thead>
           <tr>
             <th scope="col"></th>

@@ -26,7 +26,7 @@ const Sidebar = () => {
   const focus = styles.focus
   const menuFocus = (e) => {
     const selected = e.currentTarget
-    
+
     if (!selected.classList.contains(focus)) {
       selected.classList.add(focus)
     } else return selected
@@ -41,7 +41,7 @@ const Sidebar = () => {
       {member.email ? (
         <nav className={`${sidebarClasses} ${hideSideBarClass}`}>
           <hr className={styles.horizonLine} />
-          <ul className='pt-3' style={{ paddingLeft: '0px' }}>
+          <ul className="pt-3" style={{ paddingLeft: '0px' }}>
             {!!currentUser &&
               SidebarData.map((el, key) => (
                 <Link key={key} className={`text-white ${styles.Link}`} to={el.link}>

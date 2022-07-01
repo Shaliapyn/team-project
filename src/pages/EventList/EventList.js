@@ -44,20 +44,20 @@ const EventList = () => {
   }, [])
 
   return (
-    <div className={styles.container} >
-      <h1 className='fs-3 mt-4 mb-4 text-primary'>The List of Visited Events</h1>
+    <div className={styles.container}>
+      <h1 className="fs-3 mt-4 mb-4 text-primary">The List of Visited Events</h1>
       {!empty && (
-        <div className='d-flex'>
-        <InputFilter />
-      </div>
+        <div className="d-flex">
+          <InputFilter />
+        </div>
       )}
       {empty && (
-        <div className='d-flex mt-5 align-middle justify-content-center fs-4 text-secondary'>
-         You haven't visited any events
-      </div>
+        <div className="d-flex mt-5 align-middle justify-content-center fs-4 text-secondary">
+          You haven't visited any events
+        </div>
       )}
       {!empty && (
-        <table className='table'>
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">Event Name</th>

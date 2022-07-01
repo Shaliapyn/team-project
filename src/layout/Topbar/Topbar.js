@@ -11,9 +11,6 @@ import profile from 'assets/images/profile.svg'
 import logout from 'assets/images/logout.svg'
 import styles from 'assets/scss/topbar.module.scss'
 
-
-
-
 function Topbar() {
   const member = useSelector(memberState)
   const navigate = useNavigate()

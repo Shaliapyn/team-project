@@ -31,9 +31,9 @@ const Member = ({ member }) => {
   return currentUser.role === 'user' ? (
     <tr>
       <td scope="col" className="ps-0">
-        <div className='d-flex align-items-center justify-content-center'>
+        <div className="d-flex align-items-center justify-content-center">
           <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
-        </div> 
+        </div>
       </td>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
@@ -43,9 +43,9 @@ const Member = ({ member }) => {
   ) : (
     <tr style={{ verticalAlign: 'middle' }}>
       <td scope="col" className="ps-0">
-        <div className='d-flex align-items-center justify-content-center'>
+        <div className="d-flex align-items-center justify-content-center">
           <img src={member.userPhoto || defaultPhoto} alt="avatar" className={styles.avatar} type={`image / png`}></img>
-        </div> 
+        </div>
       </td>
       <td>{member.firstName}</td>
       <td>{member.lastName}</td>
@@ -55,7 +55,7 @@ const Member = ({ member }) => {
       <td>{member.score}</td>
       <td>{member.birthDate}</td>
       <td className="ps-0">
-        <div className='d-flex align-items-center justify-content-center'>
+        <div className="d-flex align-items-center justify-content-center">
           <div className={styles.btnBlock}>
             <div onClick={() => updateMemb(member.id)}>
               <EditSvg />
@@ -66,7 +66,7 @@ const Member = ({ member }) => {
               </div>
             )}
             {member.role === 'admin' && (
-              <div className='invisible'>
+              <div className="invisible">
                 <DeleteSvg />
               </div>
             )}
