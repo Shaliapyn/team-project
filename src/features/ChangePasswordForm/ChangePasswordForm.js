@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 
 import { auth } from 'firebase-client'
 import { updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth'
@@ -6,7 +6,8 @@ import { updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 
 import CloseButton from 'ui/button/CloseButton'
 import Input from 'ui/input/Input/Input'
 
-import styles from 'assets/scss/AddEventForm.module.scss'
+import styles from 'assets/scss/changePasswordForm.module.scss'
+import MenuContext from 'context/MenuContext'
 
 const ChangePassword = ({ closeForm }) => {
   const user = auth.currentUser
@@ -44,82 +45,105 @@ const ChangePassword = ({ closeForm }) => {
       })
   }
 
+  const { showChangePass, setShowChangePass } = useContext(MenuContext)
+  const ref = useRef()
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the modal
+      if (showChangePass && ref.current && !ref.current.contains(e.target)) {
+        setShowChangePass(false)
+      }
+    }
+
+    document.addEventListener('mousedown', checkIfClickedOutside)
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', checkIfClickedOutside)
+    }
+  }, [showChangePass])
+
   return (
     <>
       {!message && (
         <div className={styles.background}>
           <div className={styles.formParent}>
-          <form onSubmit={handlerChangePassword} className={styles.plate}>
-            <CloseButton onClick={closeForm} />
-            <div className={styles.borders}>
-              <h1 className={`${styles.title} text-light`}>Change Password Form</h1>
-              <div className={styles.element}>
-                <Input
-                  type={'password'}
-                  placeholder={'Enter your current password'}
-                  value={currentPass}
-                  onChange={(e) => {
-                    setCurrentPass(e.target.value)
-                    setShowError1(false)
-                  }}
-                />
-              </div>
-              <div className={styles.element}>
-                <Input
-                  type={'password'}
-                  placeholder={'Enter your new password'}
-                  value={newPass}
-                  onChange={(e) => {
-                    setNewPass(e.target.value)
-                    setShowError2(false)
-                  }}
-                />
-              </div>
-              <div className={styles.element}>
-                <Input
-                  type={'password'}
-                  placeholder={'Confirm your new password'}
-                  value={newPassConfirmed}
-                  onChange={(e) => {
-                    setNewPassConfirmed(e.target.value)
-                    setShowError2(false)
-                  }}
-                />
-              </div>
-              <div className={styles.element}>
-                <button
-                  type="submit"
-                  style={{ fontSize: '18px', height: '50px' }}
-                  className="btn btn-primary rounded-pill w-50"
-                >
-                  Change password
-                </button>
-              </div>
-              {showError1 && (
+            <form onSubmit={handlerChangePassword} name="changePassword" className={styles.plate} ref={ref}>
+              <div className={styles.borders}>
+                <CloseButton onClick={closeForm} />
+                <h1 className={`${styles.title} text-light`}>Change Password</h1>
+
                 <div className={styles.element}>
-                  <p className="fs-5 text-danger">Enter correct current password</p>
+                  <Input
+                    type={'password'}
+                    placeholder={'Enter your current password'}
+                    value={currentPass}
+                    onChange={(e) => {
+                      setCurrentPass(e.target.value)
+                      setShowError1(false)
+                    }}
+                  />
                 </div>
-              )}
-              {showError2 && (
                 <div className={styles.element}>
-                  <p className="fs-5 text-danger lh-base">
-                    Enter correct new password (six or more characters) and confirm it
-                  </p>
+                  <Input
+                    type={'password'}
+                    placeholder={'Enter your new password'}
+                    value={newPass}
+                    onChange={(e) => {
+                      setNewPass(e.target.value)
+                      setShowError2(false)
+                    }}
+                  />
                 </div>
-              )}
-            </div>
-          </form>
+                <div className={styles.element}>
+                  <Input
+                    type={'password'}
+                    placeholder={'Confirm your new password'}
+                    value={newPassConfirmed}
+                    onChange={(e) => {
+                      setNewPassConfirmed(e.target.value)
+                      setShowError2(false)
+                    }}
+                  />
+                </div>
+                <div className={styles.element}>
+                  <button
+                    type="submit"
+                    style={{ fontSize: '18px', height: '50px' }}
+                    className={`btn btn-primary rounded-pill ${styles.button}`}
+                  >
+                    Change password
+                  </button>
+                </div>
+                {showError1 && (
+                  <div className={styles.element}>
+                    <p className="fs-5 text-danger">Enter correct current password</p>
+                  </div>
+                )}
+                {showError2 && (
+                  <div className={styles.element}>
+                    <p className="fs-5 text-danger lh-base">
+                      Enter correct new password (six or more characters) and confirm it
+                    </p>
+                  </div>
+                )}
+              </div>
+            </form>
           </div>
-          
         </div>
       )}
       {message && (
         <div className={styles.background}>
-          <form className={styles.plate}>
+          <form className={styles.smallPlate}>
             <div className={styles.borders}>
               <p className="mt-4 fs-4 lh-base text-primary">Password has been changed successfully!</p>
               <p className="fs-5 lh-base text-dark">Now you can sign in with your new password</p>
-              <button type="button" className="btn btn-outline-primary rounded-pill w-auto mb-4" onClick={closeForm}>
+              <button
+                type="button"
+                className={`btn btn-outline-primary rounded-pill ${styles.buttonOk}`}
+                onClick={closeForm}
+              >
                 OK
               </button>
             </div>

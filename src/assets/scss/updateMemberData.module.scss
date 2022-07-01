@@ -4,16 +4,18 @@
   background: rgba(145, 145, 192, 0.678);
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 11;
   position: absolute;
   top: 0;
   left: 0;
   overflow: scroll;
 }
+
 .plate {
   position: absolute;
   width: 30%;
-  background-color: white;
+  height: 690px;
+  background: linear-gradient(to top, white 87%, $primary 13%);
   border-radius: 15px;
   display: flex;
   padding: 5px 0px;
@@ -21,7 +23,7 @@
   left: 50%;
   margin-top: 20px;
   margin-bottom: 20px;
-  z-index: 2;
+  z-index: 12;
   transform: translateX(-50%);
 
   @media (max-width: 1370px) {
@@ -82,9 +84,51 @@ label {
   margin-top: 10px;
 }
 
+.plateNotify {
+  position: absolute;
+  width: 30%;
+  height: 250px;
+  background: linear-gradient(to top, white 87%, $primary 13%);
+  border-radius: 15px;
+  display: flex;
+  padding: 5px 0px;
+  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 6px 25px 0 rgba(0, 0, 0, 0.3);
+  left: 50%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  z-index: 12;
+  transform: translateX(-50%);
+
+  @media (max-width: 1370px) {
+    width: 30%;
+  }
+  @media (max-width: 1270px) {
+    width: 35%;
+  }
+  @media (max-width: 1170px) {
+    width: 40%;
+  }
+  @media (max-width: 1024px) {
+    width: 50%;
+  }
+
+  @media (max-width: 700px) {
+    width: 70%;
+  }
+  @media (max-width: 500px) {
+    width: 90%;
+  }
+}
+
 .button {
 	margin: 0 auto;
 	height: 50px;
+	width: 100%;
+max-width: 210px;
+}
+.buttonOk {
+	margin: 0 auto;
+	height: 33px;
 	width: 100%;
 max-width: 210px;
 }

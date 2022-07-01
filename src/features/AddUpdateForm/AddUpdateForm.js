@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { updateDoc, doc } from 'firebase/firestore'
 import { membersCollection } from '../../firebase-client'
 
-import styles from '../../assets/scss/AddMemberForm.module.scss'
+import styles from '../../assets/scss/updateMemberData.module.scss'
 
 import CloseButton from '../../ui/button/CloseButton'
 import Input from '../../ui/input/Input'
@@ -177,10 +177,10 @@ const AddUpdateForm = ({ closeForm }) => {
     )}
     {message && (
       <div className={styles.background}>
-        <form className={styles.plate}>
+        <form className={styles.plateNotify}>
           <div className={styles.borders}>
             <p className="mt-4 fs-4 lh-base text-primary">This member has been updated successfully!</p>
-            <button type="button" className="btn btn-outline-primary rounded-pill w-auto mb-4" onClick={closeForm}>
+            <button type="button" className={`btn btn-outline-primary rounded-pill mb-4 ${styles.buttonOk}`} onClick={closeForm}>
               OK
             </button>
           </div>
