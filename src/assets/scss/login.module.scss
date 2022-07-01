@@ -67,8 +67,11 @@ body {
 
 .element {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .element:last-child {
   margin-top: 10px;
 }
+

@@ -53,7 +53,7 @@ const Login = () => {
               />
             </div>
             <div className={style.element}>
-              <button type="submit" style={{ fontSize: '18px' }} className="btn btn-primary rounded-pill w-100">
+              <button type="submit" style={{ fontSize: '18px' }} className={`btn btn-primary rounded-pill w-75`}>
                 &nbsp;&nbsp;&nbsp; Sign In &nbsp;&nbsp;&nbsp;
               </button>
             </div>
